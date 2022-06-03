@@ -8,6 +8,18 @@ export const postsRouter = createRouter()
       return await prisma.post.findMany();
     },
   })
+  .query("get-by-id", {
+    input: z.object({
+      id: z.string(),
+    }),
+    async resolve({ input }) {
+      return await prisma.post.findFirst({
+        where: {
+          id: input.id,
+        },
+      });
+    },
+  })
   .mutation("create", {
     input: z.object({
       title: z.string().min(6).max(200),

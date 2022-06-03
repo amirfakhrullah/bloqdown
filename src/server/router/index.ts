@@ -1,4 +1,8 @@
+
+import * as trpc from "@trpc/server";
+
 import superjson from "superjson";
+import { prisma } from "../../db/client";
 import { postsRouter } from "./posts";
 import { createRouter } from "./context";
 
