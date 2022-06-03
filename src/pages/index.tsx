@@ -1,7 +1,6 @@
-import type { NextPage } from "next";
 import MetaHead from "../components/MetaHead";
 
-const Home: NextPage = () => {
+const Home: React.FC = () => {
   return (
     <div>
       <MetaHead title="Polley" />

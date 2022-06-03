@@ -12,24 +12,29 @@ datasource db {
   referentialIntegrity = "prisma"
 }
 
-model Question {
+model Post {
   id      String   @id @default(cuid())
   created DateTime @default(now())
 
-  question String @db.VarChar(500)
+  userToken String @db.VarChar(255)
 
-  options Json
-  Vote    Vote[]
+  title       String @db.VarChar(200)
+  description String @db.VarChar(1000)
+
+  comments Comment[]
+
+  @@index([userToken])
 }
 
-model Vote {
+model Comment {
   id      String   @id @default(cuid())
   created DateTime @default(now())
 
-  choice Int
+  userToken String @db.VarChar(255)
 
-  question   Question @relation(fields: [questionId], references: [id])
-  questionId String
+  post   Post   @relation(fields: [postId], references: [id])
+  postId String
 
-  @@index([questionId])
+  @@index([userToken])
+  @@index([postId])
 }
