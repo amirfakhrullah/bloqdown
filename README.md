@@ -2,6 +2,11 @@
 
 Simple Forum site using `Next.js`, `TypeScript`, `Prisma`, `PlanetScale` and `tRPC`
 
+## TODO
+
+- [ ] Cookie for users
+- [ ] UI
+
 ## Getting Started
 
 ### Installations
