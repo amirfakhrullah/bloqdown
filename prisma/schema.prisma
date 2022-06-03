@@ -32,11 +32,11 @@ model Comment {
 
   text String @db.VarChar(200)
 
-  // userToken String @db.VarChar(255)
+  userToken String @db.VarChar(255)
 
   post   Post   @relation(fields: [postId], references: [id])
   postId String
 
-  // @@index([userToken])
-  // @@index([postId])
+  @@index([userToken])
+  @@index([postId])
 }
