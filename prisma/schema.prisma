@@ -16,25 +16,27 @@ model Post {
   id      String   @id @default(cuid())
   created DateTime @default(now())
 
-  userToken String @db.VarChar(255)
+  // userToken String @db.VarChar(255)
 
   title       String @db.VarChar(200)
   description String @db.VarChar(1000)
 
-  comments Comment[]
+  // comments Comment[]
 
-  @@index([userToken])
+  // @@index([userToken])
 }
 
 model Comment {
   id      String   @id @default(cuid())
   created DateTime @default(now())
 
-  userToken String @db.VarChar(255)
+  text String @db.VarChar(200)
 
-  post   Post   @relation(fields: [postId], references: [id])
-  postId String
+  // userToken String @db.VarChar(255)
 
-  @@index([userToken])
-  @@index([postId])
+  // post   Post   @relation(fields: [postId], references: [id])
+  // postId String
+
+  // @@index([userToken])
+  // @@index([postId])
 }
