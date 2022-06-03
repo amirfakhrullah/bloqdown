@@ -2,10 +2,34 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model Question {
+  id      String   @id @default(cuid())
+  created DateTime @default(now())
+
+  question String @db.VarChar(500)
+
+  options Json
+  Vote    Vote[]
+}
+
+model Vote {
+  id      String   @id @default(cuid())
+  created DateTime @default(now())
+
+  choice Int
+
+  question   Question @relation(fields: [questionId], references: [id])
+  questionId String
+
+  @@index([questionId])
 }
