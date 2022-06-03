@@ -13,8 +13,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-
-    // Theo's Additional Opinions
     "incremental": false,
     "noUncheckedIndexedAccess": true
   },

@@ -1,10 +1,9 @@
 import Loader from "../components/Loader";
 import MetaHead from "../components/MetaHead";
 import { trpc } from "../utils/trpc";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Home: React.FC<{ posts: any }> = () => {
-  const router = useRouter();
   const client = trpc.useContext();
   const { isLoading, data: posts } = trpc.useQuery(["post.get-all"]);
   const { mutate } = trpc.useMutation("post.create", {
@@ -28,9 +27,11 @@ const Home: React.FC<{ posts: any }> = () => {
           <p>{post.description}</p>
           <p className="text-gray-500">{JSON.stringify(post.created)}</p>
           <div className="flex justify-end">
-            <div onClick={() => router.push(`/posts/${post.id}`)} className="mt-2 py-2 px-4 rounded-md inline-block bg-gray-700 hover:bg-gray-900 cursor-pointer">
-              <p className="text-sm text-white font-medium">See More</p>
-            </div>
+            <Link href={`/posts/${post.id}`}>
+              <div className="mt-2 py-2 px-4 rounded-md inline-block bg-gray-700 hover:bg-gray-900 cursor-pointer">
+                <p className="text-sm text-white font-medium">See More</p>
+              </div>
+            </Link>
           </div>
         </div>
       ))}
