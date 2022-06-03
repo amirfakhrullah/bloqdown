@@ -5,10 +5,10 @@ import Link from "next/link";
 
 const Home: React.FC<{ posts: any }> = () => {
   const client = trpc.useContext();
-  const { isLoading, data: posts } = trpc.useQuery(["post.get-all"]);
+  const { isLoading, data: posts } = trpc.useQuery(["post.get-all-posts"]);
   const { mutate } = trpc.useMutation("post.create", {
     onSuccess: () => {
-      client.invalidateQueries(["post.get-all"]);
+      client.invalidateQueries(["post.get-all-posts"]);
     },
   });
 

@@ -3,9 +3,20 @@ import { prisma } from "../../db/client";
 import { createRouter } from "./context";
 
 export const postsRouter = createRouter()
-  .query("get-all", {
+  .query("get-all-posts", {
     async resolve() {
       return await prisma.post.findMany();
+    },
+  })
+  .query("get-my-posts", {
+    async resolve({ ctx }) {
+      return await prisma.post.findMany({
+        where: {
+          userToken: {
+            equals: ctx.token
+          }
+        }
+      });
     },
   })
   .query("get-by-id", {
