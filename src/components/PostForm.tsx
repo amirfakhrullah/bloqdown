@@ -47,7 +47,7 @@ const PostForm: React.FC<{
     <div className="w-full h-screen fixed top-0 left-0 z-20">
       <div className="mt-10 p-4 w-full max-w-xl mx-auto border border-gray-500 rounded-lg bg-gray-200">
         <h3 className="font-bold text-2xl">Post</h3>
-        
+
         <Input
           title="Title"
           type="input"
@@ -87,22 +87,28 @@ const PostForm: React.FC<{
         />
 
         <div className="flex justify-end">
-          <button
-            type="button"
-            className="mr-2 mt-2 py-2 px-4 rounded-md inline-block border border-gray-500 hover:bg-gray-400 cursor-pointer text-sm text-black font-medium"
-            onClick={() => setOpen(false)}
-          >
-            Cancel
-          </button>
+          {isLoading ? (
+            <p>Publishing...</p>
+          ) : (
+            <>
+              <button
+                type="button"
+                className="mr-2 mt-2 py-2 px-4 rounded-md inline-block border border-gray-500 hover:bg-gray-400 cursor-pointer text-sm text-black font-medium"
+                onClick={() => setOpen(false)}
+              >
+                Cancel
+              </button>
 
-          <button
-            type="submit"
-            className="mt-2 py-2 px-4 rounded-md inline-block bg-gray-700 hover:bg-gray-900 cursor-pointer text-sm text-white font-medium"
-            onClick={handleSubmit(onSubmit)}
-            disabled={isLoading}
-          >
-            Publish
-          </button>
+              <button
+                type="submit"
+                className="mt-2 py-2 px-4 rounded-md inline-block bg-gray-700 hover:bg-gray-900 cursor-pointer text-sm text-white font-medium"
+                onClick={handleSubmit(onSubmit)}
+                disabled={isLoading}
+              >
+                Publish
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>

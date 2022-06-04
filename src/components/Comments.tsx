@@ -65,15 +65,19 @@ const Comments: React.FC<{
             error={errors.text}
           />
         </div>
-        <div className="">
-          <button
-            type="submit"
-            className="ml-2 py-2 px-4 rounded-md inline-block bg-gray-700 hover:bg-gray-900 cursor-pointer text-sm text-white font-medium"
-            onClick={handleSubmit(onSubmit)}
-            disabled={isLoading}
-          >
-            Comment
-          </button>
+        <div>
+          {isLoading ? (
+            <p className="p-2">Commenting...</p>
+          ) : (
+            <button
+              type="submit"
+              className="ml-2 py-2 px-4 rounded-md inline-block bg-gray-700 hover:bg-gray-900 cursor-pointer text-sm text-white font-medium"
+              onClick={handleSubmit(onSubmit)}
+              disabled={isLoading}
+            >
+              Comment
+            </button>
+          )}
         </div>
       </div>
 
