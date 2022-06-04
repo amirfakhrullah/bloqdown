@@ -34,7 +34,7 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
           disabled
           readOnly
           defaultValue={post.description}
-          className="resize-none text-white py-1 w-full bg-transparent"
+          className="overflow-hidden resize-none text-white py-1 w-full bg-transparent"
         />
 
         <p className="text-gray-500 text-sm font-bold text-right">
