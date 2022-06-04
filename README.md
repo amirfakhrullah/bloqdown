@@ -1,6 +1,12 @@
 # Polley
 
-Simple Forum site using `Next.js`, `TypeScript`, `Prisma`, `PlanetScale` and `tRPC`
+Simple Forum site built for learning some new techstacks.
+
+## Goals For This Project
+
+- Creating fully typesafe APIs using `trpc`
+- Using `Prisma` as `TypeScript ORM`
+- Setting up `PlanetScale` as `MySQL` db
 
 ## Getting Started
 
@@ -19,8 +25,3 @@ npm run dev
 # or
 yarn dev
 ```
-
-## TODO
-
-- [x] Cookie for users
-- [ ] UI
