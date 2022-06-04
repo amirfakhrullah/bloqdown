@@ -12,6 +12,11 @@ I know the UI for this project is pretty trash. But that's not the goal for buil
 
 ## Getting Started
 
+### Prerequisite
+
+- MySQL local database or Planetscale connection using PScale CLI
+- npm
+
 ### Installations
 
 ```bash
