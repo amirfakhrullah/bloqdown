@@ -13,9 +13,9 @@ export const postsRouter = createRouter()
       return await prisma.post.findMany({
         where: {
           userToken: {
-            equals: ctx.token
-          }
-        }
+            equals: ctx.token,
+          },
+        },
       });
     },
   })
