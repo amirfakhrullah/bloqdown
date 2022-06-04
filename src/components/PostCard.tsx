@@ -1,10 +1,11 @@
 import React from "react";
 
 const PostCard: React.FC<{
+  id: string;
   title: string;
-  description: string;
   created: Date;
-}> = ({ title, description, created }) => {
+  isOwner: boolean;
+}> = ({ id, title, created, isOwner }) => {
   return <div>PostCard</div>;
 };
 

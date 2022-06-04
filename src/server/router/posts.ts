@@ -4,8 +4,22 @@ import { createRouter } from "./context";
 
 export const postsRouter = createRouter()
   .query("get-all-posts", {
-    async resolve() {
-      return await prisma.post.findMany();
+    async resolve({ ctx }) {
+      const posts = await prisma.post.findMany({
+        select: {
+          id: true,
+          title: true,
+          created: true,
+          userToken: true,
+        },
+      });
+
+      return posts.map((post) => {
+        return {
+          ...post,
+          isOwner: post.userToken === ctx.token,
+        };
+      });
     },
   })
   .query("get-my-posts", {
@@ -29,8 +43,8 @@ export const postsRouter = createRouter()
           id: input.id,
         },
         include: {
-          Comment: true
-        }
+          Comment: true,
+        },
       });
 
       return {
