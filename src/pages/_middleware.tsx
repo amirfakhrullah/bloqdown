@@ -8,7 +8,7 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
     // Redirect (to apply cookie)
     const res = NextResponse.redirect(req.nextUrl);
 
-    res.cookie("user-token", token, { sameSite: "strict" });
+    res.cookie("user-token", token, { sameSite: "lax" });
 
     return res;
   } else {
