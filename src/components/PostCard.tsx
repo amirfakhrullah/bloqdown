@@ -12,7 +12,7 @@ const PostCard: React.FC<{
       <h3 className="font-bold text-lg text-gray-200">{title}</h3>
       {typeof isOwner === "boolean" && (
         <p className="text-sm font-bold text-gray-400">
-          {isOwner ? "by you" : "anonymous"}
+          {isOwner ? "By you" : "Anonymous"}
         </p>
       )}
       <p className="text-gray-500">
