@@ -4,19 +4,19 @@ import { trpc } from "../utils/trpc";
 import Input from "./Input";
 import TextareaAutosize from "react-textarea-autosize";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createCommentValidation } from '../utils/validations';
+import { createCommentValidation } from "../utils/validations";
+import { Comment } from "@prisma/client";
+
+type CommentWithIsOwner = Comment & { isOwner: boolean };
 
 const Comments: React.FC<{
   id: string | undefined;
-}> = ({ id }) => {
+  comments: CommentWithIsOwner[];
+}> = ({ id, comments }) => {
   const client = trpc.useContext();
-  const { data: comments, isLoading: commentsLoading } = trpc.useQuery([
-    "comment.get-comments",
-    { postId: id! },
-  ]);
   const { mutate, isLoading } = trpc.useMutation("comment.create", {
     onSuccess: () => {
-      client.invalidateQueries(["comment.get-comments"]);
+      client.invalidateQueries(["post.get-by-id"]);
       reset();
     },
   });
@@ -29,9 +29,9 @@ const Comments: React.FC<{
   } = useForm({
     defaultValues: {
       text: "",
-      postId: id
+      postId: id,
     },
-    resolver: zodResolver(createCommentValidation)
+    resolver: zodResolver(createCommentValidation),
   });
 
   const onSubmit = ({ text }: { text: string }) => {
@@ -40,10 +40,6 @@ const Comments: React.FC<{
       text,
     });
   };
-
-  if (commentsLoading) {
-    return <h3 className="text-lg font-bold mt-5 text-gray-300">Loading...</h3>;
-  }
 
   return (
     <div className="mt-5">

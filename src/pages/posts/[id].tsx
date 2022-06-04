@@ -53,7 +53,7 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
           }).format(post.created)}
         </p>
 
-        <Comments id={post.id} />
+        <Comments id={post.id} comments={post.comments} />
       </Container>
     </>
   );

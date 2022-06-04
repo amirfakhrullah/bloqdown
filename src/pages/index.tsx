@@ -3,11 +3,11 @@ import MetaHead from "../components/MetaHead";
 import { trpc } from "../utils/trpc";
 import PostForm from "../components/PostForm";
 import { useState } from "react";
-import PostCard from "../components/PostCard";
+import PostCard, { PostWithIsOwner } from "../components/PostCard";
 import Header from "../components/Header";
 import Container from "../components/Container";
 
-const Home: React.FC<{ posts: any }> = () => {
+const Home: React.FC = () => {
   const [openForm, setOpenForm] = useState(false);
 
   const { isLoading, data: posts } = trpc.useQuery(["post.get-all-posts"]);
@@ -32,7 +32,7 @@ const Home: React.FC<{ posts: any }> = () => {
         <PostForm open={openForm} setOpen={setOpenForm} />
 
         {posts?.map((post) => (
-          <PostCard key={post.id} {...post} />
+          <PostCard key={post.id} {...post as PostWithIsOwner} />
         ))}
       </Container>
     </>

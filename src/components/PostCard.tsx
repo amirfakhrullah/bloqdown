@@ -1,12 +1,10 @@
+import { Post } from "@prisma/client";
 import Link from "next/link";
 import React from "react";
 
-const PostCard: React.FC<{
-  id: string;
-  title: string;
-  created: Date;
-  isOwner?: boolean;
-}> = ({ id, title, created, isOwner }) => {
+export type PostWithIsOwner = Post & { isOwner: boolean };
+
+const PostCard: React.FC<PostWithIsOwner> = ({ id, title, created, isOwner }) => {
   return (
     <div className="my-2 p-5 rounded-lg bg-slate-800 border border-gray-600">
       <h3 className="font-bold text-lg text-gray-200">{title}</h3>

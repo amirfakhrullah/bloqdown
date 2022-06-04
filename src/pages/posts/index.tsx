@@ -3,7 +3,7 @@ import Container from "../../components/Container";
 import Header from "../../components/Header";
 import Loader from "../../components/Loader";
 import MetaHead from "../../components/MetaHead";
-import PostCard from "../../components/PostCard";
+import PostCard, { PostWithIsOwner } from "../../components/PostCard";
 import { trpc } from "../../utils/trpc";
 
 const MyPosts: React.FC = () => {
@@ -24,7 +24,7 @@ const MyPosts: React.FC = () => {
           </h3>
         )}
         {posts?.map((post) => (
-          <PostCard key={post.id} {...post} />
+          <PostCard key={post.id} {...post as PostWithIsOwner} />
         ))}
       </Container>
     </>

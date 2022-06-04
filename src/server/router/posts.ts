@@ -51,9 +51,23 @@ export const postsRouter = createRouter()
         },
       });
 
+      const comments = await prisma.comment.findMany({
+        where: {
+          postId: input.id,
+        },
+      });
+
+      const commentsWithOwner = comments.map((comment) => {
+        return {
+          ...comment,
+          isOwner: comment.userToken === ctx.token,
+        };
+      });
+
       return {
         ...post,
         isOwner: post?.userToken === ctx.token,
+        comments: commentsWithOwner,
       };
     },
   })
