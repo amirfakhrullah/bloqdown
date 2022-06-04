@@ -44,7 +44,7 @@ const PostForm: React.FC<{
   if (!open) return <></>;
 
   return (
-    <div className="w-screen h-screen fixed top-0 left-0 z-20">
+    <div className="w-full h-screen fixed top-0 left-0 z-20">
       <div className="mt-10 p-4 w-full max-w-xl mx-auto border border-gray-500 rounded-lg bg-gray-200">
         <h3 className="font-bold text-2xl">Post</h3>
         

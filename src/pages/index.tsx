@@ -4,6 +4,7 @@ import { trpc } from "../utils/trpc";
 import Link from "next/link";
 import PostForm from "../components/PostForm";
 import { useState } from "react";
+import PostCard from "../components/PostCard";
 
 const Home: React.FC<{ posts: any }> = () => {
   const [openForm, setOpenForm] = useState(false);
@@ -29,20 +30,7 @@ const Home: React.FC<{ posts: any }> = () => {
       <PostForm open={openForm} setOpen={setOpenForm} />
 
       {posts?.map((post) => (
-        <div
-          key={post.id}
-          className="my-2 p-10 rounded-lg border border-gray-500"
-        >
-          <h3 className="font-bold">{post.title}</h3>
-          <p className="text-gray-500">{JSON.stringify(post.created)}</p>
-          <div className="flex justify-end">
-            <Link href={`/posts/${post.id}`}>
-              <div className="mt-2 py-2 px-4 rounded-md inline-block bg-gray-700 hover:bg-gray-900 cursor-pointer">
-                <p className="text-sm text-white font-medium">See More</p>
-              </div>
-            </Link>
-          </div>
-        </div>
+        <PostCard key={post.id} {...post} />
       ))}
     </div>
   );
