@@ -10,6 +10,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.0",
     "@prisma/client": "^3.14.0",
     "@trpc/client": "^9.24.0",
     "@trpc/next": "^9.24.0",

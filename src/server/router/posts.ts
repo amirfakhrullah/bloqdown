@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { prisma } from "../../db/client";
+import { createPostValidation } from "../../utils/validations";
 import { createRouter } from "./context";
 
 export const postsRouter = createRouter()
@@ -57,10 +58,7 @@ export const postsRouter = createRouter()
     },
   })
   .mutation("create", {
-    input: z.object({
-      title: z.string().min(6).max(200),
-      description: z.string().min(6).max(1000),
-    }),
+    input: createPostValidation,
     async resolve({ input, ctx }) {
       if (!ctx.token) {
         return { error: "Unauthorized" };

@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { trpc } from "../utils/trpc";
 import Input from "./Input";
 import TextareaAutosize from "react-textarea-autosize";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createCommentValidation } from '../utils/validations';
 
 const Comments: React.FC<{
   id: string | undefined;
@@ -27,7 +29,9 @@ const Comments: React.FC<{
   } = useForm({
     defaultValues: {
       text: "",
+      postId: id
     },
+    resolver: zodResolver(createCommentValidation)
   });
 
   const onSubmit = ({ text }: { text: string }) => {
@@ -51,17 +55,7 @@ const Comments: React.FC<{
             type="textarea"
             minRows={1}
             placeholder="Insert your comment here..."
-            register={register("text", {
-              required: "Required",
-              minLength: {
-                value: 2,
-                message: "Minimum 2 letters",
-              },
-              maxLength: {
-                value: 200,
-                message: "Maximum 200 letters",
-              },
-            })}
+            register={register("text")}
             error={errors.text}
           />
         </div>

@@ -2,6 +2,8 @@ import React, { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import { trpc } from "../utils/trpc";
 import Input from "./Input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createPostValidation } from "../utils/validations";
 
 const PostForm: React.FC<{
   open: boolean;
@@ -26,6 +28,7 @@ const PostForm: React.FC<{
       title: "",
       description: "",
     },
+    resolver: zodResolver(createPostValidation),
   });
 
   const onSubmit = ({
@@ -52,17 +55,7 @@ const PostForm: React.FC<{
           title="Title"
           type="input"
           placeholder="Insert post title"
-          register={register("title", {
-            required: "Required",
-            minLength: {
-              value: 6,
-              message: "Minimum 6 letters",
-            },
-            maxLength: {
-              value: 200,
-              message: "Maximum 200 letters",
-            },
-          })}
+          register={register("title")}
           error={errors.title}
         />
 
@@ -70,17 +63,7 @@ const PostForm: React.FC<{
           title="Content"
           type="textarea"
           placeholder="Insert your post content here..."
-          register={register("description", {
-            required: "Required",
-            minLength: {
-              value: 6,
-              message: "Minimum 6 letters",
-            },
-            maxLength: {
-              value: 1000,
-              message: "Maximum 1000 letters",
-            },
-          })}
+          register={register("description")}
           error={errors.description}
         />
 

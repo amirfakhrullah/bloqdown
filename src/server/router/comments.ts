@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { prisma } from "../../db/client";
 import { createRouter } from "./context";
+import { createCommentValidation } from '../../utils/validations';
 
 export const commentsRouter = createRouter()
   .query("get-comments", {
@@ -34,10 +35,7 @@ export const commentsRouter = createRouter()
     },
   })
   .mutation("create", {
-    input: z.object({
-      text: z.string().min(2).max(200),
-      postId: z.string(),
-    }),
+    input: createCommentValidation,
     async resolve({ input, ctx }) {
       if (!ctx.token) {
         return { error: "Unauthorized" };
