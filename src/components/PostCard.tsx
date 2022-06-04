@@ -8,8 +8,8 @@ const PostCard: React.FC<{
   isOwner: boolean;
 }> = ({ id, title, created, isOwner }) => {
   return (
-    <div className="my-2 p-5 rounded-lg bg-gray-100 border border-gray-500">
-      <h3 className="font-bold text-lg">{title}</h3>
+    <div className="my-2 p-5 rounded-lg bg-slate-800 border border-gray-600">
+      <h3 className="font-bold text-lg text-gray-200">{title}</h3>
       <p className="text-sm font-bold text-gray-400">
         {isOwner ? "by you" : "anonymous"}
       </p>
@@ -25,7 +25,7 @@ const PostCard: React.FC<{
       </p>
       <div className="flex justify-end">
         <Link href={`/posts/${id}`}>
-          <div className="mt-2 py-2 px-4 rounded-md inline-block bg-gray-700 hover:bg-gray-900 cursor-pointer">
+          <div className="mt-2 py-2 px-4 rounded-md inline-block bg-gray-700 cursor-pointer">
             <p className="text-sm text-white font-medium">Read</p>
           </div>
         </Link>

@@ -14,7 +14,7 @@ const Input: React.FC<{
   return (
     <div className="mt-2 mb-1">
       <div className="flex flex-row mb-1">
-        <p className="font-bold text-sm">{title}</p>
+        <p className="font-bold text-sm text-gray-300">{title}</p>
         {required && <p className="text-red-400 ml-1">*</p>}
       </div>
 
@@ -23,7 +23,7 @@ const Input: React.FC<{
           {...register}
           defaultValue=""
           placeholder={placeholder}
-          className="py-1 px-2 border border-gray-300 rounded-md w-full"
+          className="py-1 px-2 text-white border border-gray-300 rounded-md w-full bg-transparent"
         />
       ) : (
         <TextareaAutosize
@@ -32,7 +32,7 @@ const Input: React.FC<{
           rows={7}
           defaultValue=""
           placeholder={placeholder}
-          className="resize-none py-1 px-2 border border-gray-300 rounded-md w-full"
+          className="resize-none text-white py-1 px-2 border border-gray-300 rounded-md w-full bg-transparent"
         />
       )}
 

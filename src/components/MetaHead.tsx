@@ -3,15 +3,11 @@ import React from "react";
 
 const MetaHead: React.FC<{
   title: string;
-  description?: string;
-}> = ({ title, description }) => {
+}> = ({ title }) => {
   return (
     <Head>
       <title>{title}</title>
-      <meta
-        name="description"
-        content={description ?? "Polley App"}
-      />
+      <meta name="description" content="Polley App" />
     </Head>
   );
 };

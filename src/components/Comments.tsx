@@ -38,13 +38,13 @@ const Comments: React.FC<{
   };
 
   if (commentsLoading) {
-    return <h3 className="text-lg font-bold mt-5">Loading...</h3>;
+    return <h3 className="text-lg font-bold mt-5 text-gray-300">Loading...</h3>;
   }
 
   return (
     <div className="mt-5">
-      <h3 className="text-lg font-bold mt-5">Comments</h3>
-      <div className="mt-2 p-4 w-full border border-gray-600 rounded-lg bg-gray-100 flex md:flex-row flex-col md:items-center items-end">
+      <h3 className="text-lg font-bold mt-5 text-gray-300">Comments</h3>
+      <div className="pb-2 w-full flex md:flex-row flex-col md:items-center items-end">
         <div className="w-full flex-1">
           <Input
             title=""
@@ -67,11 +67,11 @@ const Comments: React.FC<{
         </div>
         <div>
           {isLoading ? (
-            <p className="p-2">Commenting...</p>
+            <p className="p-2 text-white">Commenting...</p>
           ) : (
             <button
               type="submit"
-              className="ml-2 py-2 px-4 rounded-md inline-block bg-gray-700 hover:bg-gray-900 cursor-pointer text-sm text-white font-medium"
+              className="ml-2 py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
               onClick={handleSubmit(onSubmit)}
               disabled={isLoading}
             >
@@ -84,7 +84,7 @@ const Comments: React.FC<{
       {comments?.map((comment) => (
         <div
           key={comment.id}
-          className="my-2 py-2 px-3 rounded-lg bg-gray-100 border border-gray-300"
+          className="my-2 py-2 px-3 rounded-lg bg-slate-800 border border-gray-500"
         >
           <div className="flex flex-row items-center justify-between">
             <p className="text-sm font-bold text-gray-400">
@@ -106,7 +106,7 @@ const Comments: React.FC<{
             disabled
             readOnly
             defaultValue={comment.text}
-            className="resize-none py-1 w-full"
+            className="resize-none py-1 w-full text-white bg-transparent"
           />
         </div>
       ))}

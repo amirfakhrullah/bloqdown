@@ -45,14 +45,13 @@ const PostForm: React.FC<{
 
   return (
     <div className="w-full h-screen fixed top-0 left-0 z-20">
-      <div className="mt-10 p-4 w-full max-w-xl mx-auto border border-gray-500 rounded-lg bg-gray-200">
-        <h3 className="font-bold text-2xl">Post</h3>
+      <div className="mt-10 p-4 w-full max-w-xl mx-auto border border-gray-500 rounded-lg bg-slate-800">
+        <h3 className="font-bold text-2xl text-gray-200">Post</h3>
 
         <Input
           title="Title"
           type="input"
           placeholder="Insert post title"
-          required
           register={register("title", {
             required: "Required",
             minLength: {
@@ -71,7 +70,6 @@ const PostForm: React.FC<{
           title="Content"
           type="textarea"
           placeholder="Insert your post content here..."
-          required
           register={register("description", {
             required: "Required",
             minLength: {
@@ -88,20 +86,23 @@ const PostForm: React.FC<{
 
         <div className="flex justify-end">
           {isLoading ? (
-            <p>Publishing...</p>
+            <p className="text-white">Publishing...</p>
           ) : (
             <>
               <button
                 type="button"
-                className="mr-2 mt-2 py-2 px-4 rounded-md inline-block border border-gray-500 hover:bg-gray-400 cursor-pointer text-sm text-black font-medium"
-                onClick={() => setOpen(false)}
+                className="mr-2 mt-2 py-2 px-4 rounded-md inline-block border border-gray-500 hover:bg-gray-600 cursor-pointer text-sm text-white font-medium"
+                onClick={() => {
+                  reset();
+                  setOpen(false);
+                }}
               >
                 Cancel
               </button>
 
               <button
                 type="submit"
-                className="mt-2 py-2 px-4 rounded-md inline-block bg-gray-700 hover:bg-gray-900 cursor-pointer text-sm text-white font-medium"
+                className="mt-2 py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
                 onClick={handleSubmit(onSubmit)}
                 disabled={isLoading}
               >
