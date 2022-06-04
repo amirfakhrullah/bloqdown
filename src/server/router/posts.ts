@@ -30,6 +30,12 @@ export const postsRouter = createRouter()
             equals: ctx.token,
           },
         },
+        select: {
+          id: true,
+          title: true,
+          created: true,
+          userToken: true,
+        },
       });
     },
   })

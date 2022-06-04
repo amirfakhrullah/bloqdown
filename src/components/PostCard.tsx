@@ -5,14 +5,16 @@ const PostCard: React.FC<{
   id: string;
   title: string;
   created: Date;
-  isOwner: boolean;
+  isOwner?: boolean;
 }> = ({ id, title, created, isOwner }) => {
   return (
     <div className="my-2 p-5 rounded-lg bg-slate-800 border border-gray-600">
       <h3 className="font-bold text-lg text-gray-200">{title}</h3>
-      <p className="text-sm font-bold text-gray-400">
-        {isOwner ? "by you" : "anonymous"}
-      </p>
+      {typeof isOwner === "boolean" && (
+        <p className="text-sm font-bold text-gray-400">
+          {isOwner ? "by you" : "anonymous"}
+        </p>
+      )}
       <p className="text-gray-500">
         {new Intl.DateTimeFormat("en-US", {
           year: "numeric",

@@ -81,6 +81,12 @@ const Comments: React.FC<{
         </div>
       </div>
 
+      {comments?.length === 0 && (
+        <h3 className="text-center font-bold text-lg text-gray-500 py-5">
+          No Comment
+        </h3>
+      )}
+
       {comments?.map((comment) => (
         <div
           key={comment.id}

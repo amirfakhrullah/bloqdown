@@ -1,0 +1,33 @@
+import React from "react";
+import Header from "../../components/Header";
+import Loader from "../../components/Loader";
+import MetaHead from "../../components/MetaHead";
+import PostCard from "../../components/PostCard";
+import { trpc } from "../../utils/trpc";
+
+const MyPosts: React.FC = () => {
+  const { data: posts, isLoading } = trpc.useQuery(["post.get-my-posts"]);
+
+  if (isLoading) return <Loader />;
+
+  return (
+    <>
+      <MetaHead title="My Posts" />
+      <Header />
+      <div className="p-4 w-full max-w-xl mx-auto">
+        <h1 className="text-2xl font-black text-gray-300">My Posts</h1>
+
+        {posts?.length === 0 && (
+          <h3 className="text-center font-bold text-lg text-gray-500">
+            No Posts
+          </h3>
+        )}
+        {posts?.map((post) => (
+          <PostCard key={post.id} {...post} />
+        ))}
+      </div>
+    </>
+  );
+};
+
+export default MyPosts;
