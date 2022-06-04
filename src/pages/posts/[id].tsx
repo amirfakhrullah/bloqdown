@@ -6,6 +6,7 @@ import { trpc } from "../../utils/trpc";
 import TextareaAutosize from "react-textarea-autosize";
 import Comments from "../../components/Comments";
 import Header from "../../components/Header";
+import Container from "../../components/Container";
 
 const Content: React.FC<{ id: string }> = ({ id }) => {
   const { data: post, isLoading } = trpc.useQuery(["post.get-by-id", { id }]);
@@ -27,7 +28,7 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
     <>
       <MetaHead title={`${post.title} | Polley`} />
       <Header />
-      <div className="p-4 w-full max-w-xl mx-auto">
+      <Container>
         <h1 className="text-2xl font-black text-gray-300 mb-5">{post.title}</h1>
 
         <TextareaAutosize
@@ -53,7 +54,7 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
         </p>
 
         <Comments id={post.id} />
-      </div>
+      </Container>
     </>
   );
 };

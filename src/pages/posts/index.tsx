@@ -1,4 +1,5 @@
 import React from "react";
+import Container from "../../components/Container";
 import Header from "../../components/Header";
 import Loader from "../../components/Loader";
 import MetaHead from "../../components/MetaHead";
@@ -14,7 +15,7 @@ const MyPosts: React.FC = () => {
     <>
       <MetaHead title="My Posts" />
       <Header />
-      <div className="p-4 w-full max-w-xl mx-auto">
+      <Container>
         <h1 className="text-2xl font-black text-gray-300">My Posts</h1>
 
         {posts?.length === 0 && (
@@ -25,7 +26,7 @@ const MyPosts: React.FC = () => {
         {posts?.map((post) => (
           <PostCard key={post.id} {...post} />
         ))}
-      </div>
+      </Container>
     </>
   );
 };

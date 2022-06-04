@@ -5,6 +5,7 @@ import PostForm from "../components/PostForm";
 import { useState } from "react";
 import PostCard from "../components/PostCard";
 import Header from "../components/Header";
+import Container from "../components/Container";
 
 const Home: React.FC<{ posts: any }> = () => {
   const [openForm, setOpenForm] = useState(false);
@@ -17,7 +18,7 @@ const Home: React.FC<{ posts: any }> = () => {
     <>
       <MetaHead title="Polley" />
       <Header />
-      <div className="p-4 w-full max-w-xl mx-auto">
+      <Container>
         <div className="flex justify-end">
           <button
             type="button"
@@ -33,7 +34,7 @@ const Home: React.FC<{ posts: any }> = () => {
         {posts?.map((post) => (
           <PostCard key={post.id} {...post} />
         ))}
-      </div>
+      </Container>
     </>
   );
 };
