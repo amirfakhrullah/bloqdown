@@ -18,6 +18,18 @@ const Home: React.FC<{ posts: any }> = () => {
     <div className="p-4 w-full max-w-xl mx-auto">
       <MetaHead title="Polley" />
       <h1 className="text-4xl font-black mb-5">Polley</h1>
+      <input
+        className="py-1 px-2 border border-gray-300 rounded-md w-full my-2"
+        placeholder="Type"
+        onKeyDown={(event) => {
+          if (event.key === "Enter") {
+            mutate({
+              title: event.currentTarget.value,
+              description: event.currentTarget.value,
+            });
+          }
+        }}
+      ></input>
       {posts?.map((post) => (
         <div
           key={post.id}
@@ -35,18 +47,6 @@ const Home: React.FC<{ posts: any }> = () => {
           </div>
         </div>
       ))}
-      <input
-        className="py-1 px-2 border border-gray-300 rounded-md w-full my-5"
-        placeholder="Type"
-        onKeyDown={(event) => {
-          if (event.key === "Enter") {
-            mutate({
-              title: event.currentTarget.value,
-              description: event.currentTarget.value,
-            });
-          }
-        }}
-      ></input>
     </div>
   );
 };
