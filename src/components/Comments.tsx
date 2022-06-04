@@ -112,7 +112,7 @@ const Comments: React.FC<{
             disabled
             readOnly
             defaultValue={comment.text}
-            className="resize-none py-1 w-full text-white bg-transparent"
+            className="overflow-hidden resize-none py-1 w-full text-white bg-transparent"
           />
         </div>
       ))}
