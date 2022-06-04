@@ -1,5 +1,6 @@
 import React from "react";
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
+import TextareaAutosize from "react-textarea-autosize";
 
 const Input: React.FC<{
   title: string;
@@ -24,12 +25,13 @@ const Input: React.FC<{
           className="py-1 px-2 border border-gray-300 rounded-md w-full"
         />
       ) : (
-        <textarea
+        <TextareaAutosize
+          minRows={7}
           {...register}
           rows={7}
           defaultValue=""
           placeholder={placeholder}
-          className="py-1 px-2 border border-gray-300 rounded-md w-full"
+          className="resize-none py-1 px-2 border border-gray-300 rounded-md w-full"
         />
       )}
 
