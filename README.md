@@ -36,6 +36,7 @@ npm install
 Run the development server:
 
 ```bash
+pscale connect `INSERTDBNAME` #for connecting planetscale db
 npm run dev
 # or
 yarn dev
