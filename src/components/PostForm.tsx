@@ -8,7 +8,7 @@ const PostForm: React.FC<{
   setOpen: Dispatch<SetStateAction<boolean>>;
 }> = ({ open, setOpen }) => {
   const client = trpc.useContext();
-  const { mutate } = trpc.useMutation("post.create", {
+  const { mutate, isLoading } = trpc.useMutation("post.create", {
     onSuccess: () => {
       client.invalidateQueries(["post.get-all-posts"]);
       reset();
@@ -99,6 +99,7 @@ const PostForm: React.FC<{
             type="submit"
             className="mt-2 py-2 px-4 rounded-md inline-block bg-gray-700 hover:bg-gray-900 cursor-pointer text-sm text-white font-medium"
             onClick={handleSubmit(onSubmit)}
+            disabled={isLoading}
           >
             Publish
           </button>

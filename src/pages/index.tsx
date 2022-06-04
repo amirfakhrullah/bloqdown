@@ -1,7 +1,6 @@
 import Loader from "../components/Loader";
 import MetaHead from "../components/MetaHead";
 import { trpc } from "../utils/trpc";
-import Link from "next/link";
 import PostForm from "../components/PostForm";
 import { useState } from "react";
 import PostCard from "../components/PostCard";

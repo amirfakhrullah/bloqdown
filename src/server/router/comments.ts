@@ -7,11 +7,18 @@ export const commentsRouter = createRouter()
     input: z.object({
       postId: z.string(),
     }),
-    async resolve({ input }) {
-      return await prisma.comment.findMany({
+    async resolve({ input, ctx }) {
+      const comments = await prisma.comment.findMany({
         where: {
           postId: input.postId,
         },
+      });
+
+      return comments.map((comment) => {
+        return {
+          ...comment,
+          isOwner: comment.userToken === ctx.token,
+        };
       });
     },
   })

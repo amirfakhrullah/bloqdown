@@ -42,9 +42,6 @@ export const postsRouter = createRouter()
         where: {
           id: input.id,
         },
-        include: {
-          Comment: true,
-        },
       });
 
       return {

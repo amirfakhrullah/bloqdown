@@ -5,11 +5,12 @@ import TextareaAutosize from "react-textarea-autosize";
 const Input: React.FC<{
   title: string;
   type: "input" | "textarea";
+  minRows?: number;
   placeholder: string;
   required?: boolean;
   register: UseFormRegisterReturn;
   error: FieldError | undefined;
-}> = ({ title, type, placeholder, required = false, register, error }) => {
+}> = ({ title, type, minRows = 7, placeholder, required = false, register, error }) => {
   return (
     <div className="mt-2 mb-1">
       <div className="flex flex-row mb-1">
@@ -26,7 +27,7 @@ const Input: React.FC<{
         />
       ) : (
         <TextareaAutosize
-          minRows={7}
+          minRows={minRows}
           {...register}
           rows={7}
           defaultValue=""
