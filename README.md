@@ -14,10 +14,18 @@ I know the UI for this project is pretty trash. But that's not the goal for buil
 
 ### Prerequisite
 
-- MySQL local database or Planetscale connection using PScale CLI
-- npm
+- `MySQL` local database or Planetscale connection using `PScale CLI`
+- `npm`
 
 ### Installations
+
+After cloning the repo, set up `.env` file with db url
+
+```bash
+DATABASE_URL="mysql://..."
+```
+
+Then, proceed with installing:
 
 ```bash
 npm install
