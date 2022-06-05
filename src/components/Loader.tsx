@@ -9,7 +9,7 @@ const Loader: React.FC = () => {
       <MetaHead title="Loading" />
       <Header displayButtons={false} />
       <Container>
-        <h1 className="text-xl font-black text-center text-gray-300">
+        <h1 className="text-xl font-black text-center text-gray-300 mt-20">
           Loading ...
         </h1>
       </Container>
