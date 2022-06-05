@@ -41,3 +41,10 @@ npm run dev
 # or
 yarn dev
 ```
+
+## Possible Future Works
+
+- [ ] Refactoring repetitive codes (buttons, etc)
+- [ ] Delete own posts or comments
+- [ ] Liking and disliking system
+- [ ] Next Auth
