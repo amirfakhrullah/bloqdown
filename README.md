@@ -55,6 +55,7 @@ yarn dev
 ## Possible Future Works
 
 - [ ] Refactoring repetitive codes (buttons, etc)
-- [ ] Delete own posts or comments
+- [ ] Ability to delete own posts or comments
 - [ ] Liking and disliking system
+- [ ] Markdown editor for posts
 - [ ] Next Auth
