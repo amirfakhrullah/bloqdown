@@ -10,6 +10,16 @@ I know the UI for this project is pretty trash. But that's not the goal for buil
 - Using `Prisma` as `TypeScript ORM`
 - Setting up `PlanetScale` as `MySQL` db for the site
 
+## Techstacks
+
+- [Next.js](https://nextjs.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [tRPC](https://trpc.io/)
+- [Prisma](https://www.prisma.io/)
+- [PlanetScale](https://planetscale.com/)
+- [Vercel](https://vercel.com/)
+
 ## Getting Started
 
 ### Prerequisite
