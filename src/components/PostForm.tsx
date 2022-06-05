@@ -47,7 +47,6 @@ const PostForm: React.FC<{
   if (!open) return <></>;
 
   return (
-    // <div className="w-full h-screen fixed top-0 left-0 z-20">
       <div className="mt-2 mb-5 p-4 w-full border border-gray-500 rounded-lg bg-slate-800">
         <h3 className="font-bold text-2xl text-gray-200">Post</h3>
 
@@ -95,7 +94,6 @@ const PostForm: React.FC<{
           )}
         </div>
       </div>
-    // </div>
   );
 };
 
