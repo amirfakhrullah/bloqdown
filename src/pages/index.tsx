@@ -23,16 +23,16 @@ const Home: React.FC = () => {
           <button
             type="button"
             className="mt-2 py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
-            onClick={() => setOpenForm(true)}
+            onClick={() => setOpenForm((open) => !open)}
           >
-            + Add New Post
+            {openForm ? "X Close" : "+ Add New Post"}
           </button>
         </div>
 
         <PostForm open={openForm} setOpen={setOpenForm} />
 
         {posts?.map((post) => (
-          <PostCard key={post.id} {...post as PostWithIsOwner} />
+          <PostCard key={post.id} {...(post as PostWithIsOwner)} />
         ))}
       </Container>
     </>
