@@ -7,7 +7,7 @@ const Loader: React.FC = () => {
   return (
     <>
       <MetaHead title="Loading" />
-      <Header myPostsButton={false} />
+      <Header displayButtons={false} />
       <Container>
         <h1 className="text-xl font-black text-center text-gray-300">
           Loading ...
