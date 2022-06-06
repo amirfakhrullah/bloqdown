@@ -1,4 +1,4 @@
-# Polley
+# Polley :newspaper:
 
 Simple Forum site using `Next.js`, `TypeScript`, `Prisma`, `PlanetScale` and `tRPC`. The aim here is to learn how to properly use these techstacks.
 
