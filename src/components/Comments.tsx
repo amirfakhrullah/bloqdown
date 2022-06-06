@@ -84,7 +84,7 @@ const Comments: React.FC<{
         >
           <div className="flex flex-row items-center justify-between">
             <p className="text-sm font-bold text-gray-400">
-              {comment.isOwner ? "by you" : "anonymous"}
+              {comment.isOwner ? "By you" : "Anonymous"}
             </p>
 
             <p className="text-sm text-gray-400">
