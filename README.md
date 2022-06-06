@@ -32,7 +32,7 @@ I know the UI for this project is pretty trash. But that's not the goal for buil
 After cloning the repo, set up `.env` file with db url
 
 ```bash
-DATABASE_URL="mysql://..."
+DATABASE_URL="mysql://localhost:InsertPortHere/InsertDbNameHere"
 ```
 
 Then, proceed with installing:
@@ -46,10 +46,8 @@ npm install
 Run the development server:
 
 ```bash
-pscale connect `INSERTDBNAME` #for connecting planetscale db
+pscale connect `InsertDbNameHere` #for connecting planetscale db
 npm run dev
-# or
-yarn dev
 ```
 
 ## Possible Future Works
@@ -57,5 +55,5 @@ yarn dev
 - [ ] Refactoring repetitive codes (buttons, etc)
 - [ ] Ability to delete own posts or comments
 - [ ] Liking and disliking system
-- [ ] Markdown editor for posts
-- [ ] Next Auth
+- [ ] Markdown editor for posts :astonished:
+- [ ] Next Auth :astonished:
