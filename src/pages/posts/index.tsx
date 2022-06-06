@@ -13,7 +13,7 @@ const MyPosts: React.FC = () => {
 
   return (
     <>
-      <MetaHead title="My Posts" />
+      <MetaHead title="My Posts | Polley" />
       <Header />
       <Container>
         <h1 className="text-2xl font-black text-gray-300">My Posts</h1>
