@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { AiFillLike } from "react-icons/ai";
+import Likes from "./Likes";
 
 export type PostWithIsOwner = {
   ownerLiked: boolean;
@@ -63,10 +64,11 @@ const PostCard: React.FC<PostWithIsOwner> = ({
         }).format(created)}
       </p>
       <div className="flex justify-between items-center">
-        <div className="flex flex-row items-center">
-          <p className={`text-gray-500 text-sm font-bold mr-1 ${ownerLiked ? "text-indigo-500" : "text-gray-500"}`}>{_count.likes}</p>
-          <AiFillLike className={ownerLiked ? "text-indigo-500" : "text-gray-500"} />
-        </div>
+        <Likes 
+          postId={id}
+          ownerLiked={ownerLiked}
+          likes={_count.likes}
+        />
 
         <Link href={`/posts/${id}`}>
           <div className="mt-2 py-2 px-4 rounded-md inline-block bg-gray-700 cursor-pointer">

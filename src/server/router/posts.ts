@@ -146,6 +146,10 @@ export const postsRouter = createRouter()
 
       return {
         ...post,
+        ownerLiked: findIsUserLiked({
+          likes: post?.likes!,
+          ctx,
+        }),
         isOwner: post?.userToken === ctx.token,
         comments: commentsWithOwner,
       };
