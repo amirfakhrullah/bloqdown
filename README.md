@@ -6,9 +6,11 @@ Simple Forum site using `Next.js`, `TypeScript`, `Prisma`, `PlanetScale` and `tR
 
 I know the UI for this project is pretty trash. But that's not the goal for building this site. The goals for this project are:
 
-- Creating fully typesafe APIs using `trpc`
+- Creating fully typesafe APIs using `tRPC`
 - Using `Prisma` as `TypeScript ORM`
 - Setting up `PlanetScale` as `MySQL` db for the site
+- Set cookie for anonymous users thru `Next.js` middleware
+- Auth using `Next-Auth` (Github Provider)
 
 ## Techstacks
 
