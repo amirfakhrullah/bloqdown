@@ -1,18 +1,17 @@
 import React from "react";
 import Header from "./Header";
 import MetaHead from "./MetaHead";
-import Container from "./Container";
 
 const Loader: React.FC = () => {
   return (
     <>
       <MetaHead title="Loading" />
-      <Header displayButtons={false} />
-      <Container>
-        <h1 className="text-xl font-black text-center text-gray-300 mt-20">
-          Loading ...
-        </h1>
-      </Container>
+      <div className="h-screen">
+        <Header displayButtons={false} />
+        <h3 className="mt-20 text-center font-black text-3xl text-gray-500">
+          Loading...
+        </h3>
+      </div>
     </>
   );
 };
