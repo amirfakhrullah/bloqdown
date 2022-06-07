@@ -20,6 +20,11 @@ export const postsRouter = createRouter()
               image: true,
             },
           },
+          _count: {
+            select: {
+              likes: true,
+            },
+          },
         },
       });
 

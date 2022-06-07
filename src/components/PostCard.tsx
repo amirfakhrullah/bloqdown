@@ -3,7 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export type PostWithIsOwner = Post & { githubUser: User } & {
+export type PostWithIsOwner = Post & {
+  githubUser: User;
+  _count: {
+    likes: number;
+  };
+} & {
   isOwner: boolean;
 };
 
@@ -26,7 +31,9 @@ const PostCard: React.FC<PostWithIsOwner> = ({
             alt="github avatar"
             className="rounded-full"
           />
-          <p className=" ml-2 text-sm font-bold text-gray-400">{githubUser.name}</p>
+          <p className=" ml-2 text-sm font-bold text-gray-400">
+            {githubUser.name}
+          </p>
         </div>
       )}
       {typeof isOwner === "boolean" && !githubUser && (
