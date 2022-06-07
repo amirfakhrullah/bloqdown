@@ -50,11 +50,22 @@ export const postsRouter = createRouter()
   .query("get-my-posts", {
     async resolve({ ctx }) {
       let posts: {
-        githubUser: User | null;
+        githubUser: {
+          name: string | null;
+          email: string | null;
+          image: string | null;
+        } | null;
         id: string;
         title: string;
         created: Date;
         userToken: string;
+        likes: {
+          userToken: string;
+          userEmail: string | null;
+        }[];
+        _count: {
+          likes: number;
+        };
       }[] = [];
       if (ctx.session) {
         posts = await prisma.post.findMany({
@@ -66,7 +77,24 @@ export const postsRouter = createRouter()
             title: true,
             created: true,
             userToken: true,
-            githubUser: true,
+            githubUser: {
+              select: {
+                name: true,
+                email: true,
+                image: true,
+              },
+            },
+            likes: {
+              select: {
+                userToken: true,
+                userEmail: true,
+              },
+            },
+            _count: {
+              select: {
+                likes: true,
+              },
+            },
           },
         });
       }
@@ -84,7 +112,24 @@ export const postsRouter = createRouter()
           title: true,
           created: true,
           userToken: true,
-          githubUser: true,
+          githubUser: {
+            select: {
+              name: true,
+              email: true,
+              image: true,
+            },
+          },
+          likes: {
+            select: {
+              userToken: true,
+              userEmail: true,
+            },
+          },
+          _count: {
+            select: {
+              likes: true,
+            },
+          },
         },
       });
 
