@@ -66,7 +66,7 @@ npm run dev
 ## Possible Future Works
 
 - [ ] Refactoring repetitive codes (buttons, etc)
-- [ ] Ability to delete own posts or comments
-- [ ] Liking and disliking system
+- [x] Ability to delete own posts or comments
+- [x] Liking posts
 - [ ] Markdown editor for posts :astonished:
 - [x] Next Auth :astonished:

@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createCommentValidation } from "../utils/validations";
 import { Comment, User } from "@prisma/client";
 import Image from "next/image";
+import Delete from "./Delete";
 
 export type CommentWithIsOwner = Comment & { githubUser: User } & {
   isOwner: boolean;
@@ -104,17 +105,23 @@ const Comments: React.FC<{
                 {comment.isOwner ? "By you" : "Anonymous"}
               </p>
             )}
-
-            <p className="text-sm text-gray-400">
-              {new Intl.DateTimeFormat("en-US", {
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit",
-              }).format(comment.created)}
-            </p>
+            <div className="flex flex-row items-center">
+              <p className="text-sm text-gray-400">
+                {new Intl.DateTimeFormat("en-US", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  second: "2-digit",
+                }).format(comment.created)}
+              </p>
+              <Delete 
+              type="comment"
+              githubUser={comment.githubUser}
+              id={comment.id!}
+              isOwner={comment.isOwner} />
+            </div>
           </div>
           <TextareaAutosize
             disabled

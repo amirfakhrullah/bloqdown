@@ -10,6 +10,7 @@ import Container from "../../components/Container";
 import Image from "next/image";
 import Screen from "../../components/Screen";
 import Likes from "../../components/Likes";
+import Delete from "../../components/Delete";
 
 const Content: React.FC<{ id: string }> = ({ id }) => {
   const { data: post, isLoading } = trpc.useQuery(["post.get-by-id", { id }]);
@@ -88,6 +89,17 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
                 }).format(post.created)}
               </p>
             </div>
+          </div>
+
+          <div className="flex justify-end">
+            <Delete
+              type="post"
+              githubUser={post.githubUser}
+              id={post.id!}
+              isOwner={post.isOwner}
+            >
+              Delete Post
+            </Delete>
           </div>
 
           <Comments

@@ -1,4 +1,3 @@
-import { User } from "@prisma/client";
 import { z } from "zod";
 import { prisma } from "../../db/client";
 import { findIsUserLiked } from "../../utils/isLiked";
@@ -230,5 +229,68 @@ export const postsRouter = createRouter()
           userToken: ctx.token,
         },
       });
+    },
+  })
+  .mutation("delete", {
+    input: z.object({
+      id: z.string(),
+    }),
+    async resolve({ input, ctx }) {
+      if (!ctx.token) {
+        return { error: "Unauthorized" };
+      }
+
+      const post = await prisma.post.findFirst({
+        where: {
+          id: input.id,
+        },
+      });
+
+      if (!post) throw new Error("404 Not Found");
+
+      if (post.userEmail !== null) {
+        if (!ctx.session) throw new Error("Unauthorized");
+        if (ctx.session && ctx.session.user) {
+          if (post.userEmail === ctx.session.user.email) {
+            await prisma.like.deleteMany({
+              where: {
+                postId: input.id,
+              },
+            });
+            await prisma.comment.deleteMany({
+              where: {
+                postId: input.id,
+              },
+            });
+            return await prisma.post.delete({
+              where: {
+                id: input.id,
+              },
+            });
+          } else {
+            throw new Error("Unauthorized");
+          }
+        }
+      }
+
+      if (post.userToken === ctx.token) {
+        await prisma.like.deleteMany({
+          where: {
+            postId: input.id,
+          },
+        });
+        await prisma.comment.deleteMany({
+          where: {
+            postId: input.id,
+          },
+        });
+        return await prisma.post.delete({
+          where: {
+            id: input.id,
+          },
+        });
+      }
+
+      throw new Error("Unauthorized");
     },
   });
