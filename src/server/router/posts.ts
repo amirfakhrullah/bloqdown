@@ -1,3 +1,4 @@
+import { Post, User } from "@prisma/client";
 import { z } from "zod";
 import { prisma } from "../../db/client";
 import { createPostValidation } from "../../utils/validations";
@@ -32,10 +33,34 @@ export const postsRouter = createRouter()
   })
   .query("get-my-posts", {
     async resolve({ ctx }) {
-      return await prisma.post.findMany({
+      let posts: {
+        githubUser: User | null;
+        id: string;
+        title: string;
+        created: Date;
+        userToken: string;
+      }[] = [];
+      if (ctx.session) {
+        posts = await prisma.post.findMany({
+          where: {
+            userEmail: ctx.session.user?.email,
+          },
+          select: {
+            id: true,
+            title: true,
+            created: true,
+            userToken: true,
+            githubUser: true,
+          },
+        });
+      }
+      const anonymousPosts = await prisma.post.findMany({
         where: {
           userToken: {
             equals: ctx.token,
+          },
+          userEmail: {
+            equals: null,
           },
         },
         select: {
@@ -46,6 +71,8 @@ export const postsRouter = createRouter()
           githubUser: true,
         },
       });
+
+      return [...posts, ...anonymousPosts];
     },
   })
   .query("get-by-id", {
