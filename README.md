@@ -40,7 +40,7 @@ After cloning the repo, set up `.env` file with db url
 DATABASE_URL="mysql://localhost:InsertPortHere/InsertDbNameHere"
 ```
 
-For setting up `Next Auth` Github provider, insert these credentials in `.env.local`
+For setting up `Next Auth` Github provider, insert Github Id and secrets in `.env.local`
 
 ```bash
 GITHUB_ID=
