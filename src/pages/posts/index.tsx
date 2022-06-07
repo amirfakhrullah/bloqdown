@@ -24,7 +24,7 @@ const MyPosts: React.FC = () => {
           </h3>
         )}
         {posts?.map((post) => (
-          <PostCard key={post.id} {...post as PostWithIsOwner} />
+          <PostCard key={post.id} {...(post as PostWithIsOwner)} />
         ))}
       </Container>
     </>

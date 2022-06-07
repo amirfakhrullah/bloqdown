@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import Image from "next/image";
 
 const Header: React.FC<{
   displayButtons?: boolean;
@@ -10,56 +11,61 @@ const Header: React.FC<{
   const router = useRouter();
 
   return (
-    <div className="w-full bg-slate-900 border-b border-gray-800 md:p-5 p-2 flex flex-row items-center justify-between">
-      <Link href="/">
-        <h1 className="text-2xl font-black text-gray-400 cursor-pointer">
-          Polley
-        </h1>
-      </Link>
-      {displayButtons && (
-        <div className="flex flex-row items-center pl-1">
-          <button
-            type="button"
-            className="py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
-            onClick={() =>
-              window.open("https://github.com/amirfakhrullah/polley")
-            }
-          >
-            Source Code
-          </button>
+    <>
+      <div className="w-full bg-slate-900 border-b border-gray-800 md:p-5 p-2 flex flex-row items-center justify-between">
+        <Link href="/">
+          <h1 className="text-2xl font-black text-gray-400 cursor-pointer">
+            Polley
+          </h1>
+        </Link>
+        {displayButtons && (
+          <div className="flex flex-row items-center pl-1">
+            {!session && (
+              <button
+                type="button"
+                className="py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
+                onClick={() => signIn()}
+              >
+                Sign In
+              </button>
+            )}
 
-          <div className="px-1" />
+            <div className="px-1" />
 
-          <button
-            type="button"
-            className="py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
-            onClick={() => router.push("/posts")}
-          >
-            My Posts
-          </button>
-          
-          <div className="px-1" />
-
-          {session ? (
             <button
               type="button"
               className="py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
-              onClick={() => signOut()}
+              onClick={() => router.push("/posts")}
             >
-              Sign Out
+              My Posts
             </button>
-          ) : (
-            <button
-              type="button"
-              className="py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
-              onClick={() => signIn()}
-            >
-              Sign In
-            </button>
-          )}
+          </div>
+        )}
+      </div>
+
+      {session && session.user && (
+        <div className="w-full bg-slate-900 border-b border-gray-800 md:px-5 p-2 flex flex-row items-center justify-end">
+          <p className=" mr-2 text-sm text-gray-400">{session.user.name}</p>
+          <Image
+            src={session.user.image!}
+            height={30}
+            width={30}
+            alt="github avatar"
+            className="rounded-full"
+          />
+
+          <div className="pr-2" />
+
+          <button
+            type="button"
+            className="py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
+            onClick={() => signOut()}
+          >
+            Sign Out
+          </button>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
