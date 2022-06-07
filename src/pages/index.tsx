@@ -6,7 +6,7 @@ import { useState } from "react";
 import PostCard, { PostWithIsOwner } from "../components/PostCard";
 import Header from "../components/Header";
 import Container from "../components/Container";
-import Footer from "../components/Footer";
+import Screen from "../components/Screen";
 
 const Home: React.FC = () => {
   const [openForm, setOpenForm] = useState(false);
@@ -18,34 +18,26 @@ const Home: React.FC = () => {
   return (
     <>
       <MetaHead title="Polley" />
-      <Header />
-      <Container>
-        <div className="flex justify-end">
-          <button
-            type="button"
-            className="mt-2 py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
-            onClick={() => setOpenForm((open) => !open)}
-          >
-            {openForm ? "X Close" : "+ Add New Post"}
-          </button>
-        </div>
+      <Screen>
+          <Header />
+          <Container>
+            <div className="flex justify-end">
+              <button
+                type="button"
+                className="mt-2 py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
+                onClick={() => setOpenForm((open) => !open)}
+              >
+                {openForm ? "X Close" : "+ Add New Post"}
+              </button>
+            </div>
 
-        <PostForm open={openForm} setOpen={setOpenForm} />
+            <PostForm open={openForm} setOpen={setOpenForm} />
 
-        {posts?.map((post) => (
-          <PostCard key={post.id} {...(post as PostWithIsOwner)} />
-        ))}
-        {posts?.map((post) => (
-          <PostCard key={post.id} {...(post as PostWithIsOwner)} />
-        ))}
-        {posts?.map((post) => (
-          <PostCard key={post.id} {...(post as PostWithIsOwner)} />
-        ))}
-        {posts?.map((post) => (
-          <PostCard key={post.id} {...(post as PostWithIsOwner)} />
-        ))}
-      </Container>
-      <Footer />
+            {posts?.map((post) => (
+              <PostCard key={post.id} {...(post as PostWithIsOwner)} />
+            ))}
+          </Container>
+      </Screen>
     </>
   );
 };

@@ -8,6 +8,7 @@ import Comments, { CommentWithIsOwner } from "../../components/Comments";
 import Header from "../../components/Header";
 import Container from "../../components/Container";
 import Image from "next/image";
+import Screen from "../../components/Screen";
 
 const Content: React.FC<{ id: string }> = ({ id }) => {
   const { data: post, isLoading } = trpc.useQuery(["post.get-by-id", { id }]);
@@ -18,63 +19,73 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
 
   if (!post || !post.title) {
     return (
-      <div className="py-20">
-        <h1 className="text-center font-black text-4xl text-gray-400">
-          Post 404
-        </h1>
-      </div>
+      <>
+        <MetaHead title="Post 404 Not Found | Polley" />
+        <Screen>
+          <Header />
+          <div className="py-20">
+            <h1 className="text-center font-black text-4xl text-gray-400">
+              Post 404
+            </h1>
+          </div>
+        </Screen>
+      </>
     );
   }
 
   return (
     <>
       <MetaHead title={`${post.title} | Polley`} />
-      <Header />
-      <Container>
-        <h1 className="text-2xl font-black text-gray-300 mb-5">{post.title}</h1>
+      <Screen>
+        <Header />
+        <Container>
+          <h1 className="text-2xl font-black text-gray-300 mb-5">
+            {post.title}
+          </h1>
 
-        <TextareaAutosize
-          disabled
-          readOnly
-          defaultValue={post.description}
-          className="overflow-hidden resize-none text-white py-1 w-full bg-transparent"
-        />
+          <TextareaAutosize
+            disabled
+            readOnly
+            defaultValue={post.description}
+            className="overflow-hidden resize-none text-white py-1 w-full bg-transparent"
+          />
 
-        {post.githubUser ? (
-          <div className="flex flex-row items-center my-1 justify-end">
-            <Image
-              src={post.githubUser.image!}
-              height={20}
-              width={20}
-              alt="github avatar"
-              className="rounded-full"
-            />
-            <p className=" ml-2 text-sm font-bold text-gray-400">
-              {post.githubUser.name}
+          {post.githubUser ? (
+            <div className="flex flex-row items-center my-1 justify-end">
+              <Image
+                src={post.githubUser.image!}
+                height={20}
+                width={20}
+                alt="github avatar"
+                className="rounded-full"
+              />
+              <p className=" ml-2 text-sm font-bold text-gray-400">
+                {post.githubUser.name}
+              </p>
+            </div>
+          ) : (
+            <p className="text-gray-500 text-sm font-bold text-right">
+              {post.isOwner ? "By you" : "Anonymous"}
             </p>
-          </div>
-        ) : (
-          <p className="text-gray-500 text-sm font-bold text-right">
-            {post.isOwner ? "By you" : "Anonymous"}
+          )}
+
+          <p className="text-gray-500 text-sm text-right">
+            {new Intl.DateTimeFormat("en-US", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+              hour: "2-digit",
+              minute: "2-digit",
+              second: "2-digit",
+            }).format(post.created)}
           </p>
-        )}
 
-        <p className="text-gray-500 text-sm text-right">
-          {new Intl.DateTimeFormat("en-US", {
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-          }).format(post.created)}
-        </p>
-
-        <Comments
-          id={post.id}
-          comments={post.comments as CommentWithIsOwner[]}
-        />
-      </Container>
+          <Comments
+            id={post.id}
+            comments={post.comments as CommentWithIsOwner[]}
+          />
+        </Container>
+      </Screen>
     </>
   );
 };
