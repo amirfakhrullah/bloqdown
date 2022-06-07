@@ -1,6 +1,6 @@
 # Polley :newspaper:
 
-Simple Forum site using `Next.js`, `TypeScript`, `Prisma`, `PlanetScale` and `tRPC`. The aim here is to learn how to properly use these techstacks.
+Simple Forum site using `Next.js`, `Next-Auth`, `TypeScript`, `Prisma`, `PlanetScale` and `tRPC`. The aim here is to learn how to properly use these techstacks.
 
 ![Polley Screen](./src/public/polley-screen.JPG)
 
@@ -18,7 +18,7 @@ I know the UI for this project is pretty trash. But that's not the goal for buil
 
 - [Next.js](https://nextjs.org/)
 - [TailwindCSS](https://tailwindcss.com/)
-- [Next Auth](https://next-auth.js.org/)
+- [Next-Auth](https://next-auth.js.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [tRPC](https://trpc.io/)
 - [Prisma](https://www.prisma.io/)
