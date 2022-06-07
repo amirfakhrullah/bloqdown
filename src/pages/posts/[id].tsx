@@ -4,9 +4,10 @@ import Loader from "../../components/Loader";
 import MetaHead from "../../components/MetaHead";
 import { trpc } from "../../utils/trpc";
 import TextareaAutosize from "react-textarea-autosize";
-import Comments from "../../components/Comments";
+import Comments, { CommentWithIsOwner } from "../../components/Comments";
 import Header from "../../components/Header";
 import Container from "../../components/Container";
+import Image from "next/image";
 
 const Content: React.FC<{ id: string }> = ({ id }) => {
   const { data: post, isLoading } = trpc.useQuery(["post.get-by-id", { id }]);
@@ -24,6 +25,7 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
       </div>
     );
   }
+
   return (
     <>
       <MetaHead title={`${post.title} | Polley`} />
@@ -38,9 +40,24 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
           className="overflow-hidden resize-none text-white py-1 w-full bg-transparent"
         />
 
-        <p className="text-gray-500 text-sm font-bold text-right">
-          {post.isOwner ? "By you" : "Anonymous"}
-        </p>
+        {post.githubUser ? (
+          <div className="flex flex-row items-center my-1 justify-end">
+            <Image
+              src={post.githubUser.image!}
+              height={20}
+              width={20}
+              alt="github avatar"
+              className="rounded-full"
+            />
+            <p className=" ml-2 text-sm font-bold text-gray-400">
+              {post.githubUser.name}
+            </p>
+          </div>
+        ) : (
+          <p className="text-gray-500 text-sm font-bold text-right">
+            {post.isOwner ? "By you" : "Anonymous"}
+          </p>
+        )}
 
         <p className="text-gray-500 text-sm text-right">
           {new Intl.DateTimeFormat("en-US", {
@@ -53,7 +70,10 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
           }).format(post.created)}
         </p>
 
-        <Comments id={post.id} comments={post.comments} />
+        <Comments
+          id={post.id}
+          comments={post.comments as CommentWithIsOwner[]}
+        />
       </Container>
     </>
   );

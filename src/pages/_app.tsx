@@ -2,10 +2,18 @@ import { withTRPC } from "@trpc/next";
 import { AppType } from "next/dist/shared/lib/utils";
 import superjson from "superjson";
 import type { AppRouter } from "../server/router";
+import { SessionProvider } from "next-auth/react";
 import "../styles/globals.css";
 
-const MyApp: AppType = ({ Component, pageProps }) => {
-  return <Component {...pageProps} />;
+const MyApp: AppType = ({
+  Component,
+  pageProps: { session, ...pageProps },
+}) => {
+  return (
+    <SessionProvider session={pageProps.session} refetchInterval={0}>
+      <Component {...pageProps} />
+    </SessionProvider>
+  );
 };
 
 export default withTRPC<AppRouter>({

@@ -5,9 +5,12 @@ import Input from "./Input";
 import TextareaAutosize from "react-textarea-autosize";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createCommentValidation } from "../utils/validations";
-import { Comment } from "@prisma/client";
+import { Comment, User } from "@prisma/client";
+import Image from "next/image";
 
-type CommentWithIsOwner = Comment & { isOwner: boolean };
+export type CommentWithIsOwner = Comment & { githubUser: User } & {
+  isOwner: boolean;
+};
 
 const Comments: React.FC<{
   id: string | undefined;
@@ -83,9 +86,24 @@ const Comments: React.FC<{
           className="my-2 py-2 px-3 rounded-lg bg-slate-800 border border-gray-500"
         >
           <div className="flex flex-row items-center justify-between">
-            <p className="text-sm font-bold text-gray-400">
-              {comment.isOwner ? "By you" : "Anonymous"}
-            </p>
+            {comment.githubUser ? (
+              <div className="flex flex-row items-center my-1">
+                <Image
+                  src={comment.githubUser.image!}
+                  height={20}
+                  width={20}
+                  alt="github avatar"
+                  className="rounded-full"
+                />
+                <p className=" ml-2 text-sm font-bold text-gray-400">
+                  {comment.githubUser.name}
+                </p>
+              </div>
+            ) : (
+              <p className="text-sm font-bold text-gray-400">
+                {comment.isOwner ? "By you" : "Anonymous"}
+              </p>
+            )}
 
             <p className="text-sm text-gray-400">
               {new Intl.DateTimeFormat("en-US", {
