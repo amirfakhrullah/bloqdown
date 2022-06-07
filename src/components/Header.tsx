@@ -9,8 +9,6 @@ const Header: React.FC<{
   const { data: session } = useSession();
   const router = useRouter();
 
-  console.log(session)
-
   return (
     <div className="w-full bg-slate-900 border-b border-gray-800 md:p-5 p-2 flex flex-row items-center justify-between">
       <Link href="/">

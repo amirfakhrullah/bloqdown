@@ -17,9 +17,9 @@ model Post {
   created DateTime @default(now())
 
   userToken  String @db.VarChar(255)
-  
-  githubUser User?  @relation(fields: [userId], references: [id])
-  userId String?
+
+  githubUser User?  @relation(fields: [userEmail], references: [email])
+  userEmail String?
 
   title       String @db.VarChar(200)
   description String @db.VarChar(1000)
@@ -37,8 +37,8 @@ model Comment {
 
   userToken  String @db.VarChar(255)
 
-  githubUser User?  @relation(fields: [userId], references: [id])
-  userId String?
+  githubUser User?  @relation(fields: [userEmail], references: [email])
+  userEmail String?
 
   post   Post   @relation(fields: [postId], references: [id])
   postId String

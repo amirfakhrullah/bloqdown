@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { prisma } from "../../db/client";
 import { createRouter } from "./context";
-import { createCommentValidation } from '../../utils/validations';
+import { createCommentValidation } from "../../utils/validations";
 
 export const commentsRouter = createRouter()
   .query("get-comments", {
@@ -12,6 +12,15 @@ export const commentsRouter = createRouter()
       const comments = await prisma.comment.findMany({
         where: {
           postId: input.postId,
+        },
+        include: {
+          githubUser: {
+            select: {
+              name: true,
+              email: true,
+              image: true,
+            },
+          },
         },
       });
 
@@ -31,6 +40,15 @@ export const commentsRouter = createRouter()
             equals: ctx.token,
           },
         },
+        include: {
+          githubUser: {
+            select: {
+              name: true,
+              email: true,
+              image: true,
+            },
+          },
+        },
       });
     },
   })
@@ -39,6 +57,16 @@ export const commentsRouter = createRouter()
     async resolve({ input, ctx }) {
       if (!ctx.token) {
         return { error: "Unauthorized" };
+      }
+      if (ctx.session) {
+        return await prisma.comment.create({
+          data: {
+            text: input.text,
+            postId: input.postId,
+            userToken: ctx.token,
+            userEmail: ctx.session.user?.email,
+          },
+        });
       }
       return await prisma.comment.create({
         data: {

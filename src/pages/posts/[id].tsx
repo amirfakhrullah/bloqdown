@@ -24,6 +24,8 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
       </div>
     );
   }
+
+  console.log(post)
   return (
     <>
       <MetaHead title={`${post.title} | Polley`} />

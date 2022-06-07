@@ -12,6 +12,13 @@ export const postsRouter = createRouter()
           title: true,
           created: true,
           userToken: true,
+          githubUser: {
+            select: {
+              name: true,
+              email: true,
+              image: true,
+            },
+          },
         },
       });
 
@@ -36,6 +43,7 @@ export const postsRouter = createRouter()
           title: true,
           created: true,
           userToken: true,
+          githubUser: true,
         },
       });
     },
@@ -49,11 +57,29 @@ export const postsRouter = createRouter()
         where: {
           id: input.id,
         },
+        include: {
+          githubUser: {
+            select: {
+              name: true,
+              email: true,
+              image: true,
+            },
+          },
+        },
       });
 
       const comments = await prisma.comment.findMany({
         where: {
           postId: input.id,
+        },
+        include: {
+          githubUser: {
+            select: {
+              name: true,
+              email: true,
+              image: true,
+            },
+          },
         },
       });
 
@@ -76,6 +102,17 @@ export const postsRouter = createRouter()
     async resolve({ input, ctx }) {
       if (!ctx.token) {
         return { error: "Unauthorized" };
+      }
+
+      if (ctx.session) {
+        return await prisma.post.create({
+          data: {
+            title: input.title,
+            description: input.description,
+            userToken: ctx.token,
+            userEmail: ctx.session.user?.email,
+          },
+        });
       }
       return await prisma.post.create({
         data: {
