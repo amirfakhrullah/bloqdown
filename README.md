@@ -56,4 +56,4 @@ npm run dev
 - [ ] Ability to delete own posts or comments
 - [ ] Liking and disliking system
 - [ ] Markdown editor for posts :astonished:
-- [ ] Next Auth :astonished:
+- [x] Next Auth :astonished:
