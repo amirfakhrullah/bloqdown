@@ -1,16 +1,33 @@
-import { Post, User } from "@prisma/client";
+import { User } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { AiFillLike } from "react-icons/ai";
+import Likes from "./Likes";
 
-export type PostWithIsOwner = Post & { githubUser: User } & {
+export type PostWithIsOwner = {
+  ownerLiked: boolean;
   isOwner: boolean;
+  title: string;
+  id: string;
+  githubUser: User | null;
+  created: Date;
+  userToken: string;
+  likes: {
+    userToken: string;
+    userEmail: string | null;
+  }[];
+  _count: {
+    likes: number;
+  };
 };
 
 const PostCard: React.FC<PostWithIsOwner> = ({
   id,
   title,
   created,
+  _count,
+  ownerLiked,
   githubUser,
   isOwner,
 }) => {
@@ -26,7 +43,9 @@ const PostCard: React.FC<PostWithIsOwner> = ({
             alt="github avatar"
             className="rounded-full"
           />
-          <p className=" ml-2 text-sm font-bold text-gray-400">{githubUser.name}</p>
+          <p className=" ml-2 text-sm font-bold text-gray-400">
+            {githubUser.name}
+          </p>
         </div>
       )}
       {typeof isOwner === "boolean" && !githubUser && (
@@ -44,7 +63,13 @@ const PostCard: React.FC<PostWithIsOwner> = ({
           second: "2-digit",
         }).format(created)}
       </p>
-      <div className="flex justify-end">
+      <div className="flex justify-between items-center">
+        <Likes 
+          postId={id}
+          ownerLiked={ownerLiked}
+          likes={_count.likes}
+        />
+
         <Link href={`/posts/${id}`}>
           <div className="mt-2 py-2 px-4 rounded-md inline-block bg-gray-700 cursor-pointer">
             <p className="text-sm text-white font-medium">Read</p>

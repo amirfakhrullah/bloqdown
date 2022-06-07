@@ -1,6 +1,7 @@
-import { Post, User } from "@prisma/client";
+import { User } from "@prisma/client";
 import { z } from "zod";
 import { prisma } from "../../db/client";
+import { findIsUserLiked } from "../../utils/isLiked";
 import { createPostValidation } from "../../utils/validations";
 import { createRouter } from "./context";
 
@@ -20,12 +21,27 @@ export const postsRouter = createRouter()
               image: true,
             },
           },
+          likes: {
+            select: {
+              userToken: true,
+              userEmail: true,
+            },
+          },
+          _count: {
+            select: {
+              likes: true,
+            },
+          },
         },
       });
 
       return posts.map((post) => {
         return {
           ...post,
+          ownerLiked: findIsUserLiked({
+            likes: post.likes,
+            ctx,
+          }),
           isOwner: post.userToken === ctx.token,
         };
       });
@@ -92,6 +108,17 @@ export const postsRouter = createRouter()
               image: true,
             },
           },
+          likes: {
+            select: {
+              userToken: true,
+              userEmail: true,
+            },
+          },
+          _count: {
+            select: {
+              likes: true,
+            },
+          },
         },
       });
 
@@ -119,6 +146,10 @@ export const postsRouter = createRouter()
 
       return {
         ...post,
+        ownerLiked: findIsUserLiked({
+          likes: post?.likes!,
+          ctx,
+        }),
         isOwner: post?.userToken === ctx.token,
         comments: commentsWithOwner,
       };

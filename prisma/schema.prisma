@@ -16,15 +16,17 @@ model Post {
   id      String   @id @default(cuid())
   created DateTime @default(now())
 
-  userToken  String @db.VarChar(255)
+  userToken String @db.VarChar(255)
 
-  githubUser User?  @relation(fields: [userEmail], references: [email])
-  userEmail String?
+  githubUser User?   @relation(fields: [userEmail], references: [email])
+  userEmail  String?
 
   title       String @db.VarChar(200)
   description String @db.VarChar(1000)
 
   Comment Comment[]
+
+  likes Like[]
 
   @@index([userToken])
 }
@@ -35,16 +37,32 @@ model Comment {
 
   text String @db.VarChar(200)
 
-  userToken  String @db.VarChar(255)
+  userToken String @db.VarChar(255)
 
-  githubUser User?  @relation(fields: [userEmail], references: [email])
-  userEmail String?
+  githubUser User?   @relation(fields: [userEmail], references: [email])
+  userEmail  String?
 
   post   Post   @relation(fields: [postId], references: [id])
   postId String
 
   @@index([userToken])
   @@index([postId])
+}
+
+model Like {
+  id      String   @id @default(cuid())
+  created DateTime @default(now())
+
+  userToken String @db.VarChar(255)
+
+  githubUser User?   @relation(fields: [userEmail], references: [email])
+  userEmail  String?
+
+  post   Post   @relation(fields: [postId], references: [id])
+  postId String
+
+  @@unique([postId, userEmail])
+  @@unique([postId, userToken])
 }
 
 // Next-Auth stuffs
@@ -86,6 +104,7 @@ model User {
 
   posts    Post[]
   comments Comment[]
+  likes    Like[]
 }
 
 model VerificationToken {

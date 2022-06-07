@@ -9,6 +9,7 @@ import Header from "../../components/Header";
 import Container from "../../components/Container";
 import Image from "next/image";
 import Screen from "../../components/Screen";
+import Likes from "../../components/Likes";
 
 const Content: React.FC<{ id: string }> = ({ id }) => {
   const { data: post, isLoading } = trpc.useQuery(["post.get-by-id", { id }]);
@@ -50,35 +51,44 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
             className="overflow-hidden resize-none text-white py-1 w-full bg-transparent"
           />
 
-          {post.githubUser ? (
-            <div className="flex flex-row items-center my-1 justify-end">
-              <Image
-                src={post.githubUser.image!}
-                height={20}
-                width={20}
-                alt="github avatar"
-                className="rounded-full"
-              />
-              <p className=" ml-2 text-sm font-bold text-gray-400">
-                {post.githubUser.name}
+          <div className="flex flex-row items-center justify-between">
+            <Likes
+              postId={post.id!}
+              ownerLiked={post.ownerLiked}
+              likes={post._count?.likes!}
+            />
+            <div>
+              {post.githubUser ? (
+                <div className="flex flex-row items-center my-1 justify-end">
+                  <Image
+                    src={post.githubUser.image!}
+                    height={20}
+                    width={20}
+                    alt="github avatar"
+                    className="rounded-full"
+                  />
+                  <p className=" ml-2 text-sm font-bold text-gray-400">
+                    {post.githubUser.name}
+                  </p>
+                </div>
+              ) : (
+                <p className="text-gray-500 text-sm font-bold text-right">
+                  {post.isOwner ? "By you" : "Anonymous"}
+                </p>
+              )}
+
+              <p className="text-gray-500 text-sm text-right">
+                {new Intl.DateTimeFormat("en-US", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  second: "2-digit",
+                }).format(post.created)}
               </p>
             </div>
-          ) : (
-            <p className="text-gray-500 text-sm font-bold text-right">
-              {post.isOwner ? "By you" : "Anonymous"}
-            </p>
-          )}
-
-          <p className="text-gray-500 text-sm text-right">
-            {new Intl.DateTimeFormat("en-US", {
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-              hour: "2-digit",
-              minute: "2-digit",
-              second: "2-digit",
-            }).format(post.created)}
-          </p>
+          </div>
 
           <Comments
             id={post.id}
