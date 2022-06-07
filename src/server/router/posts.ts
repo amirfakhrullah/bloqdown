@@ -133,7 +133,13 @@ export const postsRouter = createRouter()
         },
       });
 
-      return [...posts, ...anonymousPosts];
+      return [...posts, ...anonymousPosts].map((post) => ({
+        ...post,
+        ownerLiked: findIsUserLiked({
+          likes: post.likes,
+          ctx,
+        }),
+      }));
     },
   })
   .query("get-by-id", {
