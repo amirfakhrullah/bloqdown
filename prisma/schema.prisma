@@ -62,6 +62,7 @@ model Like {
   postId String
 
   @@unique([postId, userEmail])
+  @@unique([postId, userToken])
 }
 
 // Next-Auth stuffs

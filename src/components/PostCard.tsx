@@ -1,21 +1,32 @@
-import { Post, User } from "@prisma/client";
+import { User } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { AiFillLike } from "react-icons/ai";
 
-export type PostWithIsOwner = Post & {
-  githubUser: User;
+export type PostWithIsOwner = {
+  ownerLiked: boolean;
+  isOwner: boolean;
+  title: string;
+  id: string;
+  githubUser: User | null;
+  created: Date;
+  userToken: string;
+  likes: {
+    userToken: string;
+    userEmail: string | null;
+  }[];
   _count: {
     likes: number;
   };
-} & {
-  isOwner: boolean;
 };
 
 const PostCard: React.FC<PostWithIsOwner> = ({
   id,
   title,
   created,
+  _count,
+  ownerLiked,
   githubUser,
   isOwner,
 }) => {
@@ -51,7 +62,12 @@ const PostCard: React.FC<PostWithIsOwner> = ({
           second: "2-digit",
         }).format(created)}
       </p>
-      <div className="flex justify-end">
+      <div className="flex justify-between items-center">
+        <div className="flex flex-row items-center">
+          <p className={`text-gray-500 text-sm font-bold mr-1 ${ownerLiked ? "text-indigo-500" : "text-gray-500"}`}>{_count.likes}</p>
+          <AiFillLike className={ownerLiked ? "text-indigo-500" : "text-gray-500"} />
+        </div>
+
         <Link href={`/posts/${id}`}>
           <div className="mt-2 py-2 px-4 rounded-md inline-block bg-gray-700 cursor-pointer">
             <p className="text-sm text-white font-medium">Read</p>
