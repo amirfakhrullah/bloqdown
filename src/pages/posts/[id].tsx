@@ -90,6 +90,10 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
             </div>
           </div>
 
+          <div>
+            
+          </div>
+
           <Comments
             id={post.id}
             comments={post.comments as CommentWithIsOwner[]}
