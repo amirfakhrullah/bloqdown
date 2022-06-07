@@ -252,19 +252,19 @@ export const postsRouter = createRouter()
         if (!ctx.session) throw new Error("Unauthorized");
         if (ctx.session && ctx.session.user) {
           if (post.userEmail === ctx.session.user.email) {
-            await prisma.post.delete({
-              where: {
-                id: input.id,
-              },
-            });
             await prisma.like.deleteMany({
               where: {
                 postId: input.id,
               },
             });
-            return await prisma.comment.deleteMany({
+            await prisma.comment.deleteMany({
               where: {
                 postId: input.id,
+              },
+            });
+            return await prisma.post.delete({
+              where: {
+                id: input.id,
               },
             });
           } else {
@@ -274,19 +274,19 @@ export const postsRouter = createRouter()
       }
 
       if (post.userToken === ctx.token) {
-        await prisma.post.delete({
-          where: {
-            id: input.id,
-          },
-        });
         await prisma.like.deleteMany({
           where: {
             postId: input.id,
           },
         });
-        return await prisma.comment.deleteMany({
+        await prisma.comment.deleteMany({
           where: {
             postId: input.id,
+          },
+        });
+        return await prisma.post.delete({
+          where: {
+            id: input.id,
           },
         });
       }
