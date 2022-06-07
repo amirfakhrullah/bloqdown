@@ -2,6 +2,8 @@
 
 Simple Forum site using `Next.js`, `TypeScript`, `Prisma`, `PlanetScale` and `tRPC`. The aim here is to learn how to properly use these techstacks.
 
+![Polley Screen](./src/public/polley-screen.JPG)
+
 ## Goals For This Project
 
 I know the UI for this project is pretty trash. But that's not the goal for building this site. The goals for this project are:
