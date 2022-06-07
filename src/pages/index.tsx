@@ -6,6 +6,7 @@ import { useState } from "react";
 import PostCard, { PostWithIsOwner } from "../components/PostCard";
 import Header from "../components/Header";
 import Container from "../components/Container";
+import Footer from "../components/Footer";
 
 const Home: React.FC = () => {
   const [openForm, setOpenForm] = useState(false);
@@ -34,7 +35,17 @@ const Home: React.FC = () => {
         {posts?.map((post) => (
           <PostCard key={post.id} {...(post as PostWithIsOwner)} />
         ))}
+        {posts?.map((post) => (
+          <PostCard key={post.id} {...(post as PostWithIsOwner)} />
+        ))}
+        {posts?.map((post) => (
+          <PostCard key={post.id} {...(post as PostWithIsOwner)} />
+        ))}
+        {posts?.map((post) => (
+          <PostCard key={post.id} {...(post as PostWithIsOwner)} />
+        ))}
       </Container>
+      <Footer />
     </>
   );
 };
