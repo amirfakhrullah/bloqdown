@@ -43,7 +43,7 @@ const Header: React.FC<{
         )}
       </div>
 
-      {session && session.user && (
+      {session && session.user && displayButtons && (
         <div className="w-full bg-slate-900 border-b border-gray-800 md:px-5 p-2 flex flex-row items-center justify-end">
           <p className=" mr-2 text-sm text-gray-400">{session.user.name}</p>
           <Image
