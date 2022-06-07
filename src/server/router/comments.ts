@@ -76,4 +76,47 @@ export const commentsRouter = createRouter()
         },
       });
     },
+  })
+  .mutation("delete", {
+    input: z.object({
+      id: z.string(),
+    }),
+    async resolve({ input, ctx }) {
+      if (!ctx.token) {
+        return { error: "Unauthorized" };
+      }
+
+      const comment = await prisma.comment.findFirst({
+        where: {
+          id: input.id,
+        },
+      });
+
+      if (!comment) throw new Error("404 Not Found");
+
+      if (comment.userEmail !== null) {
+        if (!ctx.session) throw new Error("Unauthorized");
+        if (ctx.session && ctx.session.user) {
+          if (comment.userEmail === ctx.session.user.email) {
+            return await prisma.comment.delete({
+              where: {
+                id: input.id,
+              },
+            });
+          } else {
+            throw new Error("Unauthorized");
+          }
+        }
+      }
+
+      if (comment.userToken === ctx.token) {
+        return await prisma.comment.delete({
+          where: {
+            id: input.id,
+          },
+        });
+      }
+
+      throw new Error("Unauthorized");
+    },
   });
