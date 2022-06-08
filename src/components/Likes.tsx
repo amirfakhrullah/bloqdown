@@ -33,8 +33,19 @@ const Likes: React.FC<{
     }
   };
 
+  if (likeMutation.isLoading || dislikeMutation.isLoading) {
+    return (
+      <div className="flex flex-row items-center cursor-not-allowed p-1 rounded-md">
+        <p className="text-gray-500 text-sm font-bold mr-1">Updating</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex flex-row items-center">
+    <div
+      onClick={() => handleClick()}
+      className="flex flex-row items-center cursor-pointer hover:bg-indigo-900 p-1 rounded-md"
+    >
       <p
         className={`text-gray-500 text-sm font-bold mr-1 ${
           ownerLiked ? "text-indigo-500" : "text-gray-500"
@@ -42,11 +53,9 @@ const Likes: React.FC<{
       >
         {likes} <span className="sm:inline hidden">Like{likes > 1 && "s"}</span>
       </p>
-      <div onClick={() => handleClick()}>
+      <div>
         <AiFillLike
-          className={`${
-            ownerLiked ? "text-indigo-500" : "text-gray-500"
-          } cursor-pointer`}
+          className={`${ownerLiked ? "text-indigo-500" : "text-gray-500"}`}
         />
       </div>
     </div>

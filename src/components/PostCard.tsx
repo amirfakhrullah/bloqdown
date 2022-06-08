@@ -68,12 +68,17 @@ const PostCard: React.FC<PostWithIsOwner> = ({
         <div className="flex flex-row items-center">
           <Likes postId={id} ownerLiked={ownerLiked} likes={_count.likes} />
 
-          <div className="flex flex-row items-center ml-2">
-            <p className="text-gray-500 text-sm font-bold mr-1">
-              {_count.Comment} <span className="sm:inline hidden">Comment{_count.Comment > 1 && "s"}</span>
-            </p>
-            <FaCommentAlt className="text-gray-500 text-sm" />
-          </div>
+          <Link href={`/posts/${id}#comments`}>
+            <div className="flex flex-row items-center ml-2 cursor-pointer hover:bg-slate-900 p-1 rounded-md">
+              <p className="text-gray-500 text-sm font-bold mr-1">
+                {_count.Comment}{" "}
+                <span className="sm:inline hidden">
+                  Comment{_count.Comment > 1 && "s"}
+                </span>
+              </p>
+              <FaCommentAlt className="text-gray-500 text-sm" />
+            </div>
+          </Link>
         </div>
 
         <Link href={`/posts/${id}`}>

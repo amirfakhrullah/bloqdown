@@ -76,17 +76,21 @@ const Delete: React.FC<{
             <h3 className="font-bold text-lg">This action is permanent</h3>
             <p className="py-4">Are you sure you want to delete this?</p>
             <div className="modal-action">
-              <label htmlFor="my-modal" className="btn" onClick={() => setOpenPopup(false)}>
+              <button
+                type="button"
+                className="py-2 px-4 rounded-md inline-block bg-slate-800 border border-gray-400 cursor-pointer text-sm text-white font-medium"
+                onClick={() => setOpenPopup(false)}
+              >
                 Cancel
-              </label>
+              </button>
 
-              <label
-                htmlFor="my-modal"
-                className="btn bg-red-800 hover:bg-red-900"
+              <button
+                type="button"
+                className="py-2 px-4 rounded-md inline-block bg-red-800 hover:bg-red-900 border border-red-800 cursor-pointer text-sm text-white font-medium"
                 onClick={() => handleClick()}
               >
                 Confirm
-              </label>
+              </button>
             </div>
           </div>
         </div>
