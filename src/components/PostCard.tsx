@@ -2,7 +2,7 @@ import { User } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { AiFillLike } from "react-icons/ai";
+import { FaCommentAlt } from "react-icons/fa";
 import Likes from "./Likes";
 
 export type PostWithIsOwner = {
@@ -19,6 +19,7 @@ export type PostWithIsOwner = {
   }[];
   _count: {
     likes: number;
+    Comment: number;
   };
 };
 
@@ -63,15 +64,20 @@ const PostCard: React.FC<PostWithIsOwner> = ({
           second: "2-digit",
         }).format(created)}
       </p>
-      <div className="flex justify-between items-center">
-        <Likes 
-          postId={id}
-          ownerLiked={ownerLiked}
-          likes={_count.likes}
-        />
+      <div className="flex justify-between items-center mt-2">
+        <div className="flex flex-row items-center">
+          <Likes postId={id} ownerLiked={ownerLiked} likes={_count.likes} />
+
+          <div className="flex flex-row items-center ml-2">
+            <p className="text-gray-500 text-sm font-bold mr-1">
+              {_count.Comment} <span className="sm:inline hidden">Comment{_count.Comment > 1 && "s"}</span>
+            </p>
+            <FaCommentAlt className="text-gray-500 text-sm" />
+          </div>
+        </div>
 
         <Link href={`/posts/${id}`}>
-          <div className="mt-2 py-2 px-4 rounded-md inline-block bg-gray-700 cursor-pointer">
+          <div className="py-2 px-4 rounded-md inline-block bg-gray-700 cursor-pointer">
             <p className="text-sm text-white font-medium">Read</p>
           </div>
         </Link>

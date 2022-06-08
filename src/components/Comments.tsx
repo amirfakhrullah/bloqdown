@@ -47,7 +47,7 @@ const Comments: React.FC<{
 
   return (
     <div className="mt-5">
-      <h3 className="text-lg font-bold mt-5 text-gray-300">Comments</h3>
+      <h3 className="text-md font-bold mt-5 text-gray-300">Comments ({comments.length})</h3>
       <div className="pb-2 w-full flex md:flex-row flex-col md:items-center items-end">
         <div className="w-full flex-1">
           <Input

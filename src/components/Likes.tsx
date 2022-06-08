@@ -40,7 +40,7 @@ const Likes: React.FC<{
           ownerLiked ? "text-indigo-500" : "text-gray-500"
         }`}
       >
-        {likes} Like{likes > 1 && "s"}
+        {likes} <span className="sm:inline hidden">Like{likes > 1 && "s"}</span>
       </p>
       <div onClick={() => handleClick()}>
         <AiFillLike

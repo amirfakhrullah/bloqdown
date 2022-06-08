@@ -29,6 +29,7 @@ export const postsRouter = createRouter()
           _count: {
             select: {
               likes: true,
+              Comment: true,
             },
           },
         },
@@ -64,6 +65,7 @@ export const postsRouter = createRouter()
         }[];
         _count: {
           likes: number;
+          Comment: number,
         };
       }[] = [];
       if (ctx.session) {
@@ -92,6 +94,7 @@ export const postsRouter = createRouter()
             _count: {
               select: {
                 likes: true,
+                Comment: true,
               },
             },
           },
@@ -127,6 +130,7 @@ export const postsRouter = createRouter()
           _count: {
             select: {
               likes: true,
+              Comment: true,
             },
           },
         },
