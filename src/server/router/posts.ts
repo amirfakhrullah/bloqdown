@@ -246,7 +246,35 @@ export const postsRouter = createRouter()
         return { error: "Unauthorized" };
       }
 
-      if (ctx.session) {
+      const post = await prisma.post.findFirst({
+        where: {
+          id: input.id,
+        },
+      });
+      
+      if (!post) throw new Error("404 Not Found");
+
+      if (post.userEmail !== null) {
+        if (!ctx.session) throw new Error("Unauthorized");
+        if (ctx.session && ctx.session.user) {
+          if (post.userEmail === ctx.session.user.email) {
+            return await prisma.post.update({
+              where: {
+                id: input.id,
+              },
+              data: {
+                title: input.title,
+                description: input.description,
+                userToken: ctx.token,
+              },
+            });
+          } else {
+            throw new Error("Unauthorized");
+          }
+        }
+      }
+
+      if (post.userToken === ctx.token) {
         return await prisma.post.update({
           where: {
             id: input.id,
@@ -255,20 +283,11 @@ export const postsRouter = createRouter()
             title: input.title,
             description: input.description,
             userToken: ctx.token,
-            userEmail: ctx.session.user?.email,
           },
         });
       }
-      return await prisma.post.update({
-        where: {
-          id: input.id,
-        },
-        data: {
-          title: input.title,
-          description: input.description,
-          userToken: ctx.token,
-        },
-      });
+
+      throw new Error("Unauthorized");
     },
   })
   .mutation("delete", {
