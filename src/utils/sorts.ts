@@ -1,10 +1,11 @@
-import { PostWithIsOwner } from "../components/PostCard";
+import { GetPostsArrType } from "../server/router/posts";
 
-export const sortByLatest = (posts: PostWithIsOwner[]) => {
+
+export const sortByLatest = (posts: GetPostsArrType) => {
   return posts.slice().reverse();
 };
 
-export const sortByPopularity = (posts: PostWithIsOwner[]) => {
+export const sortByPopularity = (posts: GetPostsArrType) => {
   return posts.slice().sort((a, b) =>
     a._count.likes < b._count.likes
       ? 1

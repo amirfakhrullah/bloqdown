@@ -3,27 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaCommentAlt } from "react-icons/fa";
+import { GetPostType } from "../server/router/posts";
 import Likes from "./Likes";
 
-export type PostWithIsOwner = {
-  ownerLiked: boolean;
-  isOwner: boolean;
-  title: string;
-  id: string;
-  githubUser: User | null;
-  created: Date;
-  userToken: string;
-  likes: {
-    userToken: string;
-    userEmail: string | null;
-  }[];
-  _count: {
-    likes: number;
-    Comment: number;
-  };
-};
-
-const PostCard: React.FC<PostWithIsOwner> = ({
+const PostCard: React.FC<GetPostType> = ({
   id,
   title,
   created,

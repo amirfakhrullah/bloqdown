@@ -4,7 +4,7 @@ import Loader from "../../components/Loader";
 import MetaHead from "../../components/MetaHead";
 import { trpc } from "../../utils/trpc";
 import TextareaAutosize from "react-textarea-autosize";
-import Comments, { CommentWithIsOwner } from "../../components/Comments";
+import Comments from "../../components/Comments";
 import Header from "../../components/Header";
 import Container from "../../components/Container";
 import Image from "next/image";
@@ -12,6 +12,7 @@ import Screen from "../../components/Screen";
 import Likes from "../../components/Likes";
 import Delete from "../../components/Delete";
 import PostForm from "../../components/PostForm";
+import { GetCommentsArrType } from "../../server/router/comments";
 
 const Content: React.FC<{ id: string }> = ({ id }) => {
   const { data: post, isLoading } = trpc.useQuery(["post.get-by-id", { id }]);
@@ -126,7 +127,7 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
 
           <Comments
             id={post.id}
-            comments={post.comments as CommentWithIsOwner[]}
+            comments={post.comments as GetCommentsArrType}
           />
         </Container>
       </Screen>

@@ -3,18 +3,16 @@ import MetaHead from "../components/MetaHead";
 import { trpc } from "../utils/trpc";
 import PostForm from "../components/PostForm";
 import { useState } from "react";
-import PostCard, { PostWithIsOwner } from "../components/PostCard";
+import PostCard from "../components/PostCard";
 import Header from "../components/Header";
 import Container from "../components/Container";
 import Screen from "../components/Screen";
 import Tabs from "../components/Tabs";
 import { sortByLatest, sortByPopularity } from "../utils/sorts";
-import { useSession } from "next-auth/react";
 import PostButton from "../components/PostButton";
+import { GetPostsArrType, GetPostType } from "../server/router/posts";
 
 const Home: React.FC = () => {
-  const { data: session } = useSession();
-
   const [openForm, setOpenForm] = useState(false);
   const [focusTab, setFocusTab] = useState<1 | 2 | 3>(1);
 
@@ -35,18 +33,18 @@ const Home: React.FC = () => {
           <PostForm type="create" open={openForm} setOpen={setOpenForm} />
 
           {focusTab === 1 &&
-            sortByLatest(posts as PostWithIsOwner[]).map((post) => (
-              <PostCard key={post.id} {...(post as PostWithIsOwner)} />
+            sortByLatest(posts as GetPostsArrType).map((post) => (
+              <PostCard key={post.id} {...post} />
             ))}
 
           {focusTab === 2 &&
-            sortByPopularity(posts as PostWithIsOwner[]).map((post) => (
-              <PostCard key={post.id} {...(post as PostWithIsOwner)} />
+            sortByPopularity(posts as GetPostsArrType).map((post) => (
+              <PostCard key={post.id} {...(post as GetPostType)} />
             ))}
 
           {focusTab === 3 &&
             posts?.map((post) => (
-              <PostCard key={post.id} {...(post as PostWithIsOwner)} />
+              <PostCard key={post.id} {...(post as GetPostType)} />
             ))}
         </Container>
       </Screen>

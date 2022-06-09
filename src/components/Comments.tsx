@@ -8,14 +8,11 @@ import { createCommentValidation } from "../utils/validations";
 import { Comment, User } from "@prisma/client";
 import Image from "next/image";
 import Delete from "./Delete";
-
-export type CommentWithIsOwner = Comment & { githubUser: User } & {
-  isOwner: boolean;
-};
+import { GetCommentsArrType } from "../server/router/comments";
 
 const Comments: React.FC<{
   id: string | undefined;
-  comments: CommentWithIsOwner[];
+  comments: GetCommentsArrType;
 }> = ({ id, comments }) => {
   const client = trpc.useContext();
   const { mutate, isLoading } = trpc.useMutation("comment.create", {

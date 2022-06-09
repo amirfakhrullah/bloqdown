@@ -2,6 +2,7 @@ import { z } from "zod";
 import { prisma } from "../../db/client";
 import { createRouter } from "./context";
 import { createCommentValidation } from "../../utils/validations";
+import { inferQueryResponses } from "../../utils/trpc";
 
 export const commentsRouter = createRouter()
   .query("get-comments", {
@@ -120,3 +121,6 @@ export const commentsRouter = createRouter()
       throw new Error("Unauthorized");
     },
   });
+
+export type GetCommentsArrType = inferQueryResponses<"comment.get-comments">;
+export type GetCommentType = GetCommentsArrType[number];

@@ -2,6 +2,7 @@ import { z } from "zod";
 import { prisma } from "../../db/client";
 import { findIsUserLiked } from "../../utils/isLiked";
 import { isOwner } from "../../utils/isOwner";
+import { inferQueryResponses } from "../../utils/trpc";
 import { createPostValidation } from "../../utils/validations";
 import { createRouter } from "./context";
 
@@ -374,3 +375,6 @@ export const postsRouter = createRouter()
       throw new Error("Unauthorized");
     },
   });
+
+export type GetPostsArrType = inferQueryResponses<"post.get-all-posts">;
+export type GetPostType = GetPostsArrType[number];
