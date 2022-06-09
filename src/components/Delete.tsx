@@ -56,10 +56,7 @@ const Delete: React.FC<{
     );
   }
 
-  if (
-    (githubUser && session && githubUser.email === session.user?.email) ||
-    (!githubUser && isOwner)
-  ) {
+  if (isOwner) {
     return (
       <>
         <div

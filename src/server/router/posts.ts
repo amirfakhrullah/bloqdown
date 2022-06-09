@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { prisma } from "../../db/client";
 import { findIsUserLiked } from "../../utils/isLiked";
+import { isOwner } from "../../utils/isOwner";
 import { createPostValidation } from "../../utils/validations";
 import { createRouter } from "./context";
 
@@ -42,7 +43,12 @@ export const postsRouter = createRouter()
             likes: post.likes,
             ctx,
           }),
-          isOwner: post.userToken === ctx.token,
+          isOwner: isOwner({
+            contentToken: post.userToken,
+            token: ctx.token!,
+            contentEmail: post.githubUser?.email,
+            email: ctx.session?.user?.email,
+          }),
         };
       });
     },
@@ -150,6 +156,11 @@ export const postsRouter = createRouter()
       id: z.string(),
     }),
     async resolve({ input, ctx }) {
+      const fullPostInfo = await prisma.post.findFirst({
+        where: {
+          id: input.id,
+        },
+      });
       const post = await prisma.post.findFirst({
         where: {
           id: input.id,
@@ -194,7 +205,12 @@ export const postsRouter = createRouter()
       const commentsWithOwner = comments.map((comment) => {
         return {
           ...comment,
-          isOwner: comment.userToken === ctx.token,
+          isOwner: isOwner({
+            contentToken: comment.userToken,
+            token: ctx.token!,
+            contentEmail: comment.githubUser?.email,
+            email: ctx.session?.user?.email,
+          }),
         };
       });
 
@@ -204,7 +220,12 @@ export const postsRouter = createRouter()
           likes: post?.likes!,
           ctx,
         }),
-        isOwner: post?.userToken === ctx.token,
+        isOwner: isOwner({
+          contentToken: fullPostInfo!.userToken,
+          token: ctx.token!,
+          contentEmail: post!.githubUser?.email,
+          email: ctx.session?.user?.email,
+        }),
         comments: commentsWithOwner,
       };
     },
@@ -251,7 +272,7 @@ export const postsRouter = createRouter()
           id: input.id,
         },
       });
-      
+
       if (!post) throw new Error("404 Not Found");
 
       if (post.userEmail !== null) {
