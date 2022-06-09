@@ -30,10 +30,10 @@ const PostForm: React.FC<{
     "post.edit",
     {
       onSuccess: () => {
-        client.invalidateQueries(["post.get-by-id"]);
-        client.invalidateQueries(["post.get-all-posts"]);
-        reset();
-        setOpen(false);
+        client.invalidateQueries(["post.get-by-id"]).then(() => {
+          reset();
+          setOpen(false);
+        });
       },
     }
   );
@@ -96,7 +96,9 @@ const PostForm: React.FC<{
 
           <div className="modal-action">
             {createLoading || editLoading ? (
-              <p className="text-white">Publishing...</p>
+              <p className="text-white">
+                {type === "edit" ? "Updating..." : "Publishing..."}
+              </p>
             ) : (
               <>
                 <button
@@ -116,7 +118,7 @@ const PostForm: React.FC<{
                   onClick={handleSubmit(onSubmit)}
                   disabled={createLoading || editLoading}
                 >
-                  Publish
+                  {type === "edit" ? "Update" : "Publish"}
                 </button>
               </>
             )}

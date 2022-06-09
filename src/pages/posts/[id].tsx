@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import Loader from "../../components/Loader";
 import MetaHead from "../../components/MetaHead";
 import { trpc } from "../../utils/trpc";
@@ -11,9 +11,11 @@ import Image from "next/image";
 import Screen from "../../components/Screen";
 import Likes from "../../components/Likes";
 import Delete from "../../components/Delete";
+import PostForm from "../../components/PostForm";
 
 const Content: React.FC<{ id: string }> = ({ id }) => {
   const { data: post, isLoading } = trpc.useQuery(["post.get-by-id", { id }]);
+  const [openEdit, setOpenEdit] = useState(false);
 
   if (isLoading) {
     return <Loader />;
@@ -44,13 +46,14 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
           <h1 className="text-2xl font-black text-gray-300 mb-5">
             {post.title}
           </h1>
-
-          <TextareaAutosize
-            disabled
-            readOnly
-            defaultValue={post.description}
-            className="overflow-hidden resize-none text-white py-1 w-full bg-transparent"
-          />
+          {!openEdit && (
+            <TextareaAutosize
+              disabled
+              readOnly
+              defaultValue={post.description}
+              className="overflow-hidden resize-none text-white py-1 w-full bg-transparent"
+            />
+          )}
 
           <div className="flex flex-row items-center justify-between">
             <Likes
@@ -91,7 +94,15 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
             </div>
           </div>
 
-          <div className="flex justify-end">
+          <div className="flex justify-end items-center">
+            {post.isOwner && (
+              <div
+                onClick={() => setOpenEdit(true)}
+                className="text-sm mr-2 cursor-pointer hover:underline hover:underline-offset-1"
+              >
+                Edit Post
+              </div>
+            )}
             <Delete
               type="post"
               githubUser={post.githubUser}
@@ -101,6 +112,17 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
               Delete Post
             </Delete>
           </div>
+
+          <PostForm
+            type="edit"
+            open={openEdit}
+            setOpen={setOpenEdit}
+            inputs={{
+              id: post.id!,
+              title: post.title!,
+              description: post.description!,
+            }}
+          />
 
           <Comments
             id={post.id}
