@@ -19,24 +19,24 @@ const Home: React.FC = () => {
     <>
       <MetaHead title="Polley" />
       <Screen>
-          <Header />
-          <Container>
-            <div className="flex justify-end">
-              <button
-                type="button"
-                className="mt-2 py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
-                onClick={() => setOpenForm((open) => !open)}
-              >
-                {openForm ? "X Close" : "+ Add New Post"}
-              </button>
-            </div>
+        <Header />
+        <Container>
+          <div className="flex justify-end">
+            <button
+              type="button"
+              className="mt-2 py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
+              onClick={() => setOpenForm(true)}
+            >
+              + Add New Post
+            </button>
+          </div>
 
-            <PostForm open={openForm} setOpen={setOpenForm} />
+          <PostForm type="create" open={openForm} setOpen={setOpenForm} />
 
-            {posts?.map((post) => (
-              <PostCard key={post.id} {...(post as PostWithIsOwner)} />
-            ))}
-          </Container>
+          {posts?.map((post) => (
+            <PostCard key={post.id} {...(post as PostWithIsOwner)} />
+          ))}
+        </Container>
       </Screen>
     </>
   );

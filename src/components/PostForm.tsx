@@ -6,17 +6,37 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createPostValidation } from "../utils/validations";
 
 const PostForm: React.FC<{
+  type: "create" | "edit";
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-}> = ({ open, setOpen }) => {
+  inputs?: {
+    id: string;
+    title: string;
+    description: string;
+  };
+}> = ({ type, open, setOpen, inputs }) => {
   const client = trpc.useContext();
-  const { mutate, isLoading } = trpc.useMutation("post.create", {
-    onSuccess: () => {
-      client.invalidateQueries(["post.get-all-posts"]);
-      reset();
-      setOpen(false);
-    },
-  });
+  const { mutate: createMutation, isLoading: createLoading } = trpc.useMutation(
+    "post.create",
+    {
+      onSuccess: () => {
+        client.invalidateQueries(["post.get-all-posts"]);
+        reset();
+        setOpen(false);
+      },
+    }
+  );
+  const { mutate: editMutation, isLoading: editLoading } = trpc.useMutation(
+    "post.edit",
+    {
+      onSuccess: () => {
+        client.invalidateQueries(["post.get-by-id"]);
+        client.invalidateQueries(["post.get-all-posts"]);
+        reset();
+        setOpen(false);
+      },
+    }
+  );
 
   const {
     register,
@@ -25,8 +45,8 @@ const PostForm: React.FC<{
     formState: { errors },
   } = useForm({
     defaultValues: {
-      title: "",
-      description: "",
+      title: inputs?.title ?? "",
+      description: inputs?.description ?? "",
     },
     resolver: zodResolver(createPostValidation),
   });
@@ -38,10 +58,19 @@ const PostForm: React.FC<{
     title: string;
     description: string;
   }) => {
-    mutate({
-      title,
-      description,
-    });
+    if (type === "create") {
+      return createMutation({
+        title,
+        description,
+      });
+    }
+    if (type === "edit" && inputs) {
+      return editMutation({
+        id: inputs.id,
+        title,
+        description,
+      });
+    }
   };
 
   return (
@@ -66,7 +95,7 @@ const PostForm: React.FC<{
           />
 
           <div className="modal-action">
-            {isLoading ? (
+            {createLoading || editLoading ? (
               <p className="text-white">Publishing...</p>
             ) : (
               <>
@@ -85,7 +114,7 @@ const PostForm: React.FC<{
                   type="submit"
                   className="py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
                   onClick={handleSubmit(onSubmit)}
-                  disabled={isLoading}
+                  disabled={createLoading || editLoading}
                 >
                   Publish
                 </button>

@@ -65,7 +65,7 @@ export const postsRouter = createRouter()
         }[];
         _count: {
           likes: number;
-          Comment: number,
+          Comment: number;
         };
       }[] = [];
       if (ctx.session) {
@@ -227,6 +227,42 @@ export const postsRouter = createRouter()
         });
       }
       return await prisma.post.create({
+        data: {
+          title: input.title,
+          description: input.description,
+          userToken: ctx.token,
+        },
+      });
+    },
+  })
+  .mutation("edit", {
+    input: z.object({
+      id: z.string(),
+      title: z.string().min(6).max(200),
+      description: z.string().min(6).max(1000),
+    }),
+    async resolve({ input, ctx }) {
+      if (!ctx.token) {
+        return { error: "Unauthorized" };
+      }
+
+      if (ctx.session) {
+        return await prisma.post.update({
+          where: {
+            id: input.id,
+          },
+          data: {
+            title: input.title,
+            description: input.description,
+            userToken: ctx.token,
+            userEmail: ctx.session.user?.email,
+          },
+        });
+      }
+      return await prisma.post.update({
+        where: {
+          id: input.id,
+        },
         data: {
           title: input.title,
           description: input.description,
