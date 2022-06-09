@@ -20,7 +20,7 @@ const Header: React.FC<{
         </Link>
         {displayButtons && (
           <div className="flex flex-row items-center pl-1">
-            {session && (
+            {!session && (
               <button
                 type="button"
                 className="py-2 px-4 rounded-md inline-block bg-slate-800 border border-gray-400 cursor-pointer text-sm text-white font-medium"
