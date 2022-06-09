@@ -44,56 +44,57 @@ const PostForm: React.FC<{
     });
   };
 
-  if (!open) return <></>;
-
   return (
-      <div className="mt-2 mb-5 p-4 w-full border border-gray-500 rounded-lg bg-slate-800">
-        <h3 className="font-bold text-2xl text-gray-200">Post</h3>
+    <>
+      {/* Modal */}
+      <div className={`modal ${open && "modal-open"}`}>
+        <div className="modal-box max-w-4xl rounded-md bg-slate-800 border border-gray-500">
+          <Input
+            title="Title"
+            type="input"
+            placeholder="Insert post title"
+            register={register("title")}
+            error={errors.title}
+          />
 
-        <Input
-          title="Title"
-          type="input"
-          placeholder="Insert post title"
-          register={register("title")}
-          error={errors.title}
-        />
+          <Input
+            title="Content"
+            type="textarea"
+            placeholder="Insert your post content here..."
+            register={register("description")}
+            error={errors.description}
+          />
 
-        <Input
-          title="Content"
-          type="textarea"
-          placeholder="Insert your post content here..."
-          register={register("description")}
-          error={errors.description}
-        />
+          <div className="modal-action">
+            {isLoading ? (
+              <p className="text-white">Publishing...</p>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  className="py-2 px-4 rounded-md inline-block bg-slate-800 border border-gray-400 cursor-pointer text-sm text-white font-medium"
+                  onClick={() => {
+                    reset();
+                    setOpen(false);
+                  }}
+                >
+                  Cancel
+                </button>
 
-        <div className="flex justify-end">
-          {isLoading ? (
-            <p className="text-white">Publishing...</p>
-          ) : (
-            <>
-              <button
-                type="button"
-                className="mr-2 mt-2 py-2 px-4 rounded-md inline-block border border-gray-500 hover:bg-gray-600 cursor-pointer text-sm text-white font-medium"
-                onClick={() => {
-                  reset();
-                  setOpen(false);
-                }}
-              >
-                Cancel
-              </button>
-
-              <button
-                type="submit"
-                className="mt-2 py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
-                onClick={handleSubmit(onSubmit)}
-                disabled={isLoading}
-              >
-                Publish
-              </button>
-            </>
-          )}
+                <button
+                  type="submit"
+                  className="py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
+                  onClick={handleSubmit(onSubmit)}
+                  disabled={isLoading}
+                >
+                  Publish
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </div>
+    </>
   );
 };
 
