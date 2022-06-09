@@ -8,6 +8,7 @@ import Header from "../components/Header";
 import Container from "../components/Container";
 import Screen from "../components/Screen";
 import Tabs from "../components/Tabs";
+import { sortByLatest, sortByPopularity } from "../utils/sorts";
 
 const Home: React.FC = () => {
   const [openForm, setOpenForm] = useState(false);
@@ -37,9 +38,20 @@ const Home: React.FC = () => {
 
           <PostForm type="create" open={openForm} setOpen={setOpenForm} />
 
-          {posts?.map((post) => (
-            <PostCard key={post.id} {...(post as PostWithIsOwner)} />
-          ))}
+          {focusTab === 1 &&
+            sortByLatest(posts as PostWithIsOwner[]).map((post) => (
+              <PostCard key={post.id} {...(post as PostWithIsOwner)} />
+            ))}
+
+          {focusTab === 2 &&
+            sortByPopularity(posts as PostWithIsOwner[]).map((post) => (
+              <PostCard key={post.id} {...(post as PostWithIsOwner)} />
+            ))}
+
+          {focusTab === 3 &&
+            posts?.map((post) => (
+              <PostCard key={post.id} {...(post as PostWithIsOwner)} />
+            ))}
         </Container>
       </Screen>
     </>
