@@ -6,7 +6,7 @@ Simple Forum site using `Next.js`, `Next-Auth`, `TypeScript`, `Prisma`, `PlanetS
 
 ## Goals For This Project
 
-I know the UI for this project is pretty trash. But that's not the goal for building this site. The goals for this project are:
+I know the UI for this project is not great. But that's not the goal for building this site. The goals for this project are:
 
 - Creating fully typesafe APIs using `tRPC`
 - Using `Prisma` as `TypeScript ORM`
@@ -70,5 +70,7 @@ npm run dev
 - [x] Update posts by post owner
 - [x] Ability to delete own posts or comments
 - [x] Liking posts
+- [x] Sorting posts by latest & popularity
 - [ ] Markdown editor for posts :astonished:
 - [x] Next Auth :astonished:
+- [ ] Tags
