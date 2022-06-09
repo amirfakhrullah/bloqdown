@@ -7,9 +7,11 @@ import PostCard, { PostWithIsOwner } from "../components/PostCard";
 import Header from "../components/Header";
 import Container from "../components/Container";
 import Screen from "../components/Screen";
+import Tabs from "../components/Tabs";
 
 const Home: React.FC = () => {
   const [openForm, setOpenForm] = useState(false);
+  const [focusTab, setFocusTab] = useState<1 | 2 | 3>(1);
 
   const { isLoading, data: posts } = trpc.useQuery(["post.get-all-posts"]);
 
@@ -30,6 +32,8 @@ const Home: React.FC = () => {
               + Add New Post
             </button>
           </div>
+
+          <Tabs focusTab={focusTab} setFocusTab={setFocusTab} />
 
           <PostForm type="create" open={openForm} setOpen={setOpenForm} />
 
