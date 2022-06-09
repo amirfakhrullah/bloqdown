@@ -9,8 +9,12 @@ import Container from "../components/Container";
 import Screen from "../components/Screen";
 import Tabs from "../components/Tabs";
 import { sortByLatest, sortByPopularity } from "../utils/sorts";
+import { useSession } from "next-auth/react";
+import PostButton from "../components/PostButton";
 
 const Home: React.FC = () => {
+  const { data: session } = useSession();
+
   const [openForm, setOpenForm] = useState(false);
   const [focusTab, setFocusTab] = useState<1 | 2 | 3>(1);
 
@@ -24,15 +28,7 @@ const Home: React.FC = () => {
       <Screen>
         <Header />
         <Container>
-          <div className="flex justify-end">
-            <button
-              type="button"
-              className="mt-2 py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
-              onClick={() => setOpenForm(true)}
-            >
-              + Add New Post
-            </button>
-          </div>
+          <PostButton setOpen={setOpenForm} />
 
           <Tabs focusTab={focusTab} setFocusTab={setFocusTab} />
 

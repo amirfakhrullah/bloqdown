@@ -28,7 +28,7 @@ const Delete: React.FC<{
     onSuccess: () => {
       setOpenPopup(false);
       client.invalidateQueries(["post.get-all-posts"]);
-      router.push("/");
+      router.back();
     },
   });
   const deleteComment = trpc.useMutation("comment.delete", {

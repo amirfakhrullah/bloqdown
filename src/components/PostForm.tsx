@@ -14,13 +14,18 @@ const PostForm: React.FC<{
     title: string;
     description: string;
   };
-}> = ({ type, open, setOpen, inputs }) => {
+  isMyPosts?: boolean;
+}> = ({ type, open, setOpen, inputs, isMyPosts = false }) => {
   const client = trpc.useContext();
   const { mutate: createMutation, isLoading: createLoading } = trpc.useMutation(
     "post.create",
     {
       onSuccess: () => {
-        client.invalidateQueries(["post.get-all-posts"]);
+        if (isMyPosts) {
+          client.invalidateQueries(["post.get-my-posts"])
+        } else {
+          client.invalidateQueries(["post.get-all-posts"]);
+        }
         reset();
         setOpen(false);
       },
@@ -74,58 +79,55 @@ const PostForm: React.FC<{
   };
 
   return (
-    <>
-      {/* Modal */}
-      <div className={`modal ${open && "modal-open"}`}>
-        <div className="modal-box max-w-4xl rounded-md bg-slate-800 border border-gray-500">
-          <Input
-            title="Title"
-            type="input"
-            placeholder="Insert post title"
-            register={register("title")}
-            error={errors.title}
-          />
+    <div className={`modal ${open && "modal-open"}`}>
+      <div className="modal-box max-w-4xl rounded-md bg-slate-800 border border-gray-500">
+        <Input
+          title="Title"
+          type="input"
+          placeholder="Insert post title"
+          register={register("title")}
+          error={errors.title}
+        />
 
-          <Input
-            title="Content"
-            type="textarea"
-            placeholder="Insert your post content here..."
-            register={register("description")}
-            error={errors.description}
-          />
+        <Input
+          title="Content"
+          type="textarea"
+          placeholder="Insert your post content here..."
+          register={register("description")}
+          error={errors.description}
+        />
 
-          <div className="modal-action">
-            {createLoading || editLoading ? (
-              <p className="text-white">
-                {type === "edit" ? "Updating..." : "Publishing..."}
-              </p>
-            ) : (
-              <>
-                <button
-                  type="button"
-                  className="py-2 px-4 rounded-md inline-block bg-slate-800 border border-gray-400 cursor-pointer text-sm text-white font-medium"
-                  onClick={() => {
-                    reset();
-                    setOpen(false);
-                  }}
-                >
-                  Cancel
-                </button>
+        <div className="modal-action">
+          {createLoading || editLoading ? (
+            <p className="text-white">
+              {type === "edit" ? "Updating..." : "Publishing..."}
+            </p>
+          ) : (
+            <>
+              <button
+                type="button"
+                className="py-2 px-4 rounded-md inline-block bg-slate-800 border border-gray-400 cursor-pointer text-sm text-white font-medium"
+                onClick={() => {
+                  reset();
+                  setOpen(false);
+                }}
+              >
+                Cancel
+              </button>
 
-                <button
-                  type="submit"
-                  className="py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
-                  onClick={handleSubmit(onSubmit)}
-                  disabled={createLoading || editLoading}
-                >
-                  {type === "edit" ? "Update" : "Publish"}
-                </button>
-              </>
-            )}
-          </div>
+              <button
+                type="submit"
+                className="py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
+                onClick={handleSubmit(onSubmit)}
+                disabled={createLoading || editLoading}
+              >
+                {type === "edit" ? "Update" : "Publish"}
+              </button>
+            </>
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
