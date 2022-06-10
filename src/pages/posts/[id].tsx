@@ -13,9 +13,19 @@ import Likes from "../../components/Likes";
 import Delete from "../../components/Delete";
 import PostForm from "../../components/PostForm";
 import { GetCommentsArrType } from "../../server/router/comments";
+import ReactMarkdown from "react-markdown";
 
 const Content: React.FC<{ id: string }> = ({ id }) => {
-  const { data: post, isLoading } = trpc.useQuery(["post.get-by-id", { id }]);
+  const [rerender, setRerender] = useState(false);
+  const { data: post, isLoading } = trpc.useQuery(["post.get-by-id", { id }], {
+    onSettled: () => {
+      setRerender(true);
+      const timeout = setTimeout(() => {
+        setRerender(false);
+      }, 200);
+      return () => clearTimeout(timeout);
+    },
+  });
   const [openEdit, setOpenEdit] = useState(false);
 
   if (isLoading) {
@@ -55,6 +65,7 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
               className="overflow-hidden resize-none text-white py-1 w-full bg-transparent"
             />
           )}
+          <ReactMarkdown>{post.description as string}</ReactMarkdown>
 
           <div className="flex flex-row items-center justify-between">
             <Likes
@@ -114,16 +125,18 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
             </Delete>
           </div>
 
-          <PostForm
-            type="edit"
-            open={openEdit}
-            setOpen={setOpenEdit}
-            inputs={{
-              id: post.id!,
-              title: post.title!,
-              description: post.description!,
-            }}
-          />
+          {!rerender && (
+            <PostForm
+              type="edit"
+              open={openEdit}
+              setOpen={setOpenEdit}
+              inputs={{
+                id: post.id!,
+                title: post.title!,
+                description: post.description!,
+              }}
+            />
+          )}
 
           <Comments
             id={post.id}

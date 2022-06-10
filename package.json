@@ -25,6 +25,7 @@
     "react-dom": "18.1.0",
     "react-hook-form": "^7.31.3",
     "react-icons": "^4.4.0",
+    "react-markdown": "^8.0.3",
     "react-query": "^3.39.1",
     "react-textarea-autosize": "^8.3.4",
     "superjson": "^1.9.1",
