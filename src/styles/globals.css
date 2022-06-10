@@ -19,3 +19,41 @@ a {
 * {
   box-sizing: border-box;
 }
+
+/* for markdown used */
+#mardown-group > h1, 
+#mardown-group > h2, 
+#mardown-group > h3, 
+#mardown-group > h4, 
+#mardown-group > h5, 
+#mardown-group > h6 {
+  @apply text-white mb-5 font-bold;
+}
+
+#mardown-group > h1 {
+  @apply text-3xl font-bold;
+}
+
+#mardown-group > h2 {
+  @apply text-2xl font-bold;
+}
+
+#mardown-group > h3 {
+  @apply text-2xl;
+}
+
+#mardown-group > h4 {
+  @apply text-xl;
+}
+
+#mardown-group > p {
+  @apply text-gray-300 text-base mb-5;
+}
+
+#mardown-group > ul {
+  @apply text-gray-300 text-base mb-5;
+}
+
+#mardown-group > ul> li {
+  @apply before:content-['- '] before:text-white;
+}

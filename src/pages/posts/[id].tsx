@@ -13,11 +13,11 @@ import Likes from "../../components/Likes";
 import Delete from "../../components/Delete";
 import PostForm from "../../components/PostForm";
 import { GetCommentsArrType } from "../../server/router/comments";
-import ReactMarkdown from "react-markdown";
+import Markdown from "../../components/markdown";
 
 const Content: React.FC<{ id: string }> = ({ id }) => {
   const [rerender, setRerender] = useState(false);
-  const { data: post, isLoading } = trpc.useQuery(["post.get-by-id", { id }], {
+  const { data: post, isLoading, isFetching } = trpc.useQuery(["post.get-by-id", { id }], {
     onSettled: () => {
       setRerender(true);
       const timeout = setTimeout(() => {
@@ -57,15 +57,15 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
           <h1 className="text-2xl font-black text-gray-300 mb-5">
             {post.title}
           </h1>
-          {!openEdit && (
+          {/* {!openEdit && (
             <TextareaAutosize
               disabled
               readOnly
               defaultValue={post.description}
               className="overflow-hidden resize-none text-white py-1 w-full bg-transparent"
             />
-          )}
-          <ReactMarkdown>{post.description as string}</ReactMarkdown>
+          )} */}
+          <Markdown>{post.description as string}</Markdown>
 
           <div className="flex flex-row items-center justify-between">
             <Likes
@@ -125,7 +125,7 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
             </Delete>
           </div>
 
-          {!rerender && (
+          {!isFetching && (
             <PostForm
               type="edit"
               open={openEdit}
