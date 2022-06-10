@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Loader from "../../components/Loader";
 import MetaHead from "../../components/MetaHead";
 import { trpc } from "../../utils/trpc";
-import TextareaAutosize from "react-textarea-autosize";
 import Comments from "../../components/Comments";
 import Header from "../../components/Header";
 import Container from "../../components/Container";
@@ -13,9 +12,10 @@ import Likes from "../../components/Likes";
 import Delete from "../../components/Delete";
 import PostForm from "../../components/PostForm";
 import { GetCommentsArrType } from "../../server/router/comments";
+import Markdown from "../../components/Markdown";
 
 const Content: React.FC<{ id: string }> = ({ id }) => {
-  const { data: post, isLoading } = trpc.useQuery(["post.get-by-id", { id }]);
+  const { data: post, isLoading, isFetching } = trpc.useQuery(["post.get-by-id", { id }]);
   const [openEdit, setOpenEdit] = useState(false);
 
   if (isLoading) {
@@ -44,17 +44,10 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
       <Screen>
         <Header />
         <Container>
-          <h1 className="text-2xl font-black text-gray-300 mb-5">
+          <h1 className="text-3xl font-black text-gray-300 mb-5">
             {post.title}
           </h1>
-          {!openEdit && (
-            <TextareaAutosize
-              disabled
-              readOnly
-              defaultValue={post.description}
-              className="overflow-hidden resize-none text-white py-1 w-full bg-transparent"
-            />
-          )}
+          <Markdown>{post.description as string}</Markdown>
 
           <div className="flex flex-row items-center justify-between">
             <Likes
@@ -114,16 +107,18 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
             </Delete>
           </div>
 
-          <PostForm
-            type="edit"
-            open={openEdit}
-            setOpen={setOpenEdit}
-            inputs={{
-              id: post.id!,
-              title: post.title!,
-              description: post.description!,
-            }}
-          />
+          {!isFetching && (
+            <PostForm
+              type="edit"
+              open={openEdit}
+              setOpen={setOpenEdit}
+              inputs={{
+                id: post.id!,
+                title: post.title!,
+                description: post.description!,
+              }}
+            />
+          )}
 
           <Comments
             id={post.id}

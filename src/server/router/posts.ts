@@ -261,7 +261,7 @@ export const postsRouter = createRouter()
     input: z.object({
       id: z.string(),
       title: z.string().min(6).max(200),
-      description: z.string().min(6).max(1000),
+      description: z.string().min(6).max(2000),
     }),
     async resolve({ input, ctx }) {
       if (!ctx.token) {
