@@ -22,7 +22,7 @@ model Post {
   userEmail  String?
 
   title       String @db.VarChar(200)
-  description String @db.VarChar(1000)
+  description String @db.VarChar(2000)
 
   Comment Comment[]
 

@@ -54,7 +54,7 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
       <Screen>
         <Header />
         <Container>
-          <h1 className="text-2xl font-black text-gray-300 mb-5">
+          <h1 className="text-3xl font-black text-gray-300 mb-5">
             {post.title}
           </h1>
           {/* {!openEdit && (

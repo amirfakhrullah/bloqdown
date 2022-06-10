@@ -21,39 +21,62 @@ a {
 }
 
 /* for markdown used */
-#mardown-group > h1, 
-#mardown-group > h2, 
-#mardown-group > h3, 
-#mardown-group > h4, 
-#mardown-group > h5, 
-#mardown-group > h6 {
+#mardown-group h1,
+#mardown-group h2,
+#mardown-group h3,
+#mardown-group h4,
+#mardown-group h5,
+#mardown-group h6 {
   @apply text-white mb-5 font-bold;
 }
 
-#mardown-group > h1 {
+#mardown-group h1 {
   @apply text-3xl font-bold;
 }
 
-#mardown-group > h2 {
+#mardown-group h2 {
   @apply text-2xl font-bold;
 }
 
-#mardown-group > h3 {
+#mardown-group h3 {
   @apply text-2xl;
 }
 
-#mardown-group > h4 {
+#mardown-group h4 {
   @apply text-xl;
 }
 
-#mardown-group > p {
+#mardown-group p {
   @apply text-gray-300 text-base mb-5;
 }
 
-#mardown-group > ul {
-  @apply text-gray-300 text-base mb-5;
+#mardown-group a {
+  @apply hover:underline cursor-pointer text-blue-400;
 }
 
-#mardown-group > ul> li {
-  @apply before:content-['- '] before:text-white;
+#mardown-group ul {
+  @apply  mb-5;
+}
+
+#mardown-group li::before {
+  content: "- ";
+}
+
+#mardown-group .task-list-item>p::before {
+  content: "";
+}
+
+blockquote {
+  margin: 0;
+  padding-left: 1.4rem;
+  border-left: 4px solid #0e7490;
+  margin-bottom: 1.25rem;
+}
+
+pre {
+  @apply p-2 rounded-md overflow-x-auto bg-black mb-5;
+}
+
+code {
+  @apply px-1 rounded-md bg-gray-700;
 }

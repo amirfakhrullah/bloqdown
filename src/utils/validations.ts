@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const createPostValidation = z.object({
   title: z.string().min(6).max(200),
-  description: z.string().min(6).max(1000),
+  description: z.string().min(6).max(2000),
 });
 
 export const createCommentValidation = z.object({
