@@ -92,7 +92,7 @@ const PostForm: React.FC<{
         <Input
           title="Content"
           type="textarea"
-          placeholder="Insert your post content here..."
+          placeholder="Insert markdown here..."
           register={register("description")}
           error={errors.description}
         />

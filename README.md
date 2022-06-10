@@ -1,6 +1,6 @@
 # Polley :newspaper:
 
-Simple Forum site using `Next.js`, `Next-Auth`, `TypeScript`, `Prisma`, `PlanetScale` and `tRPC`. The aim here is to learn how to properly use these techstacks.
+Simple Markdown Forum site using `Next.js`, `Next-Auth`, `TypeScript`, `Prisma`, `PlanetScale` and `tRPC`. The aim here is to learn how to properly use these techstacks.
 
 ![Polley Screen](./src/public/polley-screen.JPG)
 
@@ -13,12 +13,14 @@ I know the UI for this project is not great. But that's not the goal for buildin
 - Setting up `PlanetScale` as `MySQL` db for the site
 - Set cookie for anonymous users thru `Next.js` middleware
 - Auth using `Next-Auth` (Github Provider)
+- Render post content as markdown using `react-markdown`
 
 ## Techstacks
 
 - [Next.js](https://nextjs.org/)
 - [TailwindCSS](https://tailwindcss.com/)
 - [DaisyUI](https://daisyui.com/)
+- [React-Markdown](https://github.com/remarkjs/react-markdown)
 - [Next-Auth](https://next-auth.js.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [tRPC](https://trpc.io/)
@@ -71,6 +73,6 @@ npm run dev
 - [x] Ability to delete own posts or comments
 - [x] Liking posts
 - [x] Sorting posts by latest & popularity
-- [ ] Markdown editor for posts :astonished:
+- [x] Markdown editor for posts :astonished:
 - [x] Next Auth :astonished:
 - [ ] Tags
