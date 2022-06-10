@@ -71,11 +71,15 @@ blockquote {
   padding-left: 1.4rem;
   border-left: 4px solid #0e7490;
   margin-bottom: 1.25rem;
-  background-color: #164e63;
+  background-color: #292524;
 }
 
 pre {
   @apply p-2 rounded-md overflow-x-auto bg-black mb-5;
+}
+
+pre>code {
+  @apply p-0 bg-transparent;
 }
 
 code {
