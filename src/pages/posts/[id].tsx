@@ -13,7 +13,7 @@ import Likes from "../../components/Likes";
 import Delete from "../../components/Delete";
 import PostForm from "../../components/PostForm";
 import { GetCommentsArrType } from "../../server/router/comments";
-import Markdown from "../../components/markdown";
+import Markdown from "../../components/Markdown";
 
 const Content: React.FC<{ id: string }> = ({ id }) => {
   const [rerender, setRerender] = useState(false);
