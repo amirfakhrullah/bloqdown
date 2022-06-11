@@ -20,6 +20,11 @@ const Header: React.FC<{
         </Link>
         {displayButtons && (
           <div className="flex flex-row items-center pl-1">
+            <Link href="/posts/cl49dmtm5003109jwx9o8kvcu">
+              <p className="sm:inline hidden mr-2 cursor-pointer hover:underline">
+                How to use markdown?
+              </p>
+            </Link>
             {!session && (
               <button
                 type="button"
