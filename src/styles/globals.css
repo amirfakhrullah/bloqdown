@@ -27,7 +27,7 @@ a {
 #mardown-group h4,
 #mardown-group h5,
 #mardown-group h6 {
-  @apply text-white mb-5 font-bold;
+  @apply text-white mb-4 pb-1 font-bold border-b border-slate-800;
 }
 
 #mardown-group h1 {

@@ -44,7 +44,7 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
       <Screen>
         <Header />
         <Container>
-          <h1 className="text-3xl font-black text-gray-300 mb-5">
+          <h1 className="text-3xl font-black text-white mb-4 pb-1 border-b border-slate-800">
             {post.title}
           </h1>
           <Markdown>{post.description as string}</Markdown>
