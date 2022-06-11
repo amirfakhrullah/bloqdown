@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 import Container from "../../components/Container";
 import Header from "../../components/Header";
@@ -14,6 +15,8 @@ const MyPosts: React.FC = () => {
   const [openForm, setOpenForm] = useState(false);
   const { data: posts, isLoading } = trpc.useQuery(["post.get-my-posts"]);
 
+  const { data: session } = useSession();
+
   if (isLoading) return <Loader />;
 
   return (
@@ -23,9 +26,22 @@ const MyPosts: React.FC = () => {
         <Header />
         <Container>
           <PostButton setOpen={setOpenForm} />
-          <PostForm type="create" open={openForm} setOpen={setOpenForm} isMyPosts={true} />
+          <PostForm
+            type="create"
+            open={openForm}
+            setOpen={setOpenForm}
+            isMyPosts={true}
+          />
 
           <h1 className="mt-5 text-2xl font-black text-gray-300">My Posts</h1>
+
+          {!session && (
+            <p className="text-sm my-1">
+              If you post as anonymous, your post might not appear here because
+              of cookie changed. To get full control of your posts and comments,
+              please login.
+            </p>
+          )}
 
           {posts?.length === 0 && (
             <h3 className="text-center font-bold text-lg text-gray-500">
