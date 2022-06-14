@@ -2,7 +2,6 @@ import Loader from "../components/Loader";
 import MetaHead from "../components/MetaHead";
 import { trpc } from "../utils/trpc";
 import PostForm from "../components/PostForm";
-import { useState } from "react";
 import PostCard from "../components/PostCard";
 import Header from "../components/Header";
 import Container from "../components/Container";
@@ -11,10 +10,12 @@ import Tabs from "../components/Tabs";
 import { sortByLatest, sortByPopularity } from "../utils/sorts";
 import PostButton from "../components/PostButton";
 import { GetPostsArrType, GetPostType } from "../server/router/posts";
+import useModal from "../utils/hooks/useModal";
+import useTabs from "../utils/hooks/useTabs";
 
 const Home: React.FC = () => {
-  const [openForm, setOpenForm] = useState(false);
-  const [focusTab, setFocusTab] = useState<1 | 2 | 3>(1);
+  const { open, setOpen } = useModal();
+  const { focusTab, setFocusTab } = useTabs();
 
   const { isLoading, data: posts } = trpc.useQuery(["post.get-all-posts"]);
 
@@ -26,11 +27,11 @@ const Home: React.FC = () => {
       <Screen>
         <Header />
         <Container>
-          <PostButton setOpen={setOpenForm} />
+          <PostButton setOpen={setOpen} />
 
           <Tabs focusTab={focusTab} setFocusTab={setFocusTab} />
 
-          <PostForm type="create" open={openForm} setOpen={setOpenForm} />
+          <PostForm type="create" open={open} setOpen={setOpen} />
 
           {focusTab === 1 &&
             sortByLatest(posts as GetPostsArrType).map((post) => (

@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import React, { useState } from "react";
+import React from "react";
 import Container from "../../components/Container";
 import Header from "../../components/Header";
 import Loader from "../../components/Loader";
@@ -9,10 +9,11 @@ import PostCard from "../../components/PostCard";
 import PostForm from "../../components/PostForm";
 import Screen from "../../components/Screen";
 import { GetPostType } from "../../server/router/posts";
+import useFormModal from "../../utils/hooks/useModal";
 import { trpc } from "../../utils/trpc";
 
 const MyPosts: React.FC = () => {
-  const [openForm, setOpenForm] = useState(false);
+  const { open, setOpen } = useFormModal();
   const { data: posts, isLoading } = trpc.useQuery(["post.get-my-posts"]);
 
   const { data: session } = useSession();
@@ -25,11 +26,11 @@ const MyPosts: React.FC = () => {
       <Screen>
         <Header />
         <Container>
-          <PostButton setOpen={setOpenForm} />
+          <PostButton setOpen={setOpen} />
           <PostForm
             type="create"
-            open={openForm}
-            setOpen={setOpenForm}
+            open={open}
+            setOpen={setOpen}
             isMyPosts={true}
           />
 
