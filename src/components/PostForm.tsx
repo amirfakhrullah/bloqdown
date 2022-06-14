@@ -22,7 +22,7 @@ const PostForm: React.FC<{
     {
       onSuccess: () => {
         if (isMyPosts) {
-          client.invalidateQueries(["post.get-my-posts"])
+          client.invalidateQueries(["post.get-my-posts"]);
         } else {
           client.invalidateQueries(["post.get-all-posts"]);
         }
