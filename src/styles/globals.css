@@ -59,7 +59,7 @@ a {
 }
 
 #mardown-group li::before {
-  content: "- ";
+  content: "• ";
 }
 
 #mardown-group .task-list-item>p::before {
