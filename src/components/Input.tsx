@@ -1,16 +1,26 @@
-import React from "react";
+import React, { FocusEventHandler } from "react";
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import TextareaAutosize from "react-textarea-autosize";
 
 const Input: React.FC<{
   title: string;
   type: "input" | "textarea";
+  onBlur?: FocusEventHandler<HTMLTextAreaElement> | undefined;
   minRows?: number;
   placeholder: string;
   required?: boolean;
   register: UseFormRegisterReturn;
   error: FieldError | undefined;
-}> = ({ title, type, minRows = 7, placeholder, required = false, register, error }) => {
+}> = ({
+  title,
+  type,
+  onBlur,
+  minRows = 7,
+  placeholder,
+  required = false,
+  register,
+  error,
+}) => {
   return (
     <div className="mt-2 mb-1">
       <div className="flex flex-row mb-1">
@@ -29,6 +39,7 @@ const Input: React.FC<{
         <TextareaAutosize
           minRows={minRows}
           {...register}
+          onBlur={onBlur}
           rows={7}
           defaultValue=""
           placeholder={placeholder}

@@ -26,6 +26,7 @@ const Comments: React.FC<{
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -50,6 +51,7 @@ const Comments: React.FC<{
           <Input
             title=""
             type="textarea"
+            onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) => setValue("text", e.target.value.trim())}
             minRows={1}
             placeholder="Insert your comment here..."
             register={register("text")}

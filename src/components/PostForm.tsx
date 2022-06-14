@@ -47,6 +47,7 @@ const PostForm: React.FC<{
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -92,6 +93,9 @@ const PostForm: React.FC<{
         <Input
           title="Content"
           type="textarea"
+          onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) =>
+            setValue("description", e.target.value.trim())
+          }
           placeholder="Insert markdown here..."
           register={register("description")}
           error={errors.description}
