@@ -8,9 +8,8 @@ export const likesRouter = createRouter()
       postId: z.string(),
     }),
     async resolve({ input, ctx }) {
-      if (!ctx.token) {
-        return { error: "Unauthorized" };
-      }
+      if (!ctx.token) throw new Error("Unauthorized");
+
       if (ctx.session) {
         return await prisma.like.create({
           data: {
@@ -33,9 +32,8 @@ export const likesRouter = createRouter()
       postId: z.string(),
     }),
     async resolve({ input, ctx }) {
-      if (!ctx.token) {
-        return { error: "Unauthorized" };
-      }
+      if (!ctx.token)  throw new Error("Unauthorized");
+      
       if (ctx.session) {
         return await prisma.like.delete({
           where: {

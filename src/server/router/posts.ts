@@ -22,6 +22,7 @@ export const postsRouter = createRouter()
               image: true,
             },
           },
+          tags: true,
           likes: {
             select: {
               userToken: true,
@@ -92,6 +93,7 @@ export const postsRouter = createRouter()
                 image: true,
               },
             },
+            tags: true,
             likes: {
               select: {
                 userToken: true,
@@ -128,6 +130,7 @@ export const postsRouter = createRouter()
               image: true,
             },
           },
+          tags: true,
           likes: {
             select: {
               userToken: true,
@@ -234,9 +237,7 @@ export const postsRouter = createRouter()
   .mutation("create", {
     input: createPostValidation,
     async resolve({ input, ctx }) {
-      if (!ctx.token) {
-        return { error: "Unauthorized" };
-      }
+      if (!ctx.token) throw new Error("Unauthorized");
 
       if (ctx.session) {
         return await prisma.post.create({
@@ -264,9 +265,7 @@ export const postsRouter = createRouter()
       description: z.string().min(6).max(2000).trim(),
     }),
     async resolve({ input, ctx }) {
-      if (!ctx.token) {
-        return { error: "Unauthorized" };
-      }
+      if (!ctx.token) throw new Error("Unauthorized");
 
       const post = await prisma.post.findFirst({
         where: {
@@ -317,9 +316,7 @@ export const postsRouter = createRouter()
       id: z.string(),
     }),
     async resolve({ input, ctx }) {
-      if (!ctx.token) {
-        return { error: "Unauthorized" };
-      }
+      if (!ctx.token) throw new Error("Unauthorized");
 
       const post = await prisma.post.findFirst({
         where: {
@@ -334,6 +331,11 @@ export const postsRouter = createRouter()
         if (ctx.session && ctx.session.user) {
           if (post.userEmail === ctx.session.user.email) {
             await prisma.like.deleteMany({
+              where: {
+                postId: input.id,
+              },
+            });
+            await prisma.tag.deleteMany({
               where: {
                 postId: input.id,
               },
@@ -356,6 +358,11 @@ export const postsRouter = createRouter()
 
       if (post.userToken === ctx.token) {
         await prisma.like.deleteMany({
+          where: {
+            postId: input.id,
+          },
+        });
+        await prisma.tag.deleteMany({
           where: {
             postId: input.id,
           },

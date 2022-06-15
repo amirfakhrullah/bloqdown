@@ -5,7 +5,6 @@ import Input from "./Input";
 import TextareaAutosize from "react-textarea-autosize";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createCommentValidation } from "../utils/validations";
-import { Comment, User } from "@prisma/client";
 import Image from "next/image";
 import Delete from "./Delete";
 import { GetCommentsArrType } from "../server/router/comments";
@@ -46,13 +45,17 @@ const Comments: React.FC<{
 
   return (
     <div className="mt-5" id="comments">
-      <h3 className="text-md font-bold mt-5 text-gray-300">Comments ({comments.length})</h3>
+      <h3 className="text-md font-bold mt-5 text-gray-300">
+        Comments ({comments.length})
+      </h3>
       <div className="pb-2 w-full flex md:flex-row flex-col md:items-center items-end">
         <div className="w-full flex-1">
           <Input
             title=""
             type="textarea"
-            onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) => setValue("text", e.target.value.trim())}
+            onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) =>
+              setValue("text", e.target.value.trim())
+            }
             minRows={1}
             placeholder="Insert your comment here..."
             register={register("text")}
@@ -109,11 +112,12 @@ const Comments: React.FC<{
               <p className="text-sm text-gray-400">
                 {dateFormatter(comment.created)}
               </p>
-              <Delete 
-              type="comment"
-              githubUser={comment.githubUser}
-              id={comment.id!}
-              isOwner={comment.isOwner} />
+              <Delete
+                type="comment"
+                githubUser={comment.githubUser}
+                id={comment.id!}
+                isOwner={comment.isOwner}
+              />
             </div>
           </div>
           <TextareaAutosize

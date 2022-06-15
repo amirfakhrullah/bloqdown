@@ -1,4 +1,3 @@
-import { User } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -7,7 +6,7 @@ import { GetPostType } from "../server/router/posts";
 import { dateFormatter } from "../utils/dateFormatter";
 import Likes from "./Likes";
 
-const PostCard: React.FC<GetPostType> = ({
+const PostCard: React.FC<GetPostType & { isFiltered?: boolean }> = ({
   id,
   title,
   created,
@@ -15,9 +14,13 @@ const PostCard: React.FC<GetPostType> = ({
   ownerLiked,
   githubUser,
   isOwner,
+  tags,
+  isFiltered = true,
 }) => {
+  if (!isFiltered) return <></>;
+
   return (
-    <div className="my-2 p-3 rounded-lg bg-slate-800 border border-gray-600">
+    <div className="my-2 p-3 rounded-lg bg-slate-800 border border-gray-600 overflow-hidden">
       <h3 className="font-bold text-lg text-gray-200">{title}</h3>
       {githubUser && (
         <div className="flex flex-row items-center my-1">
@@ -38,9 +41,19 @@ const PostCard: React.FC<GetPostType> = ({
           {isOwner ? "By you" : "Anonymous"}
         </p>
       )}
-      <p className="text-gray-500 text-sm">
-        {dateFormatter(created)}
-      </p>
+      <p className="text-gray-500 text-sm">{dateFormatter(created)}</p>
+
+      <div>
+        {tags?.map((tag, idx) => (
+          <div
+            key={`tag__post__${tag.tagName}__${idx}`}
+            className="inline-flex flex-row items-center px-2 m-1 rounded-full bg-indigo-500 text-white text-sm border border-indigo-300"
+          >
+            {tag.tagName}
+          </div>
+        ))}
+      </div>
+
       <div className="flex justify-between items-center mt-2">
         <div className="flex flex-row items-center">
           <Likes postId={id} ownerLiked={ownerLiked} likes={_count.likes} />

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { BiNews, BiTrendingUp } from "react-icons/bi";
 import { BsStars } from "react-icons/bs";
 import { FaHotjar } from "react-icons/fa";
+import TagsLeftNav from "./TagsLeftNav";
 
 const activeClassName = "bg-slate-700 border border-slate-600";
 
@@ -23,7 +24,8 @@ const navs = [
 const LeftNav: React.FC<{
   focusTab: 1 | 2 | 3;
   selectTab: (tab: 1 | 2 | 3) => void;
-}> = ({ focusTab, selectTab }) => {
+  handleTag: (e: ChangeEvent<HTMLInputElement>) => void
+}> = ({ focusTab, selectTab, handleTag }) => {
   return (
     <div className="md:block hidden">
       <div className="sticky top-2">
@@ -46,6 +48,10 @@ const LeftNav: React.FC<{
             </div>
           ))}
         </div>
+
+        <div className="py-2" />
+
+        <TagsLeftNav handleTag={handleTag} />
       </div>
     </div>
   );
