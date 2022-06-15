@@ -28,7 +28,7 @@ const Home: React.FC = () => {
       <MetaHead title="Polley" />
       <Screen>
         <Header />
-        <Container className="md:grid grid-cols-5 gap-3 max-w-5xl">
+        <Container className="md:grid grid-cols-5 gap-3 max-w-7xl">
 
           <LeftNav />
 

@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { BiNews, BiUserPin } from "react-icons/bi";
+import { BiNews } from "react-icons/bi";
 import { FaHotjar } from "react-icons/fa";
 import { BsStars } from "react-icons/bs";
 
@@ -38,7 +38,6 @@ const Tabs: React.FC<{
         }`}
       >
         <BiNews className="mr-2 text-lg" />
-        {/* <BiUserPin className="mr-2 text-lg" /> */}
         <span className="sm:inline hidden">All</span>
       </a>
     </div>

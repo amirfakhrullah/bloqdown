@@ -20,6 +20,10 @@ a {
   box-sizing: border-box;
 }
 
+p {
+  @apply text-sm text-gray-400
+}
+
 /* for markdown used */
 #mardown-group h1,
 #mardown-group h2,
