@@ -5,12 +5,13 @@ import { AiFillGithub, AiFillLinkedin, AiOutlineCode } from "react-icons/ai";
 import { MdOutlineTipsAndUpdates, MdWorkOutline } from "react-icons/md";
 import { BiInfoCircle } from "react-icons/bi";
 import { ImBlog } from "react-icons/im";
+import Link from "next/link";
 
 const guides = [
   {
     text: "New Features",
     icon: <MdOutlineTipsAndUpdates className="mr-2 text-lg" />,
-    href: "",
+    href: "/posts/cl49dmtm5003109jwx9o8kvcu",
   },
   {
     text: "Markdown Guide",
@@ -18,25 +19,25 @@ const guides = [
     href: "/posts/cl49dmtm5003109jwx9o8kvcu",
   },
   {
-    text: "Polley",
+    text: "About Polley",
     icon: <BiInfoCircle className="mr-2 text-lg" />,
-    href: "",
+    href: "https://www.fakhrullah.com/projects/polley",
   },
   {
     text: "Source Code",
     icon: <AiOutlineCode className="mr-2 text-lg" />,
-    href: "",
+    href: "https://github.com/amirfakhrullah/polley",
   },
 ];
 
 const sections = [
   {
-    text: "My Blogs",
+    text: "Blogs",
     icon: <ImBlog className="mr-2 text-lg" />,
     href: "https://www.fakhrullah.com/blogs",
   },
   {
-    text: "All My Projects",
+    text: "All Projects",
     icon: <MdWorkOutline className="mr-2 text-lg" />,
     href: "https://www.fakhrullah.com/projects",
   },
@@ -63,18 +64,17 @@ const RightNav = () => {
       <div className="sticky top-2">
         <div className="flex flex-row items-center px-2">
           <BsAppIndicator className="mr-2 text-md" />
-          <p className="font-bold ml-1">About Polley</p>
+          <p className="font-bold ml-1">About</p>
         </div>
 
         <div className="my-1 py-2 px-1 rounded-lg bg-slate-800 border border-gray-600">
           {guides.map((guide, idx) => (
-            <div
-              className="p-2 px-3 flex flex-row items-center cursor-pointer rounded-md hover:bg-slate-600 border border-transparent"
-              key={`guide__${idx}`}
-            >
-              {guide.icon}
-              <p className="ml-2">{guide.text}</p>
-            </div>
+            <Link key={`guide__${idx}`} href={guide.href}>
+              <div className="p-2 px-3 flex flex-row items-center cursor-pointer rounded-md hover:bg-slate-600 border border-transparent">
+                {guide.icon}
+                <p className="ml-2">{guide.text}</p>
+              </div>
+            </Link>
           ))}
         </div>
 
@@ -82,7 +82,7 @@ const RightNav = () => {
 
         <div className="flex flex-row items-center px-2">
           <BsBookmarkFill className="mr-2 text-md" />
-          <p className="font-bold ml-1">About Author</p>
+          <p className="font-bold ml-1">Author</p>
         </div>
 
         <div className="my-1 py-2 px-1 rounded-lg bg-slate-800 border border-gray-600">
