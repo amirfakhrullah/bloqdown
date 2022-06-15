@@ -1,9 +1,7 @@
 import React from "react";
-import { AiOutlineCode } from "react-icons/ai";
-import { BiInfoCircle, BiNews, BiTrendingUp } from "react-icons/bi";
-import { BsAppIndicator, BsMarkdown, BsStars } from "react-icons/bs";
+import { BiNews, BiTrendingUp } from "react-icons/bi";
+import { BsStars } from "react-icons/bs";
 import { FaHotjar } from "react-icons/fa";
-import { MdOutlineTipsAndUpdates } from "react-icons/md";
 
 const activeClassName = "bg-slate-700 border border-slate-600";
 
@@ -22,34 +20,10 @@ const navs = [
   },
 ];
 
-const guides = [
-  {
-    text: "New Features",
-    icon: <MdOutlineTipsAndUpdates className="mr-2 text-lg" />,
-    href: "",
-  },
-  {
-    text: "Markdown Guide",
-    icon: <BsMarkdown className="mr-2 text-lg" />,
-    href: "/posts/cl49dmtm5003109jwx9o8kvcu",
-  },
-  {
-    text: "Polley",
-    icon: <BiInfoCircle className="mr-2 text-lg" />,
-    href: "",
-  },
-  {
-    text: "Source Code",
-    icon: <AiOutlineCode className="mr-2 text-lg" />,
-    href: "",
-  },
-];
-
 const LeftNav: React.FC<{
   focusTab: 1 | 2 | 3;
   selectTab: (tab: 1 | 2 | 3) => void;
 }> = ({ focusTab, selectTab }) => {
-
   return (
     <div className="md:block hidden">
       <div className="sticky top-2">
@@ -69,25 +43,6 @@ const LeftNav: React.FC<{
             >
               {nav.icon}
               <p className="ml-2">{nav.text}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="py-2" />
-
-        <div className="flex flex-row items-center px-2">
-          <BsAppIndicator className="mr-2 text-md" />
-          <p className="font-bold ml-1">About Polley</p>
-        </div>
-
-        <div className="my-1 py-2 px-1 rounded-lg bg-slate-800 border border-gray-600">
-          {guides.map((guide, idx) => (
-            <div
-              className="p-2 px-3 flex flex-row items-center cursor-pointer rounded-md hover:bg-slate-600 border border-transparent"
-              key={`guide__${idx}`}
-            >
-              {guide.icon}
-              <p className="ml-2">{guide.text}</p>
             </div>
           ))}
         </div>
