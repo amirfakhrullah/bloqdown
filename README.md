@@ -76,3 +76,5 @@ npm run dev
 - [x] Markdown editor for posts :astonished:
 - [x] Next Auth :astonished:
 - [ ] Tags
+- [ ] Tags filtering section in LeftNav component
+- [ ] Searchbar for searching posts
