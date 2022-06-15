@@ -58,11 +58,11 @@ const Header: React.FC<{
               </button>
             )}
 
-            <div className="px-1 block md:hidden" />
+            <div className="px-1" />
 
             <button
               type="button"
-              className="md:hidden py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 border border-indigo-500 cursor-pointer text-sm text-white font-medium"
+              className="py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 border border-indigo-500 cursor-pointer text-sm text-white font-medium"
               onClick={() => router.push("/posts")}
             >
               My Posts

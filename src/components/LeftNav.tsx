@@ -1,12 +1,9 @@
-import { useRouter } from "next/router";
 import React from "react";
+import { AiOutlineCode } from "react-icons/ai";
 import { BiInfoCircle, BiNews, BiTrendingUp } from "react-icons/bi";
 import { BsAppIndicator, BsMarkdown, BsStars } from "react-icons/bs";
 import { FaHotjar } from "react-icons/fa";
-import {
-  MdOutlineAccountCircle,
-  MdOutlineTipsAndUpdates,
-} from "react-icons/md";
+import { MdOutlineTipsAndUpdates } from "react-icons/md";
 
 const activeClassName = "bg-slate-700 border border-slate-600";
 
@@ -22,10 +19,6 @@ const navs = [
   {
     text: "All",
     icon: <BiNews className="mr-2 text-lg" />,
-  },
-  {
-    text: "My Posts",
-    icon: <MdOutlineAccountCircle className="mr-2 text-lg" />,
   },
 ];
 
@@ -45,19 +38,17 @@ const guides = [
     icon: <BiInfoCircle className="mr-2 text-lg" />,
     href: "",
   },
+  {
+    text: "Source Code",
+    icon: <AiOutlineCode className="mr-2 text-lg" />,
+    href: "",
+  },
 ];
 
 const LeftNav: React.FC<{
   focusTab: 1 | 2 | 3;
   selectTab: (tab: 1 | 2 | 3) => void;
 }> = ({ focusTab, selectTab }) => {
-  const router = useRouter();
-
-  const navigateTab = (tab: number) => {
-    if (tab === 4) return router.push("/posts");
-
-    return selectTab(tab as 1 | 2 | 3);
-  };
 
   return (
     <div className="md:block hidden">
@@ -70,7 +61,7 @@ const LeftNav: React.FC<{
         <div className="my-1 py-2 px-1 rounded-lg bg-slate-800 border border-gray-600">
           {navs.map((nav, idx) => (
             <div
-              onClick={() => navigateTab(idx + 1)}
+              onClick={() => selectTab((idx + 1) as 1 | 2 | 3)}
               className={`p-2 px-3 flex flex-row items-center cursor-pointer rounded-md hover:bg-slate-600 border border-transparent ${
                 idx + 1 === focusTab ? activeClassName : ""
               }`}
