@@ -13,6 +13,7 @@ import { GetPostsArrType, GetPostType } from "../server/router/posts";
 import useModal from "../utils/hooks/useModal";
 import useTabs from "../utils/hooks/useTabs";
 import LeftNav from "../components/LeftNav";
+import RightNav from "../components/RightNav";
 
 const Home: React.FC = () => {
   const { open, setOpen } = useModal();
@@ -27,30 +28,35 @@ const Home: React.FC = () => {
       <MetaHead title="Polley" />
       <Screen>
         <Header />
-        <Container>
-          <PostButton setOpen={setOpen} />
+        <Container className="md:grid grid-cols-5 gap-3 max-w-5xl">
 
-          <Tabs focusTab={focusTab} setFocusTab={setFocusTab} />
+          <LeftNav />
 
-          <PostForm type="create" open={open} setOpen={setOpen} />
+          <div className="md:col-span-3">
+            <PostButton setOpen={setOpen} />
 
-          {focusTab === 1 &&
-            sortByLatest(posts as GetPostsArrType).map((post) => (
-              <PostCard key={post.id} {...post} />
-            ))}
+            <Tabs focusTab={focusTab} setFocusTab={setFocusTab} />
 
-          {focusTab === 2 &&
-            sortByPopularity(posts as GetPostsArrType).map((post) => (
-              <PostCard key={post.id} {...(post as GetPostType)} />
-            ))}
+            <PostForm type="create" open={open} setOpen={setOpen} />
 
-          {focusTab === 3 &&
-            posts?.map((post) => (
-              <PostCard key={post.id} {...(post as GetPostType)} />
-            ))}
+            {focusTab === 1 &&
+              sortByLatest(posts as GetPostsArrType).map((post) => (
+                <PostCard key={post.id} {...post} />
+              ))}
+
+            {focusTab === 2 &&
+              sortByPopularity(posts as GetPostsArrType).map((post) => (
+                <PostCard key={post.id} {...(post as GetPostType)} />
+              ))}
+
+            {focusTab === 3 &&
+              posts?.map((post) => (
+                <PostCard key={post.id} {...(post as GetPostType)} />
+              ))}
+          </div>
+
+          <RightNav />
         </Container>
-        
-        <LeftNav />
       </Screen>
     </>
   );
