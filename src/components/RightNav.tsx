@@ -44,7 +44,7 @@ const sections = [
   {
     text: "Portfolio Website",
     icon: <RiFileUserLine className="mr-2 text-lg" />,
-    href: "https://www.fakhrullah.com/projects",
+    href: "https://www.fakhrullah.com",
   },
   {
     text: "Connect on GitHub",
