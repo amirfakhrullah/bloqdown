@@ -56,9 +56,8 @@ export const commentsRouter = createRouter()
   .mutation("create", {
     input: createCommentValidation,
     async resolve({ input, ctx }) {
-      if (!ctx.token) {
-        return { error: "Unauthorized" };
-      }
+      if (!ctx.token) throw new Error("Unauthorized");
+
       if (ctx.session) {
         return await prisma.comment.create({
           data: {
@@ -83,9 +82,7 @@ export const commentsRouter = createRouter()
       id: z.string(),
     }),
     async resolve({ input, ctx }) {
-      if (!ctx.token) {
-        return { error: "Unauthorized" };
-      }
+      if (!ctx.token) throw new Error("Unauthorized");
 
       const comment = await prisma.comment.findFirst({
         where: {

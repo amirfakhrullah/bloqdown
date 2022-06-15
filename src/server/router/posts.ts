@@ -234,9 +234,7 @@ export const postsRouter = createRouter()
   .mutation("create", {
     input: createPostValidation,
     async resolve({ input, ctx }) {
-      if (!ctx.token) {
-        return { error: "Unauthorized" };
-      }
+      if (!ctx.token) throw new Error("Unauthorized");
 
       if (ctx.session) {
         return await prisma.post.create({
@@ -264,9 +262,7 @@ export const postsRouter = createRouter()
       description: z.string().min(6).max(2000).trim(),
     }),
     async resolve({ input, ctx }) {
-      if (!ctx.token) {
-        return { error: "Unauthorized" };
-      }
+      if (!ctx.token) throw new Error("Unauthorized");
 
       const post = await prisma.post.findFirst({
         where: {
@@ -317,9 +313,7 @@ export const postsRouter = createRouter()
       id: z.string(),
     }),
     async resolve({ input, ctx }) {
-      if (!ctx.token) {
-        return { error: "Unauthorized" };
-      }
+      if (!ctx.token) throw new Error("Unauthorized");
 
       const post = await prisma.post.findFirst({
         where: {
