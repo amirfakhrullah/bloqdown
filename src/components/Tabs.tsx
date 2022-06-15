@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import { BiNews } from "react-icons/bi";
 import { FaHotjar } from "react-icons/fa";
 import { BsStars } from "react-icons/bs";

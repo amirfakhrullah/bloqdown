@@ -17,7 +17,7 @@ import RightNav from "../components/RightNav";
 
 const Home: React.FC = () => {
   const { open, setOpen } = useModal();
-  const { focusTab, setFocusTab, selectTab } = useTabs();
+  const { focusTab, selectTab } = useTabs();
 
   const { isLoading, data: posts } = trpc.useQuery(["post.get-all-posts"]);
 
