@@ -7,6 +7,7 @@ import MetaHead from "../../components/MetaHead";
 import PostButton from "../../components/PostButton";
 import PostCard from "../../components/PostCard";
 import PostForm from "../../components/PostForm";
+import RightNav from "../../components/RightNav";
 import Screen from "../../components/Screen";
 import { GetPostType } from "../../server/router/posts";
 import useFormModal from "../../utils/hooks/useModal";
@@ -25,33 +26,37 @@ const MyPosts: React.FC = () => {
       <MetaHead title="My Posts | Polley" />
       <Screen>
         <Header />
-        <Container>
-          <PostButton setOpen={setOpen} />
-          <PostForm
-            type="create"
-            open={open}
-            setOpen={setOpen}
-            isMyPosts={true}
-          />
+        <Container className="md:grid md:grid-cols-4 md:gap-3 max-w-7xl">
+          <div className="md:col-start-2 md:col-span-2">
+            <PostButton setOpen={setOpen} />
+            <PostForm
+              type="create"
+              open={open}
+              setOpen={setOpen}
+              isMyPosts={true}
+            />
 
-          <h1 className="mt-5 text-2xl font-black text-gray-300">My Posts</h1>
+            <h1 className="mt-5 text-2xl font-black text-gray-300">My Posts</h1>
 
-          {!session && (
-            <p className="text-sm my-1">
-              If you post as anonymous, your post might not appear here because
-              of cookie changed. To get full control of your posts and comments,
-              please login.
-            </p>
-          )}
+            {!session && (
+              <p className="text-sm my-1">
+                If you post as anonymous, your post might not appear here
+                because of cookie changed. To get full control of your posts and
+                comments, please login.
+              </p>
+            )}
 
-          {posts?.length === 0 && (
-            <h3 className="text-center font-bold text-lg text-gray-500">
-              No Posts
-            </h3>
-          )}
-          {posts?.map((post) => (
-            <PostCard key={post.id} {...(post as GetPostType)} />
-          ))}
+            {posts?.length === 0 && (
+              <h3 className="text-center font-bold text-lg text-gray-500 my-10">
+                No Post Yet
+              </h3>
+            )}
+            {posts?.map((post) => (
+              <PostCard key={post.id} {...(post as GetPostType)} />
+            ))}
+          </div>
+
+          <RightNav />
         </Container>
       </Screen>
     </>

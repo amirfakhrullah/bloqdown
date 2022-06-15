@@ -13,9 +13,15 @@ import Delete from "../../components/Delete";
 import PostForm from "../../components/PostForm";
 import { GetCommentsArrType } from "../../server/router/comments";
 import Markdown from "../../components/Markdown";
+import { dateFormatter } from "../../utils/dateFormatter";
+import RightNav from "../../components/RightNav";
 
 const Content: React.FC<{ id: string }> = ({ id }) => {
-  const { data: post, isLoading, isFetching } = trpc.useQuery(["post.get-by-id", { id }]);
+  const {
+    data: post,
+    isLoading,
+    isFetching,
+  } = trpc.useQuery(["post.get-by-id", { id }]);
   const [openEdit, setOpenEdit] = useState(false);
 
   if (isLoading) {
@@ -43,87 +49,84 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
       <MetaHead title={`${post.title} | Polley`} />
       <Screen>
         <Header />
-        <Container>
-          <h1 className="text-3xl font-black text-white mb-4 pb-1 border-b border-slate-800">
-            {post.title}
-          </h1>
-          <Markdown>{post.description as string}</Markdown>
+        <Container className="md:grid md:grid-cols-4 md:gap-3 max-w-7xl">
+          <div className="md:col-start-2 md:col-span-2">
+            <h1 className="text-3xl font-black text-white mb-4 pb-1 border-b border-slate-800">
+              {post.title}
+            </h1>
+            <Markdown>{post.description as string}</Markdown>
 
-          <div className="flex flex-row items-center justify-between">
-            <Likes
-              postId={post.id!}
-              ownerLiked={post.ownerLiked}
-              likes={post._count?.likes!}
-            />
-            <div>
-              {post.githubUser ? (
-                <div className="flex flex-row items-center my-1 justify-end">
-                  <Image
-                    src={post.githubUser.image!}
-                    height={20}
-                    width={20}
-                    alt="github avatar"
-                    className="rounded-full"
-                  />
-                  <p className=" ml-2 text-sm font-bold text-gray-400">
-                    {post.githubUser.name}
+            <div className="flex flex-row items-center justify-between">
+              <Likes
+                postId={post.id!}
+                ownerLiked={post.ownerLiked}
+                likes={post._count?.likes!}
+              />
+              <div>
+                {post.githubUser ? (
+                  <div className="flex flex-row items-center my-1 justify-end">
+                    <Image
+                      src={post.githubUser.image!}
+                      height={20}
+                      width={20}
+                      alt="github avatar"
+                      className="rounded-full"
+                    />
+                    <p className=" ml-2 text-sm font-bold text-gray-400">
+                      {post.githubUser.name}
+                    </p>
+                  </div>
+                ) : (
+                  <p className="text-gray-500 text-sm font-bold text-right">
+                    {post.isOwner ? "By you" : "Anonymous"}
                   </p>
-                </div>
-              ) : (
-                <p className="text-gray-500 text-sm font-bold text-right">
-                  {post.isOwner ? "By you" : "Anonymous"}
+                )}
+
+                <p className="text-gray-500 text-sm text-right">
+                  {dateFormatter(post.created!)}
                 </p>
-              )}
-
-              <p className="text-gray-500 text-sm text-right">
-                {new Intl.DateTimeFormat("en-US", {
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  second: "2-digit",
-                }).format(post.created)}
-              </p>
-            </div>
-          </div>
-
-          <div className="flex justify-end items-center">
-            {post.isOwner && (
-              <div
-                onClick={() => setOpenEdit(true)}
-                className="text-sm mr-2 cursor-pointer hover:underline hover:underline-offset-1"
-              >
-                Edit Post
               </div>
+            </div>
+
+            <div className="flex justify-end items-center">
+              {post.isOwner && (
+                <div
+                  onClick={() => setOpenEdit(true)}
+                  className="text-sm mr-2 cursor-pointer hover:underline hover:underline-offset-1"
+                >
+                  Edit Post
+                </div>
+              )}
+              <Delete
+                type="post"
+                githubUser={post.githubUser}
+                id={post.id!}
+                isOwner={post.isOwner}
+              >
+                Delete Post
+              </Delete>
+            </div>
+
+            {!isFetching && (
+              <PostForm
+                type="edit"
+                open={openEdit}
+                setOpen={setOpenEdit}
+                inputs={{
+                  id: post.id!,
+                  title: post.title!,
+                  description: post.description!,
+                }}
+              />
             )}
-            <Delete
-              type="post"
-              githubUser={post.githubUser}
-              id={post.id!}
-              isOwner={post.isOwner}
-            >
-              Delete Post
-            </Delete>
+
+            <Comments
+              id={post.id}
+              comments={post.comments as GetCommentsArrType}
+            />
           </div>
 
-          {!isFetching && (
-            <PostForm
-              type="edit"
-              open={openEdit}
-              setOpen={setOpenEdit}
-              inputs={{
-                id: post.id!,
-                title: post.title!,
-                description: post.description!,
-              }}
-            />
-          )}
-
-          <Comments
-            id={post.id}
-            comments={post.comments as GetCommentsArrType}
-          />
+          <RightNav />
         </Container>
       </Screen>
     </>

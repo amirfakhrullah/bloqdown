@@ -9,6 +9,7 @@ import { Comment, User } from "@prisma/client";
 import Image from "next/image";
 import Delete from "./Delete";
 import { GetCommentsArrType } from "../server/router/comments";
+import { dateFormatter } from "../utils/dateFormatter";
 
 const Comments: React.FC<{
   id: string | undefined;
@@ -106,14 +107,7 @@ const Comments: React.FC<{
             )}
             <div className="flex flex-row items-center">
               <p className="text-sm text-gray-400">
-                {new Intl.DateTimeFormat("en-US", {
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  second: "2-digit",
-                }).format(comment.created)}
+                {dateFormatter(comment.created)}
               </p>
               <Delete 
               type="comment"
