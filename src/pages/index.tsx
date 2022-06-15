@@ -17,7 +17,7 @@ import RightNav from "../components/RightNav";
 
 const Home: React.FC = () => {
   const { open, setOpen } = useModal();
-  const { focusTab, setFocusTab } = useTabs();
+  const { focusTab, setFocusTab, selectTab } = useTabs();
 
   const { isLoading, data: posts } = trpc.useQuery(["post.get-all-posts"]);
 
@@ -30,12 +30,12 @@ const Home: React.FC = () => {
         <Header />
         <Container className="md:grid grid-cols-5 gap-3 max-w-7xl">
 
-          <LeftNav />
+          <LeftNav focusTab={focusTab} selectTab={selectTab} />
 
           <div className="md:col-span-3">
             <PostButton setOpen={setOpen} />
 
-            <Tabs focusTab={focusTab} setFocusTab={setFocusTab} />
+            <Tabs focusTab={focusTab} selectTab={selectTab} />
 
             <PostForm type="create" open={open} setOpen={setOpen} />
 
