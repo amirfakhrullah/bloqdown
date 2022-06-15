@@ -40,6 +40,10 @@ Scan through our [existing issues](https://github.com/amirfakhrullah/polley/issu
 ### Get Started
 
 1) Refer [README](./README.md) to know how to run the project locally.
+2) Create a branch locally with these branch names:
+    - fixes: `fix/...`
+    - features: `feature/...`
+    - docs: `docs/...`
 
 ### Pull Request
 
