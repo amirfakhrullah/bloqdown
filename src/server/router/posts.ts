@@ -22,6 +22,7 @@ export const postsRouter = createRouter()
               image: true,
             },
           },
+          tags: true,
           likes: {
             select: {
               userToken: true,
@@ -92,6 +93,7 @@ export const postsRouter = createRouter()
                 image: true,
               },
             },
+            tags: true,
             likes: {
               select: {
                 userToken: true,
@@ -128,6 +130,7 @@ export const postsRouter = createRouter()
               image: true,
             },
           },
+          tags: true,
           likes: {
             select: {
               userToken: true,
@@ -332,6 +335,11 @@ export const postsRouter = createRouter()
                 postId: input.id,
               },
             });
+            await prisma.tag.deleteMany({
+              where: {
+                postId: input.id,
+              },
+            });
             await prisma.comment.deleteMany({
               where: {
                 postId: input.id,
@@ -350,6 +358,11 @@ export const postsRouter = createRouter()
 
       if (post.userToken === ctx.token) {
         await prisma.like.deleteMany({
+          where: {
+            postId: input.id,
+          },
+        });
+        await prisma.tag.deleteMany({
           where: {
             postId: input.id,
           },

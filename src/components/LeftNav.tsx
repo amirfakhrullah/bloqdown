@@ -1,9 +1,8 @@
 import React from "react";
-import { AiFillTag } from "react-icons/ai";
 import { BiNews, BiTrendingUp } from "react-icons/bi";
 import { BsStars } from "react-icons/bs";
 import { FaHotjar } from "react-icons/fa";
-import { trpc } from "../utils/trpc";
+import TagsLeftNav from "./TagsLeftNav";
 
 const activeClassName = "bg-slate-700 border border-slate-600";
 
@@ -26,8 +25,6 @@ const LeftNav: React.FC<{
   focusTab: 1 | 2 | 3;
   selectTab: (tab: 1 | 2 | 3) => void;
 }> = ({ focusTab, selectTab }) => {
-  const { data: tags, isLoading } = trpc.useQuery(["tags.get-all"]);
-
   return (
     <div className="md:block hidden">
       <div className="sticky top-2">
@@ -53,28 +50,7 @@ const LeftNav: React.FC<{
 
         <div className="py-2" />
 
-        <div className="flex flex-row items-center px-2">
-          <AiFillTag className="mr-2 text-md" />
-          <p className="font-bold ml-1">Filter by tags</p>
-        </div>
-
-        <div className="my-1 p-2 rounded-lg bg-slate-800 border border-gray-600">
-          {isLoading && <p>Loading...</p>}
-          {tags &&
-            tags.map((tag, idx) => (
-              <div
-                key={`tag__filter__${idx}`}
-                className="flex flex-row items-center p-2 overflow-hidden"
-              >
-                <input
-                  type="checkbox"
-                  value={tag.tagName}
-                  onChange={() => {}}
-                />
-                <p className="ml-2">{tag.tagName}</p>
-              </div>
-            ))}
-        </div>
+        <TagsLeftNav />
       </div>
     </div>
   );
