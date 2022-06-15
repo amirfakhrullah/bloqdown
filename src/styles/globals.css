@@ -31,7 +31,7 @@ p {
 #mardown-group h4,
 #mardown-group h5,
 #mardown-group h6 {
-  @apply text-white mb-4 pb-1 font-bold border-b border-slate-800;
+  @apply text-white mb-4 pb-1 font-bold border-b border-gray-600;
 }
 
 #mardown-group h1 {

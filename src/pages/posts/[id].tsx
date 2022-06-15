@@ -51,14 +51,15 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
       <Screen>
         <Header />
         <Container className="md:grid md:grid-cols-4 md:gap-3 max-w-7xl">
-
           <Tags postId={post.id!} isOwner={post.isOwner!} />
 
           <div className="md:col-start-2 md:col-span-2 overflow-hidden">
-            <h1 className="text-3xl font-black text-white mb-4 pb-1 border-b border-slate-800">
-              {post.title}
-            </h1>
-            <Markdown>{post.description as string}</Markdown>
+            <div className="md:p-6 p-4 mb-3 rounded-lg bg-slate-800 border border-gray-600 overflow-hidden">
+              <h1 className="text-3xl font-black text-white mb-4 pb-1 border-b border-gray-600">
+                {post.title}
+              </h1>
+              <Markdown>{post.description as string}</Markdown>
+            </div>
 
             <div className="flex flex-row items-center justify-between">
               <Likes
