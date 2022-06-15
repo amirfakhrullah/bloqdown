@@ -77,7 +77,7 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
               )}
 
               <p className="text-gray-500 text-sm text-right">
-                {dateFormatter(post.created)}
+                {dateFormatter(post.created!)}
               </p>
             </div>
           </div>
