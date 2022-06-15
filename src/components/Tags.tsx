@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { AiFillCloseCircle, AiFillTag } from "react-icons/ai";
 import { trpc } from "../utils/trpc";
 import { tagInputValidation } from "../utils/validations";
-import Input from "./Input";
 
 const Tags: React.FC<{
   postId: string;
@@ -63,8 +62,40 @@ const Tags: React.FC<{
           {isLoading ? (
             <p>Loading...</p>
           ) : (
-            <p className="px-2">Tags for this post ({data?.length ?? 0})</p>
+            <p className="px-2 font-bold">
+              Tags for this post ({data?.length ?? 0})
+            </p>
           )}
+
+          {isOwner && data && data.length < 5 && (
+            <div className="w-full flex md:flex-row flex-col md:items-center items-end">
+              <div className="flex-1 flex flex-col">
+                <input
+                  {...register("tagName")}
+                  placeholder="Add tag"
+                  className="ml-2 mt-1 mb-2 p-1 bg-transparent border-b outline-none text-sm"
+                />
+                <p className="text-sm font-bold text-red-400 mt-1 text-right">
+                  {errors.tagName && errors.tagName.message}
+                </p>
+              </div>
+              <div>
+                {mutateLoading ? (
+                  <p className="p-1 text-white">Adding..</p>
+                ) : (
+                  <button
+                    type="submit"
+                    className="ml-1 px-2 py-1 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
+                    onClick={handleSubmit(onSubmit)}
+                    disabled={mutateLoading}
+                  >
+                    + Add
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+
           <div>
             {data?.map((data, idx) => (
               <div
@@ -86,33 +117,6 @@ const Tags: React.FC<{
               </div>
             ))}
           </div>
-          {isOwner && data && data.length < 5 && (
-            <div className="w-full flex md:flex-row flex-col md:items-center items-end">
-              <div className="w-full flex-1">
-                <Input
-                  title=""
-                  type="input"
-                  placeholder="Add New Tag"
-                  register={register("tagName")}
-                  error={errors.tagName}
-                />
-              </div>
-              <div>
-                {mutateLoading ? (
-                  <p className="p-2 text-white">Adding..</p>
-                ) : (
-                  <button
-                    type="submit"
-                    className="ml-2 mt-2 py-2 px-4 rounded-md inline-block bg-indigo-500 hover:bg-indigo-700 cursor-pointer text-sm text-white font-medium"
-                    onClick={handleSubmit(onSubmit)}
-                    disabled={mutateLoading}
-                  >
-                    Add Tag
-                  </button>
-                )}
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>
