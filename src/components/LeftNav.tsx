@@ -38,7 +38,7 @@ const guides = [
   {
     text: "Markdown Guide",
     icon: <BsMarkdown className="mr-2 text-lg" />,
-    href: "",
+    href: "/posts/cl49dmtm5003109jwx9o8kvcu",
   },
   {
     text: "Polley",
@@ -54,10 +54,11 @@ const LeftNav: React.FC<{
   const router = useRouter();
 
   const navigateTab = (tab: number) => {
-    if (tab > 3) return router.push("/posts");
+    if (tab === 4) return router.push("/posts");
 
     return selectTab(tab as 1 | 2 | 3);
   };
+
   return (
     <div className="md:block hidden">
       <div className="sticky top-2">
