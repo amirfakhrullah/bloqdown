@@ -7,7 +7,7 @@ import { BiInfoCircle } from "react-icons/bi";
 import { ImBlog } from "react-icons/im";
 import Link from "next/link";
 
-const guides = [
+export const guides = [
   {
     text: "New Features",
     icon: <MdOutlineTipsAndUpdates className="mr-2 text-lg" />,
@@ -30,7 +30,7 @@ const guides = [
   },
 ];
 
-const sections = [
+export const sections = [
   {
     text: "Blogs",
     icon: <ImBlog className="mr-2 text-lg" />,

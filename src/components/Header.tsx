@@ -14,17 +14,12 @@ const Header: React.FC<{
     <>
       <div className="w-full bg-slate-900 border-b border-gray-800 md:p-5 p-2 flex flex-row items-center justify-between">
         <Link href="/">
-          <h1 className="text-2xl font-black text-gray-400 cursor-pointer">
+          <h1 className="text-2xl font-black text-indigo-500 cursor-pointer">
             Polley
           </h1>
         </Link>
         {displayButtons && (
           <div className="flex flex-row items-center pl-1">
-            {/* <Link href="/posts/cl49dmtm5003109jwx9o8kvcu">
-              <p className="sm:inline hidden mr-2 cursor-pointer hover:underline">
-                How to use markdown?
-              </p>
-            </Link> */}
             {session && session.user ? (
               <div className="md:flex hidden flex-row items-center">
                 <p className="mr-2 text-sm text-gray-400">
