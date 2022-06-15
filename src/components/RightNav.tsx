@@ -11,7 +11,7 @@ const guides = [
   {
     text: "New Features",
     icon: <MdOutlineTipsAndUpdates className="mr-2 text-lg" />,
-    href: "/posts/cl49dmtm5003109jwx9o8kvcu",
+    href: "/posts/cl44dzttj026809mcdzllujg2",
   },
   {
     text: "Markdown Guide",
