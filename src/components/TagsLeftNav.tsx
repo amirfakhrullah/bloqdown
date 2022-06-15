@@ -1,8 +1,10 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { AiFillTag } from "react-icons/ai";
 import { trpc } from "../utils/trpc";
 
-const TagsLeftNav = () => {
+const TagsLeftNav: React.FC<{
+  handleTag: (e: ChangeEvent<HTMLInputElement>) => void;
+}> = ({ handleTag }) => {
   const { data: tags, isLoading } = trpc.useQuery(["tags.get-all"]);
 
   return (
@@ -20,7 +22,7 @@ const TagsLeftNav = () => {
               key={`tag__filter__${idx}`}
               className="flex flex-row items-center p-2 overflow-hidden"
             >
-              <input type="checkbox" value={tag.tagName} onChange={() => {}} />
+              <input type="checkbox" value={tag.tagName} onChange={handleTag} />
               <p className="ml-2">{tag.tagName}</p>
             </div>
           ))}

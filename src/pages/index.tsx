@@ -16,6 +16,7 @@ import LeftNav from "../components/LeftNav";
 import RightNav from "../components/RightNav";
 import useSearchPosts from "../utils/hooks/useSearchPosts";
 import SearchInput from "../components/SearchInput";
+import useFilterTags from "../utils/hooks/useFilterTags";
 
 const Home: React.FC = () => {
   const { open, setOpen } = useModal();
@@ -29,6 +30,8 @@ const Home: React.FC = () => {
     handleSearch,
   } = useSearchPosts();
 
+  const { filterTags, filterBoolean, handleTag } = useFilterTags();
+
   if (isLoading) return <Loader />;
 
   return (
@@ -37,12 +40,20 @@ const Home: React.FC = () => {
       <Screen>
         <Header />
         <Container className="md:grid md:grid-cols-4 md:gap-3 max-w-7xl">
-          <LeftNav focusTab={focusTab} selectTab={selectTab} />
+          <LeftNav
+            focusTab={focusTab}
+            selectTab={selectTab}
+            handleTag={handleTag}
+          />
 
           <div className="md:col-span-2">
             <PostButton setOpen={setOpen} />
-            
-            <SearchInput value={search} onChange={handleSearch} placeholder="Search post" />
+
+            <SearchInput
+              value={search}
+              onChange={handleSearch}
+              placeholder="Search post"
+            />
 
             <Tabs focusTab={focusTab} selectTab={selectTab} />
 
@@ -50,17 +61,29 @@ const Home: React.FC = () => {
 
             {focusTab === 1 &&
               sortByLatest(posts as GetPostsArrType).map((post) => (
-                <PostCard key={post.id} {...post} />
+                <PostCard
+                  isFiltered={filterBoolean(post)}
+                  key={post.id}
+                  {...post}
+                />
               ))}
 
             {focusTab === 2 &&
               sortByPopularity(posts as GetPostsArrType).map((post) => (
-                <PostCard key={post.id} {...(post as GetPostType)} />
+                <PostCard
+                  isFiltered={filterBoolean(post)}
+                  key={post.id}
+                  {...(post as GetPostType)}
+                />
               ))}
 
             {focusTab === 3 &&
               posts?.map((post) => (
-                <PostCard key={post.id} {...(post as GetPostType)} />
+                <PostCard
+                  isFiltered={filterBoolean(post)}
+                  key={post.id}
+                  {...(post as GetPostType)}
+                />
               ))}
           </div>
 
