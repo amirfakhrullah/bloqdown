@@ -14,7 +14,7 @@ const PostCard: React.FC<GetPostType & { isFiltered?: boolean }> = ({
   ownerLiked,
   githubUser,
   isOwner,
-  isFiltered,
+  isFiltered = true,
 }) => {
   if (!isFiltered) return <></>;
 
