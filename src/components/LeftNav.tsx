@@ -58,11 +58,21 @@ const LeftNav: React.FC<{
           <p className="font-bold ml-1">Filter by tags</p>
         </div>
 
-        <div className="my-1 py-2 px-1 rounded-lg bg-slate-800 border border-gray-600">
+        <div className="my-1 p-2 rounded-lg bg-slate-800 border border-gray-600">
           {isLoading && <p>Loading...</p>}
           {tags &&
             tags.map((tag, idx) => (
-              <p key={`tag__filter__${idx}`}>{tag.tagName}</p>
+              <div
+                key={`tag__filter__${idx}`}
+                className="flex flex-row items-center p-2 overflow-hidden"
+              >
+                <input
+                  type="checkbox"
+                  value={tag.tagName}
+                  onChange={() => {}}
+                />
+                <p className="ml-2">{tag.tagName}</p>
+              </div>
             ))}
         </div>
       </div>

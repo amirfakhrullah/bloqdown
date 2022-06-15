@@ -54,7 +54,7 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
 
           <Tags postId={post.id!} isOwner={post.isOwner!} />
 
-          <div className="md:col-start-2 md:col-span-2">
+          <div className="md:col-start-2 md:col-span-2 overflow-hidden">
             <h1 className="text-3xl font-black text-white mb-4 pb-1 border-b border-slate-800">
               {post.title}
             </h1>
