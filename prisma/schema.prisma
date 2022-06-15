@@ -25,6 +25,7 @@ model Post {
   description String @db.VarChar(2000)
 
   Comment Comment[]
+  tags Tag[]
 
   likes Like[]
 
@@ -63,6 +64,15 @@ model Like {
 
   @@unique([postId, userEmail])
   @@unique([postId, userToken])
+}
+
+model Tag {
+  tagName String @db.VarChar(20)
+
+  post   Post   @relation(fields: [postId], references: [id])
+  postId String
+
+  @@unique([postId, tagName])
 }
 
 // Next-Auth stuffs
