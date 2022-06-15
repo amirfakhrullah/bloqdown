@@ -28,11 +28,11 @@ const Home: React.FC = () => {
       <MetaHead title="Polley" />
       <Screen>
         <Header />
-        <Container className="md:grid grid-cols-5 gap-3 max-w-7xl">
+        <Container className="md:grid md:grid-cols-4 md:gap-3 max-w-7xl">
 
           <LeftNav focusTab={focusTab} selectTab={selectTab} />
 
-          <div className="md:col-span-3">
+          <div className="md:col-span-2">
             <PostButton setOpen={setOpen} />
 
             <Tabs focusTab={focusTab} selectTab={selectTab} />

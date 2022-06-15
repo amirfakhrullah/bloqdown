@@ -8,7 +8,7 @@ const Tabs: React.FC<{
   selectTab: (tab: 1 | 2 | 3) => void;
 }> = ({ focusTab, selectTab }) => {
   return (
-    <div className="tabs mt-5 mb-3">
+    <div className="md:hidden tabs mt-5 mb-3">
       <a
         onClick={() => selectTab(1)}
         className={`tab w-1/3 tab-bordered ${
