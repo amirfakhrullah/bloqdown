@@ -14,6 +14,7 @@ const PostCard: React.FC<GetPostType & { isFiltered?: boolean }> = ({
   ownerLiked,
   githubUser,
   isOwner,
+  tags,
   isFiltered = true,
 }) => {
   if (!isFiltered) return <></>;
@@ -41,6 +42,18 @@ const PostCard: React.FC<GetPostType & { isFiltered?: boolean }> = ({
         </p>
       )}
       <p className="text-gray-500 text-sm">{dateFormatter(created)}</p>
+
+      <div>
+        {tags?.map((tag, idx) => (
+          <div
+            key={`tag__post__${tag.tagName}__${idx}`}
+            className="inline-flex flex-row items-center px-2 m-1 rounded-full bg-indigo-500 text-white text-sm border border-indigo-300"
+          >
+            {tag.tagName}
+          </div>
+        ))}
+      </div>
+
       <div className="flex justify-between items-center mt-2">
         <div className="flex flex-row items-center">
           <Likes postId={id} ownerLiked={ownerLiked} likes={_count.likes} />

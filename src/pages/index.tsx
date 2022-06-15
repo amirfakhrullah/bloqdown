@@ -1,6 +1,5 @@
 import Loader from "../components/Loader";
 import MetaHead from "../components/MetaHead";
-import { trpc } from "../utils/trpc";
 import PostForm from "../components/PostForm";
 import PostCard from "../components/PostCard";
 import Header from "../components/Header";
@@ -22,7 +21,6 @@ const Home: React.FC = () => {
   const { open, setOpen } = useModal();
   const { focusTab, selectTab } = useTabs();
 
-  // const { isLoading, data: posts } = trpc.useQuery(["post.get-all-posts"]);
   const {
     filteredPosts: posts,
     isLoading,
@@ -30,7 +28,7 @@ const Home: React.FC = () => {
     handleSearch,
   } = useSearchPosts();
 
-  const { filterTags, filterBoolean, handleTag } = useFilterTags();
+  const { filterBoolean, handleTag } = useFilterTags();
 
   if (isLoading) return <Loader />;
 
@@ -85,6 +83,8 @@ const Home: React.FC = () => {
                   {...(post as GetPostType)}
                 />
               ))}
+
+              {posts?.length === 0 && <h3 className="font-bold text-center my-5 ">No Post Found</h3>}
           </div>
 
           <RightNav />
