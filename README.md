@@ -2,7 +2,7 @@
 
 Simple Markdown Forum/blog site using `Next.js`, `Next-Auth`, `TypeScript`, `Prisma`, `PlanetScale` and `tRPC`. The aim here is to learn how to properly use these techstacks.
 
-![Polley Screen](./src/public/polley.JPG)
+![Polley Screen](./src/public/polley-screen.JPG)
 
 ## Goals For This Project
 
@@ -75,6 +75,6 @@ npm run dev
 - [x] Sorting posts by latest & popularity
 - [x] Markdown editor for posts :astonished:
 - [x] Next Auth :astonished:
-- [ ] Tags
-- [ ] Tags filtering section in LeftNav component
-- [ ] Searchbar for searching posts
+- [x] Tags
+- [x] Tags filtering section in LeftNav component
+- [x] Searchbar for searching posts
