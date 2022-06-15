@@ -46,7 +46,7 @@ const Tags: React.FC<{
 
   const onSubmit = ({ tagName }: { tagName: string }) => {
     addMutation({
-      tagName,
+      tagName: tagName.toLowerCase(),
       postId,
     });
   };
