@@ -6,9 +6,8 @@ import Header from "../components/Header";
 import Container from "../components/Container";
 import Screen from "../components/Screen";
 import Tabs from "../components/Tabs";
-import { sortByLatest, sortByPopularity } from "../utils/sorts";
 import PostButton from "../components/PostButton";
-import { GetPostsArrType, GetPostType } from "../server/router/posts";
+import { GetPostType } from "../server/router/posts";
 import useModal from "../utils/hooks/useModal";
 import useTabs from "../utils/hooks/useTabs";
 import LeftNav from "../components/LeftNav";
@@ -26,6 +25,8 @@ const Home: React.FC = () => {
     isLoading,
     search,
     handleSearch,
+    byLatest,
+    byPopularity,
   } = useSearchPosts();
 
   const { filterBoolean, handleTag } = useFilterTags();
@@ -58,7 +59,7 @@ const Home: React.FC = () => {
             <PostForm type="create" open={open} setOpen={setOpen} />
 
             {focusTab === 1 &&
-              sortByLatest(posts as GetPostsArrType).map((post) => (
+              byLatest.map((post) => (
                 <PostCard
                   isFiltered={filterBoolean(post)}
                   key={post.id}
@@ -67,7 +68,7 @@ const Home: React.FC = () => {
               ))}
 
             {focusTab === 2 &&
-              sortByPopularity(posts as GetPostsArrType).map((post) => (
+              byPopularity.map((post) => (
                 <PostCard
                   isFiltered={filterBoolean(post)}
                   key={post.id}

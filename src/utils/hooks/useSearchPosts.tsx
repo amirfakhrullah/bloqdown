@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { GetPostsArrType } from "../../server/router/posts";
 import { trpc } from "../trpc";
+import { sortByLatest, sortByPopularity } from "../sorts";
 
 const useSearchPosts = () => {
   const { data: posts } = trpc.useQuery(["post.get-all-posts"]);
@@ -38,11 +39,25 @@ const useSearchPosts = () => {
     // eslint-disable-next-line
   }, [search]);
 
+  const byLatest = useMemo(() => {
+    if (!filteredPosts) return [];
+
+    return sortByLatest(filteredPosts);
+  }, [filteredPosts]);
+
+  const byPopularity = useMemo(() => {
+    if (!filteredPosts) return [];
+
+    return sortByPopularity(filteredPosts);
+  }, [filteredPosts]);
+
   return {
     filteredPosts,
     isLoading,
     search,
     handleSearch,
+    byLatest,
+    byPopularity,
   };
 };
 
