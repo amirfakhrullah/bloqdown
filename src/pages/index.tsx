@@ -12,6 +12,7 @@ import PostButton from "../components/PostButton";
 import { GetPostsArrType, GetPostType } from "../server/router/posts";
 import useModal from "../utils/hooks/useModal";
 import useTabs from "../utils/hooks/useTabs";
+import LeftNav from "../components/LeftNav";
 
 const Home: React.FC = () => {
   const { open, setOpen } = useModal();
@@ -48,6 +49,8 @@ const Home: React.FC = () => {
               <PostCard key={post.id} {...(post as GetPostType)} />
             ))}
         </Container>
+        
+        <LeftNav />
       </Screen>
     </>
   );

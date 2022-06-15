@@ -16,7 +16,7 @@ const PostCard: React.FC<GetPostType> = ({
   isOwner,
 }) => {
   return (
-    <div className="my-2 p-5 rounded-lg bg-slate-800 border border-gray-600">
+    <div className="my-2 p-3 rounded-lg bg-slate-800 border border-gray-600">
       <h3 className="font-bold text-lg text-gray-200">{title}</h3>
       {githubUser && (
         <div className="flex flex-row items-center my-1">
@@ -37,7 +37,7 @@ const PostCard: React.FC<GetPostType> = ({
           {isOwner ? "By you" : "Anonymous"}
         </p>
       )}
-      <p className="text-gray-500">
+      <p className="text-gray-500 text-sm">
         {new Intl.DateTimeFormat("en-US", {
           year: "numeric",
           month: "2-digit",
