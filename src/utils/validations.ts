@@ -18,7 +18,7 @@ export const tagInputValidation = z.object({
     .max(20)
     .trim()
     .regex(
-      /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$/,
+      /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){1,18}[a-zA-Z0-9]$/,
       "Invalid"
     ),
 });

@@ -60,10 +60,11 @@ const Tags: React.FC<{
         </div>
 
         <div className="my-1 p-3 rounded-lg bg-slate-800 border border-gray-600">
-          <p className="px-2">
-            Tags for this post ({data ? data.length : 0})
-          </p>
-          {isLoading && <p>Loading...</p>}
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            <p className="px-2">Tags for this post ({data?.length ?? 0})</p>
+          )}
           <div>
             {data?.map((data, idx) => (
               <div
