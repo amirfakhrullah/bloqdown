@@ -2,6 +2,7 @@ import { z } from "zod";
 import { prisma } from "../../db/client";
 import { createRouter } from "./context";
 import { inferQueryResponses } from "../../utils/trpc";
+import { tagInputValidation } from "../../utils/validations";
 
 export const tagsRouter = createRouter()
   .query("get-all", {
@@ -11,11 +12,20 @@ export const tagsRouter = createRouter()
       });
     },
   })
-  .mutation("add", {
+  .query("get-by-postId", {
     input: z.object({
       postId: z.string(),
-      tagName: z.string().min(2).max(20).trim(),
     }),
+    async resolve({ input }) {
+      return await prisma.tag.findMany({
+        where: {
+          postId: input.postId,
+        },
+      });
+    },
+  })
+  .mutation("add", {
+    input: tagInputValidation,
     async resolve({ input, ctx }) {
       if (!ctx.token) throw new Error("Unauthorized");
 
@@ -56,10 +66,7 @@ export const tagsRouter = createRouter()
     },
   })
   .mutation("delete", {
-    input: z.object({
-      postId: z.string(),
-      tagName: z.string().min(2).max(20).trim(),
-    }),
+    input: tagInputValidation,
     async resolve({ input, ctx }) {
       if (!ctx.token) throw new Error("Unauthorized");
 

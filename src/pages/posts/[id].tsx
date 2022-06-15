@@ -15,6 +15,7 @@ import { GetCommentsArrType } from "../../server/router/comments";
 import Markdown from "../../components/Markdown";
 import { dateFormatter } from "../../utils/dateFormatter";
 import RightNav from "../../components/RightNav";
+import Tags from "../../components/Tags";
 
 const Content: React.FC<{ id: string }> = ({ id }) => {
   const {
@@ -50,6 +51,9 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
       <Screen>
         <Header />
         <Container className="md:grid md:grid-cols-4 md:gap-3 max-w-7xl">
+
+          <Tags postId={post.id!} isOwner={post.isOwner!} />
+
           <div className="md:col-start-2 md:col-span-2">
             <h1 className="text-3xl font-black text-white mb-4 pb-1 border-b border-slate-800">
               {post.title}
