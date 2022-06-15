@@ -26,7 +26,7 @@ const TagsLeftNav: React.FC<{
               <p className="ml-2">{tag.tagName}</p>
             </div>
           ))}
-        {tags && tags.length === 0 && <p className="my-2">No Tag Found</p>}
+        {tags && tags.length === 0 && <p className="my-2 text-center">No Tag Found</p>}
       </div>
     </>
   );
