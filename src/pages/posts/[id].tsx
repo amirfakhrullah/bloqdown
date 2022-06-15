@@ -13,6 +13,7 @@ import Delete from "../../components/Delete";
 import PostForm from "../../components/PostForm";
 import { GetCommentsArrType } from "../../server/router/comments";
 import Markdown from "../../components/Markdown";
+import { dateFormatter } from "../../utils/dateFormatter";
 
 const Content: React.FC<{ id: string }> = ({ id }) => {
   const { data: post, isLoading, isFetching } = trpc.useQuery(["post.get-by-id", { id }]);
@@ -76,14 +77,7 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
               )}
 
               <p className="text-gray-500 text-sm text-right">
-                {new Intl.DateTimeFormat("en-US", {
-                  year: "numeric",
-                  month: "2-digit",
-                  day: "2-digit",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  second: "2-digit",
-                }).format(post.created)}
+                {dateFormatter(post.created)}
               </p>
             </div>
           </div>

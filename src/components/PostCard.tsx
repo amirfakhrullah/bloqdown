@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { FaCommentAlt } from "react-icons/fa";
 import { GetPostType } from "../server/router/posts";
+import { dateFormatter } from "../utils/dateFormatter";
 import Likes from "./Likes";
 
 const PostCard: React.FC<GetPostType> = ({
@@ -38,14 +39,7 @@ const PostCard: React.FC<GetPostType> = ({
         </p>
       )}
       <p className="text-gray-500 text-sm">
-        {new Intl.DateTimeFormat("en-US", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-        }).format(created)}
+        {dateFormatter(created)}
       </p>
       <div className="flex justify-between items-center mt-2">
         <div className="flex flex-row items-center">
