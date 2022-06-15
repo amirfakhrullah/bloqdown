@@ -15,7 +15,9 @@ const Footer = () => {
           <h3 className="text-xl font-bold mb-1 md:mt-0 mt-3">About</h3>
           {guides.map((guide, idx) => (
             <Link key={`guide__footer__${idx}`} href={guide.href}>
-              <p className="cursor-pointer my-1 hover:underline">{guide.text}</p>
+              <p className="cursor-pointer my-1 hover:underline">
+                {guide.text}
+              </p>
             </Link>
           ))}
         </div>
@@ -24,8 +26,10 @@ const Footer = () => {
           <h3 className="text-xl font-bold mb-1 md:mt-0 mt-3">Author</h3>
           {sections.map((section, idx) => (
             <Link key={`author__footer__${idx}`} href={section.href}>
-            <p className="cursor-pointer my-1 hover:underline">{section.text}</p>
-          </Link>
+              <p className="cursor-pointer my-1 hover:underline">
+                {section.text}
+              </p>
+            </Link>
           ))}
         </div>
       </div>
