@@ -83,9 +83,9 @@ pre {
 }
 
 pre>code {
-  @apply p-0 bg-transparent;
+  @apply p-0 bg-transparent text-sm;
 }
 
 code {
-  @apply px-1 rounded-md bg-gray-700;
+  @apply px-1 rounded-md bg-gray-700 text-sm;
 }
