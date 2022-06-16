@@ -6,20 +6,31 @@ const Likes: React.FC<{
   postId: string;
   ownerLiked: boolean;
   likes: number;
-}> = ({ postId, ownerLiked, likes }) => {
+  page: "home" | "myPage" | "post"
+}> = ({ postId, ownerLiked, likes, page }) => {
   const client = trpc.useContext();
 
   const likeMutation = trpc.useMutation("likes.like", {
     onSuccess: () => {
-      client.invalidateQueries(["post.get-by-id"]);
-      client.invalidateQueries(["post.get-all-posts"]);
+      if (page === "home") {
+        client.invalidateQueries(["post.get-all-posts"]);
+      } else if (page ==="myPage") {
+        client.invalidateQueries(["post.get-my-posts"]);
+      } else if (page === "post") {
+        client.invalidateQueries(["post.get-by-id"]);
+      }
     },
   });
 
   const dislikeMutation = trpc.useMutation("likes.dislike", {
     onSuccess: () => {
-      client.invalidateQueries(["post.get-by-id"]);
-      client.invalidateQueries(["post.get-all-posts"]);
+      if (page === "home") {
+        client.invalidateQueries(["post.get-all-posts"]);
+      } else if (page ==="myPage") {
+        client.invalidateQueries(["post.get-my-posts"]);
+      } else if (page === "post") {
+        client.invalidateQueries(["post.get-by-id"]);
+      }
     },
   });
 

@@ -64,6 +64,7 @@ const Home: React.FC = () => {
                   isFiltered={filterBoolean(post)}
                   key={post.id}
                   {...post}
+                  page="home"
                 />
               ))}
 
@@ -73,6 +74,7 @@ const Home: React.FC = () => {
                   isFiltered={filterBoolean(post)}
                   key={post.id}
                   {...(post as GetPostType)}
+                  page="home"
                 />
               ))}
 
@@ -82,6 +84,7 @@ const Home: React.FC = () => {
                   isFiltered={filterBoolean(post)}
                   key={post.id}
                   {...(post as GetPostType)}
+                  page="home"
                 />
               ))}
 

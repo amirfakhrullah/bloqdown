@@ -6,7 +6,9 @@ import { GetPostType } from "../server/router/posts";
 import { dateFormatter } from "../utils/dateFormatter";
 import Likes from "./Likes";
 
-const PostCard: React.FC<GetPostType & { isFiltered?: boolean }> = ({
+const PostCard: React.FC<
+  GetPostType & { isFiltered?: boolean; page: "home" | "myPage" | "post" }
+> = ({
   id,
   title,
   created,
@@ -15,6 +17,7 @@ const PostCard: React.FC<GetPostType & { isFiltered?: boolean }> = ({
   githubUser,
   isOwner,
   tags,
+  page,
   isFiltered = true,
 }) => {
   if (!isFiltered) return <></>;
@@ -56,7 +59,12 @@ const PostCard: React.FC<GetPostType & { isFiltered?: boolean }> = ({
 
       <div className="flex justify-between items-center mt-2">
         <div className="flex flex-row items-center">
-          <Likes postId={id} ownerLiked={ownerLiked} likes={_count.likes} />
+          <Likes
+            postId={id}
+            ownerLiked={ownerLiked}
+            likes={_count.likes}
+            page={page}
+          />
 
           <Link href={`/posts/${id}#comments`}>
             <div className="flex flex-row items-center ml-2 cursor-pointer hover:bg-slate-900 p-1 rounded-md">
