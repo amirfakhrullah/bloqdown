@@ -85,15 +85,7 @@ const PostForm: React.FC<{
   return (
     <div className={`modal ${open && "modal-open"}`}>
       <div className="modal-box max-w-4xl rounded-md bg-slate-800 border border-gray-500">
-        <Input
-          title="Title"
-          type="input"
-          placeholder="Insert post title"
-          register={register("title")}
-          error={errors.title}
-        />
-
-        <div className="mt-3 border-b border-gray-700">
+        <div className="border-b border-gray-700">
           <div className="tabs">
             <a
               onClick={() => setSeePreview(false)}
@@ -111,21 +103,35 @@ const PostForm: React.FC<{
         </div>
 
         {!seePreview && (
-          <Input
-            title="Content"
-            type="textarea"
-            onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) =>
-              setValue("description", e.target.value.trim())
-            }
-            placeholder="Insert markdown here..."
-            register={register("description")}
-            error={errors.description}
-          />
+          <>
+            <Input
+              title="Title"
+              type="input"
+              placeholder="Insert post title"
+              register={register("title")}
+              error={errors.title}
+            />
+            <Input
+              title="Content"
+              type="textarea"
+              onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) =>
+                setValue("description", e.target.value.trim())
+              }
+              placeholder="Insert markdown here..."
+              register={register("description")}
+              error={errors.description}
+            />
+          </>
         )}
 
         {seePreview && (
           <div className="p-2">
-            <Markdown>{getValues("description")}</Markdown>
+            <Markdown>{`${
+              getValues("title") ? `# ${getValues("title")}\n` : ""
+            }${getValues("description")}`}</Markdown>
+            <p className="text-sm font-bold text-red-400 mt-1 text-right">
+              {(errors.title || errors.description) && "Invalid Content"}
+            </p>
           </div>
         )}
 
