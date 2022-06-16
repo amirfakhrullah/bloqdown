@@ -4,52 +4,31 @@ import { trpc } from "../trpc";
 import { sortByLatest, sortByPopularity } from "../sorts";
 
 const usePostsLists = () => {
-  const { data: posts } = trpc.useQuery(["post.get-all-posts"]);
-
-  const [isLoading, setIsLoading] = useState(true);
-  const [filteredPosts, setFilteredPosts] = useState<
-    GetPostsArrType | undefined
-  >();
-  const [search, setSearch] = useState("");
-
-  useEffect(() => {
-    if (
-      posts &&
-      ((filteredPosts && filteredPosts.length !== posts.length) ||
-        !filteredPosts)
-    ) {
-      setFilteredPosts(posts);
-      return setIsLoading(false);
-    }
-    // eslint-disable-next-line
-  }, [posts]);
+  const { data: posts, isLoading } = trpc.useQuery(["post.get-all-posts"]);
 
   // searchbar
+  const [search, setSearch] = useState("");
+  
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target?.value);
   };
 
-  useEffect(() => {
-    setFilteredPosts(
-      posts
-        ? posts.filter((data) =>
-            data.title.toLowerCase().includes(search.toLowerCase().trim())
-          )
-        : []
+  const filteredPosts = useMemo(() => {
+    if (posts === undefined) return [];
+
+    if (search === "") return posts;
+
+    return posts.filter((post) =>
+      post.title.toLowerCase().includes(search.toLowerCase().trim())
     );
-    // eslint-disable-next-line
-  }, [search]);
+  }, [posts, search]);
 
   // sorting
   const byLatest = useMemo(() => {
-    if (!filteredPosts) return [];
-
     return sortByLatest(filteredPosts);
   }, [filteredPosts]);
 
   const byPopularity = useMemo(() => {
-    if (!filteredPosts) return [];
-
     return sortByPopularity(filteredPosts);
   }, [filteredPosts]);
 
