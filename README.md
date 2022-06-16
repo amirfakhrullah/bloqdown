@@ -19,7 +19,6 @@ Simple Markdown Forum/blog site using `Next.js`, `Next-Auth`, `TypeScript`, `Pri
 
 <p align="center">
   <a href="https://bloqdown.fakhrullah.com">Website</a> •
-  <a href="https://github.com/amirfakhrullah/BloqDown/releases">Releases</a> •
   <a href="https://github.com/amirfakhrullah/BloqDown/projects/1">Roadmap</a> •
   <a href="https://github.com/amirfakhrullah/BloqDown/issues">Issues</a> •
   <a href="https://github.com/amirfakhrullah/BloqDown/pulls">Pull Requests</a> •
