@@ -63,7 +63,7 @@ const Tags: React.FC<{
             <p>Loading...</p>
           ) : (
             <p className="px-2 font-bold">
-              Tags for this post ({data?.length ?? 0})
+              Tags for this post ({data?.length ?? 0}/5)
             </p>
           )}
 
