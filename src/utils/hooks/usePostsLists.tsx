@@ -3,7 +3,7 @@ import { GetPostsArrType } from "../../server/router/posts";
 import { trpc } from "../trpc";
 import { sortByLatest, sortByPopularity } from "../sorts";
 
-const useSearchPosts = () => {
+const usePostsLists = () => {
   const { data: posts } = trpc.useQuery(["post.get-all-posts"]);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -24,6 +24,7 @@ const useSearchPosts = () => {
     // eslint-disable-next-line
   }, [posts]);
 
+  // searchbar
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target?.value);
   };
@@ -32,13 +33,14 @@ const useSearchPosts = () => {
     setFilteredPosts(
       posts
         ? posts.filter((data) =>
-            data.title.toLowerCase().includes(search.toLowerCase())
+            data.title.toLowerCase().includes(search.toLowerCase().trim())
           )
         : []
     );
     // eslint-disable-next-line
   }, [search]);
 
+  // sorting
   const byLatest = useMemo(() => {
     if (!filteredPosts) return [];
 
@@ -61,4 +63,4 @@ const useSearchPosts = () => {
   };
 };
 
-export default useSearchPosts;
+export default usePostsLists;
