@@ -1,8 +1,10 @@
-# BloqDown :newspaper:
+<h1 align="center">
+    <img src="./public/logo-bd.png" alt="BloqDown" height="80" />
+</h1>
 
 Simple Markdown Forum/blog site using `Next.js`, `Next-Auth`, `TypeScript`, `Prisma`, `PlanetScale` and `tRPC`. The aim here is to learn how to properly use these techstacks.
 
-![Polley Screen](./src/public/polley-screen.JPG)
+![Polley Screen](./public/polley-screen.JPG)
 
 ## Goals For This Project
 
