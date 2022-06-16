@@ -24,6 +24,14 @@ p {
   @apply text-sm text-gray-400
 }
 
+/* daisyui styles override */
+.tab {
+  --tab-bg: #4f46e5 !important;
+}
+.tab-active {
+  background-color: #4f46e5 !important;
+}
+
 /* for markdown used */
 #mardown-group h1,
 #mardown-group h2,
