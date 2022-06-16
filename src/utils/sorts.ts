@@ -1,7 +1,7 @@
 import { GetPostsArrType } from "../server/router/posts";
 
 
-export const sortByLatest = (posts: GetPostsArrType) => {
+export const sortByLatest = (posts: GetPostsArrType): GetPostsArrType => {
   return posts.slice().reverse();
 };
 

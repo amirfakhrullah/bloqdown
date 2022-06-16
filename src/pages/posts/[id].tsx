@@ -66,6 +66,7 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
                 postId={post.id!}
                 ownerLiked={post.ownerLiked}
                 likes={post._count?.likes!}
+                page="post"
               />
               <div>
                 {post.githubUser ? (
