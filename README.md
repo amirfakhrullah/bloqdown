@@ -1,4 +1,4 @@
-# Polley :newspaper:
+# BloqDown :newspaper:
 
 Simple Markdown Forum/blog site using `Next.js`, `Next-Auth`, `TypeScript`, `Prisma`, `PlanetScale` and `tRPC`. The aim here is to learn how to properly use these techstacks.
 

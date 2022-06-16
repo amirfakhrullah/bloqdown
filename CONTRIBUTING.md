@@ -1,4 +1,4 @@
-# CONTRIBUTING TO POLLEY
+# CONTRIBUTING TO BLOQDOWN
 
 Thank you for investing your time in contributing to our project!
 
@@ -16,7 +16,7 @@ To get started, read our [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ## Our Development Process
 
-Our process started from creating [Issues](https://github.com/amirfakhrullah/polley/issues). After the issues assigned to you, you can then start working on it and create a `pull request`. We actively welcome your pull requests and invite you to submit pull requests directly [here](https://github.com/amirfakhrullah/polley/pulls), and after review, these can be merged into the project.
+Our process started from creating [Issues](https://github.com/amirfakhrullah/bloqdown/issues). After the issues assigned to you, you can then start working on it and create a `pull request`. We actively welcome your pull requests and invite you to submit pull requests directly [here](https://github.com/amirfakhrullah/bloqdown/pulls), and after review, these can be merged into the project.
 
 ## New contributor guide
 
@@ -35,7 +35,7 @@ If you spot a problem with the the project/repo, [search if an issue already exi
 
 #### Solve an issue
 
-Scan through our [existing issues](https://github.com/amirfakhrullah/polley/issues) to find one that interests you. You can narrow down the search using `labels` as filters. See [Labels](/contributing/how-to-use-labels.md) for more information. As a general rule, we don’t assign issues to anyone. If you find an issue to work on, you are welcome to open a PR with a fix.
+Scan through our [existing issues](https://github.com/amirfakhrullah/bloqdown/issues) to find one that interests you. You can narrow down the search using `labels` as filters. See [Labels](/contributing/how-to-use-labels.md) for more information. As a general rule, we don’t assign issues to anyone. If you find an issue to work on, you are welcome to open a PR with a fix.
 
 ### Get Started
 

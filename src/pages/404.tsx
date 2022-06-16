@@ -5,7 +5,7 @@ import MetaHead from "../components/MetaHead";
 const NotFound: React.FC = () => {
   return (
     <>
-      <MetaHead title="404 Not Found | Polley" />
+      <MetaHead title="404 Not Found | BloqDown" />
       <div className="h-screen">
         <Header displayButtons={false} />
         <div className="p-20">

@@ -7,7 +7,7 @@ const MetaHead: React.FC<{
   return (
     <Head>
       <title>{title}</title>
-      <meta name="description" content="Polley App" />
+      <meta name="description" content="BloqDown App" />
     </Head>
   );
 };

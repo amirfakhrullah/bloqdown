@@ -23,7 +23,7 @@ const MyPosts: React.FC = () => {
 
   return (
     <>
-      <MetaHead title="My Posts | Polley" />
+      <MetaHead title="My Posts | BloqDown" />
       <Screen>
         <Header />
         <Container className="md:grid md:grid-cols-4 md:gap-3 max-w-7xl">
