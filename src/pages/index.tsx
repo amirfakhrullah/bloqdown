@@ -12,9 +12,9 @@ import useModal from "../utils/hooks/useModal";
 import useTabs from "../utils/hooks/useTabs";
 import LeftNav from "../components/LeftNav";
 import RightNav from "../components/RightNav";
-import useSearchPosts from "../utils/hooks/useSearchPosts";
 import SearchInput from "../components/SearchInput";
 import useFilterTags from "../utils/hooks/useFilterTags";
+import usePostsLists from "../utils/hooks/usePostsLists";
 
 const Home: React.FC = () => {
   const { open, setOpen } = useModal();
@@ -27,7 +27,7 @@ const Home: React.FC = () => {
     handleSearch,
     byLatest,
     byPopularity,
-  } = useSearchPosts();
+  } = usePostsLists();
 
   const { filterBoolean, handleTag } = useFilterTags();
 
