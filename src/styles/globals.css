@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@1,500&display=swap');
+
 html,
 body {
   @apply bg-slate-900;
@@ -9,6 +11,10 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+.blopdown {
+  font-family: 'Cabin', sans-serif;
 }
 
 a {
@@ -28,6 +34,7 @@ p {
 .tab {
   --tab-bg: #4f46e5 !important;
 }
+
 .tab-active {
   background-color: #4f46e5 !important;
 }
@@ -67,7 +74,7 @@ p {
 }
 
 #mardown-group ul {
-  @apply  mb-5;
+  @apply mb-5;
 }
 
 #mardown-group li::before {

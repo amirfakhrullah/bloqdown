@@ -12,10 +12,10 @@ const Header: React.FC<{
 
   return (
     <>
-      <div className="w-full bg-slate-900 border-b border-gray-800 md:p-5 p-2 flex flex-row items-center justify-between">
+      <div className="w-full bg-gray-900 border-b border-gray-800 md:p-5 p-2 flex flex-row items-center justify-between">
         <Link href="/">
-          <h1 className="text-2xl font-black text-indigo-500 cursor-pointer">
-            Polley
+          <h1 className="font-serif text-2xl font-black text-indigo-500 cursor-pointer">
+            BloqDown
           </h1>
         </Link>
         {displayButtons && (
