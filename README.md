@@ -3,30 +3,27 @@
 </div>
 
 <p align="center">
-  <a href="https://github.com/amirfakhrullah/BloqDown/projects/1">Roadmap</a> •
-  <a href="https://github.com/amirfakhrullah/BloqDown/issues">Issues</a> •
-  <a href="https://github.com/amirfakhrullah/BloqDown/pulls">Pull Requests</a> •
-  <a href="https://github.com/amirfakhrullah/BloqDown/discussions">Discussions</a> •
-  <a href="https://github.com/amirfakhrullah/BloqDown/releases">Releases</a>
+  <a href="https://github.com/amirfakhrullah/BloqDown/releases">Releases</a> •
+  <a href="https://github.com/amirfakhrullah/BloqDown/blob/main/LICENSE">License</a> •
+  <a href="https://github.com/amirfakhrullah/BloqDown/blob/main/CONTRIBUTING.md">Contributing</a> •
+  <a href="https://github.com/amirfakhrullah/BloqDown/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>
 </p>
 
-## Quick Description
+## Description
 
 Simple Markdown Forum/blog site using `Next.js`, `Next-Auth`, `TypeScript`, `Prisma`, `PlanetScale` and `tRPC`. The aim here is to learn how to properly use these techstacks.
 
 ![bloqdown](./public/bloqdown.JPG)
 
-### Links
-
-* **Website** - [bloqdown.fakhrullah.com](https://bloqdown.fakhrullah.com)
-* **Codebase** - [github.com/amirfakhrullah/BloqDown](https://github.com/amirfakhrullah/BloqDown)
-
-### Open Source Guides
+## Quick Links
 
 <p align="center">
-  <a href="https://github.com/amirfakhrullah/BloqDown/blob/main/LICENSE">License</a> •
-  <a href="https://github.com/amirfakhrullah/BloqDown/blob/main/CONTRIBUTING.md">Contributing</a> •
-  <a href="https://github.com/amirfakhrullah/BloqDown/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>
+  <a href="https://bloqdown.fakhrullah.com">Website</a> •
+  <a href="https://github.com/amirfakhrullah/BloqDown/releases">Releases</a> •
+  <a href="https://github.com/amirfakhrullah/BloqDown/projects/1">Roadmap</a> •
+  <a href="https://github.com/amirfakhrullah/BloqDown/issues">Issues</a> •
+  <a href="https://github.com/amirfakhrullah/BloqDown/pulls">Pull Requests</a> •
+  <a href="https://github.com/amirfakhrullah/BloqDown/discussions">Discussions</a>
 </p>
 
 ## Goals For This Project
