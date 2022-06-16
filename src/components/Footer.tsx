@@ -7,7 +7,7 @@ const Footer = () => {
     <div className="md:p-10 p-5 w-full bg-gray-900 border-t border-gray-700">
       <div className="flex md:flex-row md:items-start md:justify-between flex-col max-w-4xl mx-auto">
         <div>
-          <h1 className="text-2xl font-black text-indigo-500 mb-1">Polley</h1>
+          <h1 className="font-lobster text-3xl font-black text-indigo-500 mb-1">BloqDown</h1>
           <p>© Copyright is a fallacy</p>
         </div>
 

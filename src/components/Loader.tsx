@@ -8,7 +8,7 @@ const Loader: React.FC = () => {
       <MetaHead title="Loading" />
       <div className="h-screen">
         <Header displayButtons={false} />
-        <h3 className="mt-20 text-center font-black text-3xl text-gray-500">
+        <h3 className="font-lobster mt-20 text-center font-black text-4xl text-gray-500">
           Loading...
         </h3>
       </div>
