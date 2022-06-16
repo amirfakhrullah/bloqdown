@@ -8,6 +8,7 @@ const MetaHead: React.FC<{
     <Head>
       <title>{title}</title>
       <meta name="description" content="BloqDown App" />
+        <link rel="icon" href="/b.png" />
     </Head>
   );
 };
