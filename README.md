@@ -24,7 +24,6 @@ Simple Markdown Forum/blog site using `Next.js`, `Next-Auth`, `TypeScript`, `Pri
 ### Open Source Guides
 
 <p align="center">
-  <a href="https://github.com/amirfakhrullah/BloqDown/releases">Releases</a> •
   <a href="https://github.com/amirfakhrullah/BloqDown/blob/main/LICENSE">License</a> •
   <a href="https://github.com/amirfakhrullah/BloqDown/blob/main/CONTRIBUTING.md">Contributing</a> •
   <a href="https://github.com/amirfakhrullah/BloqDown/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>
