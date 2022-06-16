@@ -32,7 +32,7 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
   if (!post || !post.title) {
     return (
       <>
-        <MetaHead title="Post 404 Not Found | Polley" />
+        <MetaHead title="Post 404 Not Found | BloqDown" />
         <Screen>
           <Header />
           <div className="py-20">
@@ -47,7 +47,7 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
 
   return (
     <>
-      <MetaHead title={`${post.title} | Polley`} />
+      <MetaHead title={`${post.title} | BloqDown`} />
       <Screen>
         <Header />
         <Container className="md:grid md:grid-cols-4 md:gap-3 max-w-7xl">

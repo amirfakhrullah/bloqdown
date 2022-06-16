@@ -28,6 +28,7 @@ p {
 .tab {
   --tab-bg: #4f46e5 !important;
 }
+
 .tab-active {
   background-color: #4f46e5 !important;
 }
@@ -67,7 +68,7 @@ p {
 }
 
 #mardown-group ul {
-  @apply  mb-5;
+  @apply mb-5;
 }
 
 #mardown-group li::before {

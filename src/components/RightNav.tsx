@@ -19,14 +19,14 @@ export const guides = [
     href: "/posts/cl49dmtm5003109jwx9o8kvcu",
   },
   {
-    text: "About Polley",
+    text: "About BloqDown",
     icon: <BiInfoCircle className="mr-2 text-lg" />,
-    href: "https://www.fakhrullah.com/projects/polley",
+    href: "https://www.fakhrullah.com/projects/bloqdown",
   },
   {
     text: "Source Code",
     icon: <AiOutlineCode className="mr-2 text-lg" />,
-    href: "https://github.com/amirfakhrullah/polley",
+    href: "https://github.com/amirfakhrullah/bloqdown",
   },
 ];
 
