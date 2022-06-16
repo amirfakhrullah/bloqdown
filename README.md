@@ -1,6 +1,6 @@
-<p align="center" style="margin: 0 !important;">
-    <img src="./public/logo-bd.png" alt="BloqDown" height="80" />
-</p>
+<div align="center">
+  <img src="./public/logo-bd.png" alt="BloqDown" height="80" />
+</div>
 
 <p align="center">
   <a href="https://github.com/amirfakhrullah/BloqDown/releases">Releases</a> •
