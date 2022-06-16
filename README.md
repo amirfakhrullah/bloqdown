@@ -1,4 +1,4 @@
-<p align="center">
+<p align="center" style="margin: 0; padding: 0;">
     <img src="./public/logo-bd.png" alt="BloqDown" height="80" />
 </p>
 
