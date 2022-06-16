@@ -1,8 +1,21 @@
-<h1 align="center">
-    <img src="./public/logo-bd.png" alt="BloqDown" height="80" />
-</h1>
+<div align="center">
+  <img src="./public/logo-bd.png" alt="BloqDown" height="80" />
+</div>
+
+<p align="center">
+  <a href="https://github.com/amirfakhrullah/BloqDown/releases">Releases</a> •
+  <a href="https://github.com/amirfakhrullah/BloqDown/blob/main/LICENSE">License</a> •
+  <a href="https://github.com/amirfakhrullah/BloqDown/blob/main/CONTRIBUTING.md">Contributing</a> •
+  <a href="https://github.com/amirfakhrullah/BloqDown/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>
+</p>
+
+## Quick Description
 
 Simple Markdown Forum/blog site using `Next.js`, `Next-Auth`, `TypeScript`, `Prisma`, `PlanetScale` and `tRPC`. The aim here is to learn how to properly use these techstacks.
+
+<p align="center">
+  <a href="https://bloqdown.fakhrullah.com/" target="_blank">bloqdown.fakhrullah.com</a>
+</p>
 
 ![bloqdown](./public/bloqdown.JPG)
 
