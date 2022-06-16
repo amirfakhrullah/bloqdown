@@ -54,7 +54,7 @@ const Tags: React.FC<{
     <div className="md:block hidden">
       <div className="sticky top-2">
         <div className="flex flex-row items-center px-2">
-          <AiFillTag className="mr-2 text-lg" />
+          <AiFillTag className="mr-2 text-md" />
           <p className="font-bold ml-1">Tags</p>
         </div>
 
