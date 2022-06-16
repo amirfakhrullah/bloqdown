@@ -1,9 +1,10 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
 import { trpc } from "../utils/trpc";
 import Input from "./Input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createPostValidation } from "../utils/validations";
+import Markdown from "./Markdown";
 
 const PostForm: React.FC<{
   type: "create" | "edit";
@@ -16,6 +17,7 @@ const PostForm: React.FC<{
   };
   isMyPosts?: boolean;
 }> = ({ type, open, setOpen, inputs, isMyPosts = false }) => {
+  const [seePreview, setSeePreview] = useState(false);
   const client = trpc.useContext();
   const { mutate: createMutation, isLoading: createLoading } = trpc.useMutation(
     "post.create",
@@ -48,6 +50,7 @@ const PostForm: React.FC<{
     handleSubmit,
     reset,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -90,16 +93,41 @@ const PostForm: React.FC<{
           error={errors.title}
         />
 
-        <Input
-          title="Content"
-          type="textarea"
-          onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) =>
-            setValue("description", e.target.value.trim())
-          }
-          placeholder="Insert markdown here..."
-          register={register("description")}
-          error={errors.description}
-        />
+        <div className="mt-3 border-b border-gray-700">
+          <div className="tabs">
+            <a
+              onClick={() => setSeePreview(false)}
+              className={`tab tab-lifted ${!seePreview ? "tab-active" : ""}`}
+            >
+              Editor
+            </a>
+            <a
+              onClick={() => setSeePreview(true)}
+              className={`tab tab-lifted ${seePreview ? "tab-active" : ""}`}
+            >
+              Preview
+            </a>
+          </div>
+        </div>
+
+        {!seePreview && (
+          <Input
+            title="Content"
+            type="textarea"
+            onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) =>
+              setValue("description", e.target.value.trim())
+            }
+            placeholder="Insert markdown here..."
+            register={register("description")}
+            error={errors.description}
+          />
+        )}
+
+        {seePreview && (
+          <div className="p-2">
+            <Markdown>{getValues("description")}</Markdown>
+          </div>
+        )}
 
         <div className="modal-action">
           {createLoading || editLoading ? (
