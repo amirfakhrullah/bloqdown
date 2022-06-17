@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiFillCloseCircle, AiFillTag } from "react-icons/ai";
 import { trpc } from "../utils/trpc";
@@ -15,21 +15,25 @@ const Tags: React.FC<{
     { postId },
   ]);
 
+  const [errMessage, setErrMessage] = useState("");
+
   const { mutate: addMutation, isLoading: mutateLoading } = trpc.useMutation(
     "tags.add",
     {
       onSuccess: () => {
+        setErrMessage("");
         reset();
         refetch();
       },
       onError: (err) => {
-        console.log(err.message)
-      }
+        setErrMessage(err.message);
+      },
     }
   );
 
   const { mutate: deleteMutation } = trpc.useMutation("tags.delete", {
     onSuccess: () => {
+      setErrMessage("");
       refetch();
     },
   });
@@ -67,6 +71,9 @@ const Tags: React.FC<{
         <div className="my-1 p-3 rounded-lg bg-slate-800 border border-gray-600">
           <p className="px-2 font-bold">
             Tags for this post ({data?.length ?? 0}/5)
+          </p>
+          <p className="text-sm font-bold text-red-400">
+            {errMessage && errMessage}
           </p>
 
           {isOwner && data && data.length < 5 && (
