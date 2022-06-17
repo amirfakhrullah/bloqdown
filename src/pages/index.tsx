@@ -1,4 +1,3 @@
-import Loader from "../components/loaders/Loader";
 import MetaHead from "../components/MetaHead";
 import PostForm from "../components/PostForm";
 import PostCard from "../components/PostCard";
@@ -15,6 +14,7 @@ import RightNav from "../components/RightNav";
 import SearchInput from "../components/SearchInput";
 import useFilterTags from "../utils/hooks/useFilterTags";
 import usePostsLists from "../utils/hooks/usePostsLists";
+import PostCardLoader from "../components/loaders/PostCardLoader";
 
 const Home: React.FC = () => {
   const { open, setOpen } = useModal();
@@ -30,8 +30,6 @@ const Home: React.FC = () => {
   } = usePostsLists();
 
   const { filterBoolean, handleTag } = useFilterTags();
-
-  if (isLoading) return <Loader />;
 
   return (
     <>
@@ -58,37 +56,45 @@ const Home: React.FC = () => {
 
             <PostForm type="create" open={open} setOpen={setOpen} />
 
-            {focusTab === 1 &&
-              byLatest.map((post) => (
-                <PostCard
-                  isFiltered={filterBoolean(post)}
-                  key={post.id}
-                  {...post}
-                  page="home"
-                />
-              ))}
+            {isLoading ? (
+              <PostCardLoader />
+            ) : (
+              <>
+                {focusTab === 1 &&
+                  byLatest.map((post) => (
+                    <PostCard
+                      isFiltered={filterBoolean(post)}
+                      key={post.id}
+                      {...post}
+                      page="home"
+                    />
+                  ))}
 
-            {focusTab === 2 &&
-              byPopularity.map((post) => (
-                <PostCard
-                  isFiltered={filterBoolean(post)}
-                  key={post.id}
-                  {...(post as GetPostType)}
-                  page="home"
-                />
-              ))}
+                {focusTab === 2 &&
+                  byPopularity.map((post) => (
+                    <PostCard
+                      isFiltered={filterBoolean(post)}
+                      key={post.id}
+                      {...(post as GetPostType)}
+                      page="home"
+                    />
+                  ))}
 
-            {focusTab === 3 &&
-              posts?.map((post) => (
-                <PostCard
-                  isFiltered={filterBoolean(post)}
-                  key={post.id}
-                  {...(post as GetPostType)}
-                  page="home"
-                />
-              ))}
+                {focusTab === 3 &&
+                  posts?.map((post) => (
+                    <PostCard
+                      isFiltered={filterBoolean(post)}
+                      key={post.id}
+                      {...(post as GetPostType)}
+                      page="home"
+                    />
+                  ))}
 
-              {posts?.length === 0 && <h3 className="font-bold text-center my-5 ">No Post Found</h3>}
+                {posts?.length === 0 && (
+                  <h3 className="font-bold text-center my-5 ">No Post Found</h3>
+                )}
+              </>
+            )}
           </div>
 
           <RightNav />

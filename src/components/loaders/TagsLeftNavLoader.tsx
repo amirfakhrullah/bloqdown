@@ -10,7 +10,7 @@ const TagsLeftNavLoader = () => {
         >
           <div className="h-3 w-3 bg-gray-700 rounded-sm" />
 
-          <div className="ml-2 h-3 flex-1 bg-gray-700 rounded-sm" />
+          <div className="ml-2 h-4 flex-1 bg-gray-700 rounded-sm" />
         </div>
       ))}
     </div>
