@@ -14,7 +14,7 @@ const Header: React.FC<{
     <>
       <div className="w-full bg-gray-900 border-b border-gray-700 md:p-5 p-2 flex flex-row items-center justify-between md:h-20">
         <Link href="/">
-          <h1 className="font-lobster text-3xl font-black text-indigo-500 cursor-pointer">
+          <h1 className="font-lobster sm:text-3xl text-2xl font-black text-indigo-500 cursor-pointer">
             BloqDown
           </h1>
         </Link>
@@ -67,7 +67,7 @@ const Header: React.FC<{
       </div>
 
       {session && session.user && displayButtons && (
-        <div className="md:hidden w-full bg-slate-900 border-b border-gray-800 md:px-5 p-2 flex flex-row items-center justify-end">
+        <div className="md:hidden w-full bg-gray-900 border-b border-gray-700 md:px-5 p-2 flex flex-row items-center justify-end">
           <p className=" mr-2 text-sm text-gray-400">{session.user.name}</p>
           <Image
             src={session.user.image!}
