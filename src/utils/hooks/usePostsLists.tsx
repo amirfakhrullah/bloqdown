@@ -16,7 +16,7 @@ const usePostsLists = () => {
   const filteredPosts = useMemo(() => {
     if (posts === undefined) return [];
 
-    if (search === "") return posts;
+    if (search.trim() === "") return posts;
 
     return posts.filter((post) =>
       post.title.toLowerCase().includes(search.toLowerCase().trim())

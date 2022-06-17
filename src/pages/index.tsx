@@ -46,6 +46,8 @@ const Home: React.FC = () => {
           <div className="md:col-span-2">
             <PostButton setOpen={setOpen} />
 
+            <div className="mt-5" />
+            
             <SearchInput
               value={search}
               onChange={handleSearch}
