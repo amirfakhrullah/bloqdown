@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import Loader from "../../components/Loader";
+import Loader from "../../components/loaders/Loader";
 import MetaHead from "../../components/MetaHead";
 import { trpc } from "../../utils/trpc";
 import Comments from "../../components/Comments";
