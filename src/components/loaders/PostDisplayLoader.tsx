@@ -6,7 +6,7 @@ const PostDisplayLoader = () => {
       {/* post content */}
       <div className="md:p-6 p-4 mb-3 rounded-lg bg-slate-800 border border-gray-600 overflow-hidden">
         <div className="animate-pulse">
-          <div className="h-8 w-full bg-gray-700 rounded-sm mb-4" />
+          <div className="h-8 w-3/5 bg-gray-700 rounded-sm mb-4" />
 
           <div className="mb-4">
             {Array.from(Array(4).keys()).map((arr) => (
@@ -17,7 +17,7 @@ const PostDisplayLoader = () => {
             ))}
           </div>
 
-          <div className="h-6 w-full bg-gray-700 rounded-sm my-4" />
+          <div className="h-6 w-2/5 bg-gray-700 rounded-sm my-4" />
 
           <div className="mb-4">
             {Array.from(Array(4).keys()).map((arr) => (
@@ -28,7 +28,7 @@ const PostDisplayLoader = () => {
             ))}
           </div>
 
-          <div className="h-6 w-full bg-gray-700 rounded-sm my-4" />
+          <div className="h-6 w-3/5 bg-gray-700 rounded-sm my-4" />
 
           <div className="mb-4">
             {Array.from(Array(4).keys()).map((arr) => (
