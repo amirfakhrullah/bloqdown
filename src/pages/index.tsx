@@ -1,4 +1,3 @@
-import Loader from "../components/loaders/Loader";
 import MetaHead from "../components/MetaHead";
 import PostForm from "../components/PostForm";
 import PostCard from "../components/PostCard";
@@ -31,8 +30,6 @@ const Home: React.FC = () => {
   } = usePostsLists();
 
   const { filterBoolean, handleTag } = useFilterTags();
-
-  // if (isLoading) return <Loader />;
 
   return (
     <>

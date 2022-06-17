@@ -7,7 +7,7 @@ import Image from "next/image";
 const Header: React.FC<{
   displayButtons?: boolean;
 }> = ({ displayButtons = true }) => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
 
   return (
@@ -18,7 +18,7 @@ const Header: React.FC<{
             BloqDown
           </h1>
         </Link>
-        {displayButtons && (
+        {displayButtons && status !== "loading" && (
           <div className="flex flex-row items-center pl-1">
             {session && session.user ? (
               <div className="md:flex hidden flex-row items-center">
