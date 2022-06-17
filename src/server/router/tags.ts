@@ -3,6 +3,7 @@ import { prisma } from "../../db/client";
 import { createRouter } from "./context";
 import { inferQueryResponses } from "../../utils/trpc";
 import { tagInputValidation } from "../../utils/validations";
+import { Prisma } from "@prisma/client";
 
 export const tagsRouter = createRouter()
   .query("get-all", {
@@ -41,12 +42,20 @@ export const tagsRouter = createRouter()
         if (!ctx.session) throw new Error("Unauthorized");
         if (ctx.session && ctx.session.user) {
           if (post.userEmail === ctx.session.user.email) {
-            return await prisma.tag.create({
-              data: {
-                tagName: input.tagName,
-                postId: post.id,
-              },
-            });
+            try {
+              return await prisma.tag.create({
+                data: {
+                  tagName: input.tagName,
+                  postId: post.id,
+                },
+              });
+            } catch (e) {
+              if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                if (e.code === "P2002") {
+                  throw new Error("Same tagname is not allowed");
+                }
+              }
+            }
           } else {
             throw new Error("Unauthorized");
           }
@@ -54,12 +63,20 @@ export const tagsRouter = createRouter()
       }
 
       if (post.userToken === ctx.token) {
-        return await prisma.tag.create({
-          data: {
-            tagName: input.tagName,
-            postId: post.id,
-          },
-        });
+        try {
+          return await prisma.tag.create({
+            data: {
+              tagName: input.tagName,
+              postId: post.id,
+            },
+          });
+        } catch (e) {
+          if (e instanceof Prisma.PrismaClientKnownRequestError) {
+            if (e.code === "P2002") {
+              throw new Error("Same tagname is not allowed");
+            }
+          }
+        }
       }
 
       throw new Error("Unauthorized");

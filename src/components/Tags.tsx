@@ -22,6 +22,9 @@ const Tags: React.FC<{
         reset();
         refetch();
       },
+      onError: (err) => {
+        console.log(err.message)
+      }
     }
   );
 
