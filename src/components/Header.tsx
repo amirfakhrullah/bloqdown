@@ -12,7 +12,7 @@ const Header: React.FC<{
 
   return (
     <>
-      <div className="w-full bg-gray-900 border-b border-gray-700 md:p-5 p-2 flex flex-row items-center justify-between">
+      <div className="w-full bg-gray-900 border-b border-gray-700 md:p-5 p-2 flex flex-row items-center justify-between md:h-20">
         <Link href="/">
           <h1 className="font-lobster text-3xl font-black text-indigo-500 cursor-pointer">
             BloqDown

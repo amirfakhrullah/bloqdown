@@ -1,4 +1,4 @@
-import Loader from "../components/Loader";
+import Loader from "../components/loaders/Loader";
 import MetaHead from "../components/MetaHead";
 import PostForm from "../components/PostForm";
 import PostCard from "../components/PostCard";

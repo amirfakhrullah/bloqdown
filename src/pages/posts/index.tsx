@@ -2,7 +2,7 @@ import { useSession } from "next-auth/react";
 import React from "react";
 import Container from "../../components/Container";
 import Header from "../../components/Header";
-import Loader from "../../components/Loader";
+import Loader from "../../components/loaders/Loader";
 import MetaHead from "../../components/MetaHead";
 import PostButton from "../../components/PostButton";
 import PostCard from "../../components/PostCard";
