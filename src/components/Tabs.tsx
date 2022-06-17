@@ -15,8 +15,8 @@ const Tabs: React.FC<{
           focusTab === 1 ? "tab-active" : ""
         }`}
       >
-        <BsStars className="mr-2 text-lg" />
-        <span className="sm:inline hidden">Latest</span>
+        <BsStars className="sm:text-lg text-sm" />
+        <span className="sm:ml-2 ml-1">Latest</span>
       </a>
       <a
         onClick={() => selectTab(2)}
@@ -24,8 +24,8 @@ const Tabs: React.FC<{
           focusTab === 2 ? "tab-active" : ""
         }`}
       >
-        <FaHotjar className="mr-2 text-md" />
-        <span className="sm:inline hidden">Popular</span>
+        <FaHotjar className="sm:text-md text-sm" />
+        <span className="sm:ml-2 ml-1">Hot</span>
       </a>
       <a
         onClick={() => selectTab(3)}
@@ -33,8 +33,8 @@ const Tabs: React.FC<{
           focusTab === 3 ? "tab-active" : ""
         }`}
       >
-        <BiNews className="mr-2 text-lg" />
-        <span className="sm:inline hidden">All</span>
+        <BiNews className="sm:text-lg text-sm" />
+        <span className="sm:ml-2 ml-1">All</span>
       </a>
     </div>
   );

@@ -10,7 +10,7 @@ const SearchInput: React.FC<{
     <div className="px-1 pt-5 pb-1 flex flex-row items-center w-full">
       <BsSearch />
       <input
-        className="ml-2 p-1 flex-1 bg-transparent border-b outline-none"
+        className="ml-2 p-1 rounded-none flex-1 bg-transparent border-b outline-none"
         value={value}
         onChange={onChange}
         placeholder={placeholder}
