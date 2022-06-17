@@ -1,5 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { GetPostsArrType } from "../../server/router/posts";
+import React, { useMemo, useState } from "react";
 import { trpc } from "../trpc";
 import { sortByLatest, sortByPopularity } from "../sorts";
 
