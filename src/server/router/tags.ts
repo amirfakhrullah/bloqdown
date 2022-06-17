@@ -34,9 +34,19 @@ export const tagsRouter = createRouter()
         where: {
           id: input.postId,
         },
+        include: {
+          _count: {
+            select: {
+              tags: true,
+            },
+          },
+        },
       });
 
       if (!post) throw new Error("404 Not Found");
+
+      if (post._count.tags === 5)
+        throw new Error("Only 5 tags allowed for one post");
 
       if (post.userEmail !== null) {
         if (!ctx.session) throw new Error("Unauthorized");
