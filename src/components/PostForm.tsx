@@ -85,7 +85,7 @@ const PostForm: React.FC<{
   return (
     <div className={`modal ${open && "modal-open"}`}>
       <div className="modal-box max-w-4xl rounded-md bg-slate-800 border border-gray-500">
-        <div className="border-b border-gray-700">
+        <div className="border-b border-gray-700 postFormTab">
           <div className="tabs">
             <a
               onClick={() => setSeePreview(false)}

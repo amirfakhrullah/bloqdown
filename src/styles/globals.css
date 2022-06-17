@@ -21,15 +21,15 @@ a {
 }
 
 p {
-  @apply text-sm text-gray-400
+  @apply text-sm text-gray-300
 }
 
 /* daisyui styles override */
-.tab {
+.postFormTab .tab {
   --tab-bg: #4f46e5 !important;
 }
 
-.tab-active {
+.postFormTab .tab-active {
   background-color: #4f46e5 !important;
 }
 
