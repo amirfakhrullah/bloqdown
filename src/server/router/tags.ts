@@ -3,6 +3,7 @@ import { prisma } from "../../db/client";
 import { createRouter } from "./context";
 import { inferQueryResponses } from "../../utils/trpc";
 import { tagInputValidation } from "../../utils/validations";
+import { Prisma } from "@prisma/client";
 
 export const tagsRouter = createRouter()
   .query("get-all", {
@@ -33,20 +34,38 @@ export const tagsRouter = createRouter()
         where: {
           id: input.postId,
         },
+        include: {
+          _count: {
+            select: {
+              tags: true,
+            },
+          },
+        },
       });
 
       if (!post) throw new Error("404 Not Found");
+
+      if (post._count.tags === 5)
+        throw new Error("Only 5 tags allowed for one post");
 
       if (post.userEmail !== null) {
         if (!ctx.session) throw new Error("Unauthorized");
         if (ctx.session && ctx.session.user) {
           if (post.userEmail === ctx.session.user.email) {
-            return await prisma.tag.create({
-              data: {
-                tagName: input.tagName,
-                postId: post.id,
-              },
-            });
+            try {
+              return await prisma.tag.create({
+                data: {
+                  tagName: input.tagName,
+                  postId: post.id,
+                },
+              });
+            } catch (e) {
+              if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                if (e.code === "P2002") {
+                  throw new Error("Same tagname is not allowed");
+                }
+              }
+            }
           } else {
             throw new Error("Unauthorized");
           }
@@ -54,12 +73,20 @@ export const tagsRouter = createRouter()
       }
 
       if (post.userToken === ctx.token) {
-        return await prisma.tag.create({
-          data: {
-            tagName: input.tagName,
-            postId: post.id,
-          },
-        });
+        try {
+          return await prisma.tag.create({
+            data: {
+              tagName: input.tagName,
+              postId: post.id,
+            },
+          });
+        } catch (e) {
+          if (e instanceof Prisma.PrismaClientKnownRequestError) {
+            if (e.code === "P2002") {
+              throw new Error("Same tagname is not allowed");
+            }
+          }
+        }
       }
 
       throw new Error("Unauthorized");

@@ -1,5 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { GetPostsArrType } from "../../server/router/posts";
+import React, { useMemo, useState } from "react";
 import { trpc } from "../trpc";
 import { sortByLatest, sortByPopularity } from "../sorts";
 
@@ -16,7 +15,7 @@ const usePostsLists = () => {
   const filteredPosts = useMemo(() => {
     if (posts === undefined) return [];
 
-    if (search === "") return posts;
+    if (search.trim() === "") return posts;
 
     return posts.filter((post) =>
       post.title.toLowerCase().includes(search.toLowerCase().trim())
