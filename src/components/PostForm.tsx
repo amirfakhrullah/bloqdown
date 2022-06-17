@@ -125,7 +125,7 @@ const PostForm: React.FC<{
         )}
 
         {seePreview && (
-          <div className="p-2">
+          <div className="p-2 min-h-[285px]">
             <Markdown>{`${
               getValues("title") ? `# ${getValues("title")}\n` : ""
             }${getValues("description")}`}</Markdown>
