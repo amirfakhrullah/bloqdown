@@ -45,7 +45,7 @@ const PostCard: React.FC<
           {isOwner ? "By you" : "Anonymous"}
         </p>
       )}
-      <p className="text-gray-500 text-sm">{dateFormatter(created)}</p>
+      <p className="text-gray-500 text-sm">{dateFormatter(created)} {updated && "• Edited"}</p>
 
       <div>
         {tags?.map((tag, idx) => (
