@@ -24,8 +24,10 @@ model Post {
   title       String @db.VarChar(200)
   description String @db.VarChar(2000)
 
+  updated DateTime?
+
   Comment Comment[]
-  tags Tag[]
+  tags    Tag[]
 
   likes Like[]
 
