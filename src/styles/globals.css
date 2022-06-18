@@ -58,7 +58,7 @@ p {
 }
 
 #mardown-group h1 {
-  @apply text-3xl font-bold;
+  @apply sm:text-3xl text-2xl font-bold;
 }
 
 #mardown-group h2 {
