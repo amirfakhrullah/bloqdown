@@ -31,7 +31,6 @@ const MyPosts: React.FC = () => {
               type="create"
               open={open}
               setOpen={setOpen}
-              isMyPosts={true}
             />
 
             <h1 className="mt-5 text-2xl font-black text-gray-300">My Posts</h1>
