@@ -13,7 +13,8 @@ import { dateFormatter } from "../utils/dateFormatter";
 const Comments: React.FC<{
   id: string | undefined;
   comments: GetCommentsArrType;
-}> = ({ id, comments }) => {
+  postOwner: boolean;
+}> = ({ id, comments, postOwner }) => {
   const client = trpc.useContext();
   const { mutate, isLoading } = trpc.useMutation("comment.create", {
     onSuccess: () => {
@@ -49,7 +50,7 @@ const Comments: React.FC<{
         Comments ({comments.length})
       </h3>
       <div className="pb-2 w-full flex md:flex-row flex-col md:items-center items-end">
-        <div className="w-full flex-1">
+        <div className="w-full flex-1 ml-[1px]">
           <Input
             title=""
             type="textarea"
@@ -116,7 +117,7 @@ const Comments: React.FC<{
                 type="comment"
                 githubUser={comment.githubUser}
                 id={comment.id!}
-                isOwner={comment.isOwner}
+                isOwner={comment.isOwner || postOwner}
               />
             </div>
           </div>
