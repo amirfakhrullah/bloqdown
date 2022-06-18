@@ -25,6 +25,20 @@ p {
 }
 
 /* daisyui styles override */
+.homeTab .tab {
+  --tab-color: #6b7280 !important;
+  --tab-border-color: #6b7280 !important;
+}
+
+.homeTab .tab-bordered {
+  border-color: #4b5563 !important;
+}
+
+.homeTab .tab-active {
+  border-color: #d1d5db !important;
+  color: #d1d5db !important;
+}
+
 .postFormTab .tab {
   --tab-bg: #4f46e5 !important;
 }
