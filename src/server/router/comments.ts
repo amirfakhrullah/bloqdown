@@ -88,26 +88,36 @@ export const commentsRouter = createRouter()
         where: {
           id: input.id,
         },
+        include: {
+          post: true,
+        },
       });
 
       if (!comment) throw new Error("404 Not Found");
 
-      if (comment.userEmail !== null) {
-        if (!ctx.session) throw new Error("Unauthorized");
-        if (ctx.session && ctx.session.user) {
-          if (comment.userEmail === ctx.session.user.email) {
-            return await prisma.comment.delete({
-              where: {
-                id: input.id,
-              },
-            });
-          } else {
-            throw new Error("Unauthorized");
+      if (ctx.session && ctx.session.user) {
+        if (comment.post.userEmail !== null || comment.userEmail !== null) {
+          if (ctx.session && ctx.session.user) {
+            if (
+              comment.post.userEmail === ctx.session.user.email ||
+              comment.userEmail === ctx.session.user.email
+            ) {
+              return await prisma.comment.delete({
+                where: {
+                  id: input.id,
+                },
+              });
+            } else {
+              throw new Error("Unauthorized");
+            }
           }
         }
       }
 
-      if (comment.userToken === ctx.token) {
+      if (
+        comment.post.userToken === ctx.token ||
+        comment.userToken === ctx.token
+      ) {
         return await prisma.comment.delete({
           where: {
             id: input.id,

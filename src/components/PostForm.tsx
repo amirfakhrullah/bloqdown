@@ -5,6 +5,7 @@ import Input from "./Input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createPostValidation } from "../utils/validations";
 import Markdown from "./Markdown";
+import { useRouter } from "next/router";
 
 const PostForm: React.FC<{
   type: "create" | "edit";
@@ -15,19 +16,16 @@ const PostForm: React.FC<{
     title: string;
     description: string;
   };
-  isMyPosts?: boolean;
-}> = ({ type, open, setOpen, inputs, isMyPosts = false }) => {
+}> = ({ type, open, setOpen, inputs }) => {
+  const router = useRouter();
+
   const [seePreview, setSeePreview] = useState(false);
   const client = trpc.useContext();
   const { mutate: createMutation, isLoading: createLoading } = trpc.useMutation(
     "post.create",
     {
-      onSuccess: () => {
-        if (isMyPosts) {
-          client.invalidateQueries(["post.get-my-posts"]);
-        } else {
-          client.invalidateQueries(["post.get-all-posts"]);
-        }
+      onSuccess: ({ id }) => {
+        router.push(`/posts/${id}`);
         reset();
         setOpen(false);
       },

@@ -135,6 +135,7 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
                 <Comments
                   id={post.id}
                   comments={post.comments as GetCommentsArrType}
+                  postOwner={post.isOwner}
                 />
               </div>
             </>
