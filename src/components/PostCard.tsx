@@ -17,6 +17,7 @@ const PostCard: React.FC<
   githubUser,
   isOwner,
   tags,
+  updated,
   page,
   isFiltered = true,
 }) => {
