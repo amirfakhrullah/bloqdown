@@ -60,7 +60,7 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
 
               <div className="md:col-start-2 md:col-span-2 overflow-hidden">
                 <div className="md:p-6 p-4 mb-3 rounded-lg bg-slate-800 border border-gray-600 overflow-hidden">
-                  <h1 className="text-3xl font-black text-white mb-4 pb-1 border-b border-gray-600">
+                  <h1 className="sm:text-3xl text-2xl font-black text-white mb-4 pb-1 border-b border-gray-600">
                     {post.title}
                   </h1>
                   <Markdown>{post.description as string}</Markdown>
