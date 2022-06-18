@@ -14,6 +14,7 @@ export const postsRouter = createRouter()
           id: true,
           title: true,
           created: true,
+          updated: true,
           userToken: true,
           githubUser: {
             select: {
@@ -85,6 +86,7 @@ export const postsRouter = createRouter()
             id: true,
             title: true,
             created: true,
+            updated: true,
             userToken: true,
             githubUser: {
               select: {
@@ -122,6 +124,7 @@ export const postsRouter = createRouter()
           id: true,
           title: true,
           created: true,
+          updated: true,
           userToken: true,
           githubUser: {
             select: {
@@ -287,6 +290,7 @@ export const postsRouter = createRouter()
                 title: input.title,
                 description: input.description,
                 userToken: ctx.token,
+                updated: new Date(),
               },
             });
           } else {

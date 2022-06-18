@@ -49,7 +49,6 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
       <Screen>
         <Header />
         <Container className="md:grid md:grid-cols-4 md:gap-3 max-w-7xl">
-
           {isLoading ? (
             <>
               <TagsLoader />
@@ -94,8 +93,21 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
                       </p>
                     )}
 
-                    <p className="text-gray-500 text-sm text-right">
-                      {dateFormatter(post.created!)}
+                    <p className="text-gray-500 text-sm text-right sm:block hidden">
+                      {post.updated
+                        ? `Updated on ${dateFormatter(post.updated)}`
+                        : `Created on ${dateFormatter(post.created!)}`}
+                    </p>
+                    <p className="text-gray-500 text-sm text-right sm:hidden block">
+                      {post.updated ? (
+                        <>
+                          Edited
+                          <br />
+                          {dateFormatter(post.updated)}
+                        </>
+                      ) : (
+                        dateFormatter(post.created!)
+                      )}
                     </p>
                   </div>
                 </div>
