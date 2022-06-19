@@ -41,6 +41,13 @@ p {
 
 .postFormTab .tab {
   --tab-bg: #4f46e5 !important;
+  --tab-border-color: #374151 !important;
+  color: #d1d5db !important;
+}
+
+.postFormTab .tab-lifted {
+  border-color: #374151 !important;
+  border-bottom: 0;
 }
 
 .postFormTab .tab-active {
