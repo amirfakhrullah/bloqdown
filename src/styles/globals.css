@@ -46,8 +46,7 @@ p {
 }
 
 .postFormTab .tab-lifted {
-  border-color: #374151 !important;
-  border-bottom: 0;
+  border: 0 !important;
 }
 
 .postFormTab .tab-active {
