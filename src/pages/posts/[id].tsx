@@ -1,6 +1,4 @@
-import { useRouter } from "next/router";
 import React, { useState } from "react";
-import Loader from "../../components/loaders/Loader";
 import MetaHead from "../../components/MetaHead";
 import { trpc } from "../../utils/trpc";
 import Comments from "../../components/Comments";
@@ -18,8 +16,12 @@ import RightNav from "../../components/RightNav";
 import Tags from "../../components/Tags";
 import TagsLoader from "../../components/loaders/TagsLoader";
 import PostDisplayLoader from "../../components/loaders/PostDisplayLoader";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { prisma } from "../../db/client";
 
-const Content: React.FC<{ id: string }> = ({ id }) => {
+const PostContent: React.FC<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+> = ({ id }) => {
   const {
     data: post,
     isLoading,
@@ -27,29 +29,15 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
   } = trpc.useQuery(["post.get-by-id", { id }]);
   const [openEdit, setOpenEdit] = useState(false);
 
-  if (!isLoading && post === undefined) {
-    return (
-      <>
-        <MetaHead title="Post 404 Not Found | BloqDown" />
-        <Screen>
-          <Header />
-          <div className="py-20">
-            <h1 className="text-center font-black text-4xl text-gray-400">
-              Post 404
-            </h1>
-          </div>
-        </Screen>
-      </>
-    );
-  }
+  const postDataLoading = isLoading || !post;
 
   return (
     <>
-      <MetaHead title={isLoading ? "Loading.." : `${post.title} | BloqDown`} />
+      <MetaHead title={postDataLoading ? "Loading.." : `${post.title!} | BloqDown`} />
       <Screen>
         <Header />
         <Container className="md:grid md:grid-cols-4 md:gap-3 max-w-7xl">
-          {isLoading ? (
+          {postDataLoading ? (
             <>
               <TagsLoader />
               <PostDisplayLoader />
@@ -160,16 +148,33 @@ const Content: React.FC<{ id: string }> = ({ id }) => {
   );
 };
 
-const PostDetails: React.FC = () => {
-  const {
-    query: { id },
-  } = useRouter();
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { id } = query;
 
   if (!id || typeof id !== "string") {
-    return <Loader />;
+    return {
+      notFound: true,
+    };
   }
 
-  return <Content id={id} />;
+  const post = await prisma.post.findFirst({
+    where: {
+      id: id,
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  if (!post) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: { id: post.id },
+  };
 };
 
-export default PostDetails;
+export default PostContent;

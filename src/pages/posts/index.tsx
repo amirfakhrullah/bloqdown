@@ -1,3 +1,4 @@
+import { GetServerSideProps } from "next";
 import { useSession } from "next-auth/react";
 import React from "react";
 import Container from "../../components/Container";
