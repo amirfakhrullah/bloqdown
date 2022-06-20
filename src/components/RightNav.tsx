@@ -6,6 +6,7 @@ import { MdOutlineTipsAndUpdates, MdWorkOutline } from "react-icons/md";
 import { BiInfoCircle } from "react-icons/bi";
 import { ImBlog } from "react-icons/im";
 import Link from "next/link";
+import GitHubCard from "./GitHubCard";
 
 export const guides = [
   {
@@ -65,6 +66,10 @@ const RightNav = () => {
   return (
     <div className="md:block hidden">
       <div className="sticky top-2">
+        <GitHubCard />
+
+        <div className="py-2" />
+
         <div className="flex flex-row items-center px-2">
           <BsAppIndicator className="mr-2 text-md" />
           <p className="font-bold ml-1">About</p>
