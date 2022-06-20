@@ -29,7 +29,7 @@ export const getRepoData = async () => {
       avatar_url: data.owner.avatar_url as string,
     },
     createdAt: data.created_at as Date,
-    updatedAt: data.updated_at as Date,
+    updatedAt: data.pushed_at as Date,
     pushedAt: data.pushed_at as Date,
     clone_url: data.clone_url as string,
     repo_url: data.svn_url as string,
@@ -39,7 +39,7 @@ export const getRepoData = async () => {
     forks: data.forks as number,
     language: data.language as string,
     issues: data.open_issues as number,
-    license: data.license.name as string,
+    license: data.license.spdx_id as string,
     latestRelease: {
       release_url: releases.data[0].html_url as string,
       tag_name: releases.data[0].tag_name as string,

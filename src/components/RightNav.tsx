@@ -2,9 +2,12 @@ import React from "react";
 import { RiFileUserLine } from "react-icons/ri";
 import { BsAppIndicator, BsBookmarkFill, BsMarkdown } from "react-icons/bs";
 import { AiFillGithub, AiFillLinkedin, AiOutlineCode } from "react-icons/ai";
-import { MdOutlineTipsAndUpdates, MdWorkOutline } from "react-icons/md";
+import { 
+  MdOutlineTipsAndUpdates, 
+  // MdWorkOutline 
+} from "react-icons/md";
 import { BiInfoCircle } from "react-icons/bi";
-import { ImBlog } from "react-icons/im";
+// import { ImBlog } from "react-icons/im";
 import Link from "next/link";
 import GitHubCard from "./GitHubCard";
 
@@ -32,16 +35,16 @@ export const guides = [
 ];
 
 export const sections = [
-  {
-    text: "Blogs",
-    icon: <ImBlog className="mr-2 text-lg" />,
-    href: "https://www.fakhrullah.com/blogs",
-  },
-  {
-    text: "All Projects",
-    icon: <MdWorkOutline className="mr-2 text-lg" />,
-    href: "https://www.fakhrullah.com/projects",
-  },
+  // {
+  //   text: "Blogs",
+  //   icon: <ImBlog className="mr-2 text-lg" />,
+  //   href: "https://www.fakhrullah.com/blogs",
+  // },
+  // {
+  //   text: "All Projects",
+  //   icon: <MdWorkOutline className="mr-2 text-lg" />,
+  //   href: "https://www.fakhrullah.com/projects",
+  // },
   {
     text: "Portfolio Website",
     icon: <RiFileUserLine className="mr-2 text-lg" />,
