@@ -7,7 +7,7 @@ const NotFound: React.FC = () => {
     <>
       <MetaHead title="404 Not Found | BloqDown" />
       <div className="h-screen">
-        <Header displayButtons={false} />
+        <Header />
         <div className="p-20">
           <h3 className="text-center font-black text-4xl text-gray-500">
             404 Not Found
