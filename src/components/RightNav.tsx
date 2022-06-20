@@ -25,7 +25,7 @@ export const guides = [
   {
     text: "About BloqDown",
     icon: <BiInfoCircle className="mr-2 text-lg" />,
-    href: "https://www.fakhrullah.com/projects/bloqdown",
+    href: "https://github.com/amirfakhrullah/BloqDown/blob/main/README.md",
   },
   {
     text: "Source Code",
@@ -69,10 +69,6 @@ const RightNav = () => {
   return (
     <div className="md:block hidden">
       <div className="sticky top-2">
-        <GitHubCard />
-
-        <div className="py-2" />
-
         <div className="flex flex-row items-center px-2">
           <BsAppIndicator className="mr-2 text-md" />
           <p className="font-bold ml-1">About</p>
@@ -88,6 +84,10 @@ const RightNav = () => {
             </Link>
           ))}
         </div>
+
+        <div className="py-2" />
+
+        <GitHubCard />
 
         <div className="py-2" />
 

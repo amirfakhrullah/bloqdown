@@ -8,9 +8,9 @@ import { trpc } from "../utils/trpc";
 import TagsLeftNavLoader from "./loaders/TagsLeftNavLoader";
 import { dateFormatter } from "../utils/dateFormatter";
 import { AiFillEye, AiFillFolder, AiFillStar } from "react-icons/ai";
-import { 
-    TbGitFork, 
-    // TbLicense 
+import {
+  TbGitFork,
+  // TbLicense
 } from "react-icons/tb";
 import { IoCodeSlashSharp } from "react-icons/io5";
 import { VscIssues } from "react-icons/vsc";
@@ -34,35 +34,45 @@ const GitHubCard = () => {
             <BsTagFill className="mr-2 text-md" />
             <Link href={repoData.latestRelease.release_url} target="_blank">
               <p className="ml-3 cursor-pointer hover:underline">
-                {repoData.latestRelease.tag_name}
+                Release {repoData.latestRelease.tag_name}
               </p>
             </Link>
           </div>
 
           <div className="p-2 px-3 flex flex-row items-center">
             <AiFillStar className="mr-2 text-lg" />
-            <p className="ml-2">
-              {repoData.stars} star{repoData.stars > 1 && "s"}
-            </p>
+            <Link href={`${repoData.repo_url}/stargazers`} target="_blank">
+              <p className="ml-2 cursor-pointer hover:underline">
+                {repoData.stars} Stargazer{repoData.stars > 1 && "s"}
+              </p>
+            </Link>
           </div>
 
           <div className="p-2 px-3 flex flex-row items-center">
             <AiFillEye className="mr-2 text-lg" />
-            <p className="ml-2">{repoData.watches} watching</p>
+            <Link href={`${repoData.repo_url}/watchers`} target="_blank">
+              <p className="ml-2 cursor-pointer hover:underline">
+                {repoData.watches} Watcher{repoData.watches > 1 && "s"}
+              </p>
+            </Link>
           </div>
 
           <div className="p-2 px-3 flex flex-row items-center">
             <TbGitFork className="mr-2 text-lg" />
-            <p className="ml-2">
-              {repoData.forks} fork{repoData.forks > 1 && "s"}
-            </p>
+            <Link href={`${repoData.repo_url}/network/members`} target="_blank">
+              <p className="ml-2 cursor-pointer hover:underline">
+                {repoData.forks} Fork{repoData.forks > 1 && "s"}
+              </p>
+            </Link>
           </div>
 
           <div className="p-2 px-3 flex flex-row items-center">
             <VscIssues className="mr-2 text-lg" />
-            <p className="ml-2">
-              {repoData.issues} Open Issues
-            </p>
+            <Link href={`${repoData.repo_url}/issues`} target="_blank">
+              <p className="ml-2 cursor-pointer hover:underline">
+                {repoData.issues} Open Issue{repoData.issues > 1 && "s"}
+              </p>
+            </Link>
           </div>
 
           <div className="p-2 px-3 flex flex-row items-center">
