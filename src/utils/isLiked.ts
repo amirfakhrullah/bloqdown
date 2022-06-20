@@ -1,6 +1,9 @@
 import { NextApiRequest } from "next";
 import { Session } from "next-auth";
 
+/**
+ * function for checking if the post is liked by the user through anonymous token and email (if the user is logged in)
+ */
 export const findIsUserLiked = ({
   likes,
   ctx,

@@ -148,6 +148,10 @@ const PostContent: React.FC<
   );
 };
 
+/**
+ * Pre-check if post with the query id exists or not
+ * If doesn't exist, redirect to 404 page right away
+ */
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { id } = query;
 
@@ -173,7 +177,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   }
 
   return {
-    props: { id: post.id },
+    props: { id },
   };
 };
 

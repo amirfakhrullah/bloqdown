@@ -2,11 +2,14 @@ import React from "react";
 import { AiFillLike } from "react-icons/ai";
 import { trpc } from "../utils/trpc";
 
+/**
+ * Liking section for posts
+ */
 const Likes: React.FC<{
   postId: string;
   ownerLiked: boolean;
   likes: number;
-  page: "home" | "myPage" | "post"
+  page: "home" | "myPage" | "post" // for indicating which invalidateQueries to perform, refer the "onSuccess" in the mutation
 }> = ({ postId, ownerLiked, likes, page }) => {
   const client = trpc.useContext();
 

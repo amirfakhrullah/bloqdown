@@ -7,8 +7,11 @@ import { createPostValidation } from "../utils/validations";
 import Markdown from "./Markdown";
 import { useRouter } from "next/router";
 
+/**
+ * Popup form for creating & editing posts
+ */
 const PostForm: React.FC<{
-  type: "create" | "edit";
+  type: "create" | "edit"; // usage selection - for selecting mutation
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   inputs?: {

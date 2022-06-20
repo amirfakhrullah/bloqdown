@@ -5,7 +5,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 
 const Header: React.FC<{
-  displayButtons?: boolean;
+  displayButtons?: boolean; // for displaying buttons on the right side of the Header
 }> = ({ displayButtons = true }) => {
   const { data: session, status } = useSession();
   const router = useRouter();

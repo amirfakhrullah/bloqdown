@@ -2,6 +2,9 @@ import React, { useMemo, useState } from "react";
 import { trpc } from "../trpc";
 import { sortByLatest, sortByPopularity } from "../sorts";
 
+/**
+ * hook for getting filtered posts array
+ */
 const usePostsLists = () => {
   const { data: posts, isLoading } = trpc.useQuery(["post.get-all-posts"]);
 

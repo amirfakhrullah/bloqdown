@@ -4,6 +4,9 @@ import { trpc } from "../utils/trpc";
 import TagsLeftNavLoader from "./loaders/TagsLeftNavLoader";
 import SearchInput from "./SearchInput";
 
+/**
+ * Filter by tags section
+ */
 const TagsLeftNav: React.FC<{
   handleTag: (e: ChangeEvent<HTMLInputElement>) => void;
 }> = ({ handleTag }) => {

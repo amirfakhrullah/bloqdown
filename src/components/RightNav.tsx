@@ -58,6 +58,9 @@ export const sections = [
   },
 ];
 
+/**
+ * Right Side Bar
+ */
 const RightNav = () => {
   return (
     <div className="md:block hidden">

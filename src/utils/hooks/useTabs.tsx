@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
+/**
+ * hook for trending tabs base functionalities
+ */
 const useTabs = () => {
   const [focusTab, setFocusTab] = useState<1 | 2 | 3>(1);
 

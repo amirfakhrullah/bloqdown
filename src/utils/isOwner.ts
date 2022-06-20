@@ -1,3 +1,6 @@
+/**
+ * function for checking if the user is the owner of comments/posts
+ */
 export const isOwner = ({
   contentToken,
   token,

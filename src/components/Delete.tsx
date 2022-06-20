@@ -1,12 +1,14 @@
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { trpc } from "../utils/trpc";
 
+/**
+ * Delete section for comments and posts
+ */
 const Delete: React.FC<{
   children?: string | string[];
-  type: "comment" | "post";
+  type: "comment" | "post"; // to know which mutation to perform, "comment" - deleteComment mutation, "post" - deletePost mutation
   id: string;
   isOwner: boolean;
   githubUser:
@@ -18,7 +20,6 @@ const Delete: React.FC<{
     | null
     | undefined;
 }> = ({ children, type, id, isOwner, githubUser }) => {
-  const { data: session } = useSession();
   const client = trpc.useContext();
   const router = useRouter();
 
