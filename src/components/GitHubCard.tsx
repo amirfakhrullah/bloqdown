@@ -41,29 +41,23 @@ const GitHubCard = () => {
 
           <div className="p-2 px-3 flex flex-row items-center">
             <AiFillStar className="mr-2 text-lg" />
-            <Link href={`${repoData.repo_url}/stargazers`} target="_blank">
-              <p className="ml-2 cursor-pointer hover:underline">
-                {repoData.stars} Stargazer{repoData.stars > 1 && "s"}
-              </p>
-            </Link>
+            <p className="ml-2">
+              {repoData.stars} Stargazer{repoData.stars > 1 && "s"}
+            </p>
           </div>
 
           <div className="p-2 px-3 flex flex-row items-center">
             <AiFillEye className="mr-2 text-lg" />
-            <Link href={`${repoData.repo_url}/watchers`} target="_blank">
-              <p className="ml-2 cursor-pointer hover:underline">
-                {repoData.watches} Watcher{repoData.watches > 1 && "s"}
-              </p>
-            </Link>
+            <p className="ml-2">
+              {repoData.watches} Watcher{repoData.watches > 1 && "s"}
+            </p>
           </div>
 
           <div className="p-2 px-3 flex flex-row items-center">
             <TbGitFork className="mr-2 text-lg" />
-            <Link href={`${repoData.repo_url}/network/members`} target="_blank">
-              <p className="ml-2 cursor-pointer hover:underline">
-                {repoData.forks} Fork{repoData.forks > 1 && "s"}
-              </p>
-            </Link>
+            <p className="ml-2">
+              {repoData.forks} Fork{repoData.forks > 1 && "s"}
+            </p>
           </div>
 
           <div className="p-2 px-3 flex flex-row items-center">
