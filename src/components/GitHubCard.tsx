@@ -7,7 +7,11 @@ import {
 import { trpc } from "../utils/trpc";
 import TagsLeftNavLoader from "./loaders/TagsLeftNavLoader";
 import { dateFormatter } from "../utils/dateFormatter";
-import { AiFillEye, AiFillFolder, AiFillStar } from "react-icons/ai";
+import { 
+    AiFillEye, 
+    // AiFillFolder, 
+    AiFillStar 
+} from "react-icons/ai";
 import {
   TbGitFork,
   // TbLicense
@@ -74,10 +78,10 @@ const GitHubCard = () => {
             <p className="ml-2">{repoData.language}</p>
           </div>
 
-          <div className="p-2 px-3 flex flex-row items-center">
+          {/* <div className="p-2 px-3 flex flex-row items-center">
             <AiFillFolder className="mr-2 text-lg" />
             <p className="ml-2">{repoData.size} MB</p>
-          </div>
+          </div> */}
 
           <div className="p-2 px-3 flex flex-row items-center">
             <BsFillCloudUploadFill className="mr-2 text-md" />
