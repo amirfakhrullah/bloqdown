@@ -47,7 +47,7 @@ const Home: React.FC = () => {
             <PostButton setOpen={setOpen} />
 
             <div className="mt-5" />
-            
+
             <SearchInput
               value={search}
               onChange={handleSearch}
