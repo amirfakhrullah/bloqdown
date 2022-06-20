@@ -4,7 +4,7 @@ import TextareaAutosize from "react-textarea-autosize";
 
 const Input: React.FC<{
   title: string;
-  type: "input" | "textarea";
+  type: "input" | "textarea"; // select which type of input -> "input" - normal input, "textarea" - textarea
   onBlur?: FocusEventHandler<HTMLTextAreaElement> | undefined;
   minRows?: number;
   placeholder: string;

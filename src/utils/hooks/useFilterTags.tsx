@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { GetPostType } from "../../server/router/posts";
 
+/**
+ * hook for filtering tags
+ */
 const useFilterTags = () => {
   const [filterTags, setFilterTags] = useState<string[]>([]);
 

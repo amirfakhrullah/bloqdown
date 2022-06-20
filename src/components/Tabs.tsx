@@ -3,9 +3,12 @@ import { BiNews } from "react-icons/bi";
 import { FaHotjar } from "react-icons/fa";
 import { BsStars } from "react-icons/bs";
 
+/**
+ * Mobile tabs for trending
+ */
 const Tabs: React.FC<{
-  focusTab: 1 | 2 | 3;
-  selectTab: (tab: 1 | 2 | 3) => void;
+  focusTab: 1 | 2 | 3; // 3 options for tabs
+  selectTab: (tab: 1 | 2 | 3) => void; // select tab
 }> = ({ focusTab, selectTab }) => {
   return (
     <div className="md:hidden tabs mt-5 mb-3 homeTab">

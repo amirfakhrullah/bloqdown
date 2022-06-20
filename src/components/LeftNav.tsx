@@ -21,10 +21,14 @@ const navs = [
   },
 ];
 
+/**
+ * Left Side bar
+ * Consist of 2 - Trending and Filter by tags
+ */
 const LeftNav: React.FC<{
-  focusTab: 1 | 2 | 3;
-  selectTab: (tab: 1 | 2 | 3) => void;
-  handleTag: (e: ChangeEvent<HTMLInputElement>) => void
+  focusTab: 1 | 2 | 3; // 3 options for tabs
+  selectTab: (tab: 1 | 2 | 3) => void; // select tab
+  handleTag: (e: ChangeEvent<HTMLInputElement>) => void // select tags function
 }> = ({ focusTab, selectTab, handleTag }) => {
   return (
     <div className="md:block hidden">

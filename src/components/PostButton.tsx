@@ -1,6 +1,9 @@
 import { useSession } from "next-auth/react";
 import React, { Dispatch, SetStateAction } from "react";
 
+/**
+ * Section for creating a new post
+ */
 const PostButton: React.FC<{
   setOpen: Dispatch<SetStateAction<boolean>>;
 }> = ({ setOpen }) => {

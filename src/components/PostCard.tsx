@@ -6,8 +6,14 @@ import { GetPostType } from "../server/router/posts";
 import { dateFormatter } from "../utils/dateFormatter";
 import Likes from "./Likes";
 
+/**
+ * Component Card for posts in homepage and My Posts page
+ */
 const PostCard: React.FC<
-  GetPostType & { isFiltered?: boolean; page: "home" | "myPage" | "post" }
+  GetPostType & { 
+    isFiltered?: boolean; // for tags filtering, if true, means includes post after filter
+    page: "home" | "myPage" | "post" // to be passed to Likes component - for invalidateQueries usage
+  }
 > = ({
   id,
   title,

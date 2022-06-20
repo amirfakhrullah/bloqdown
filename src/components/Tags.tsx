@@ -6,6 +6,9 @@ import { trpc } from "../utils/trpc";
 import { tagInputValidation } from "../utils/validations";
 import TagsLoader from "./loaders/TagsLoader";
 
+/**
+ * Post tags section on the left side bar
+ */
 const Tags: React.FC<{
   postId: string;
   isOwner: boolean;

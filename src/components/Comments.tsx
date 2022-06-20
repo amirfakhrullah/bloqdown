@@ -10,10 +10,13 @@ import Delete from "./Delete";
 import { GetCommentsArrType } from "../server/router/comments";
 import { dateFormatter } from "../utils/dateFormatter";
 
+/**
+ * Comment Section under /posts/[id]
+ */
 const Comments: React.FC<{
   id: string | undefined;
   comments: GetCommentsArrType;
-  postOwner: boolean;
+  postOwner: boolean; // is the user the owner of the post or not
 }> = ({ id, comments, postOwner }) => {
   const client = trpc.useContext();
   const { mutate, isLoading } = trpc.useMutation("comment.create", {
