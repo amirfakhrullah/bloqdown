@@ -19,6 +19,7 @@ import PostDisplayLoader from "../../components/loaders/PostDisplayLoader";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { prisma } from "../../db/client";
 import { AiFillEye } from "react-icons/ai";
+import { Prisma } from "@prisma/client";
 
 const PostContent: React.FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
@@ -154,9 +155,8 @@ const PostContent: React.FC<
 };
 
 /**
- * Pre-check if post with the query id exists or not
- * If doesn't exist, redirect to 404 page right away
- * increment views by 1 before renders
+ * Increment views by 1 before renders
+ * if error, 
  */
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { id } = query;
@@ -167,34 +167,29 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     };
   }
 
-  const post = await prisma.post.findFirst({
-    where: {
-      id: id,
-    },
-    select: {
-      id: true,
-    },
-  });
-
-  if (!post) {
-    return {
-      notFound: true,
-    };
+  try {
+    await prisma.post.update({
+      where: {
+        id,
+      },
+      data: {
+        views: {
+          increment: 1,
+        },
+      },
+    });
+  } catch (e) {
+    if (e instanceof Prisma.PrismaClientKnownRequestError) {
+      if (e.code === "P2025") {
+        return {
+          notFound: true
+        }
+      }
+    }
   }
 
-  await prisma.post.update({
-    where: {
-      id: post.id,
-    },
-    data: {
-      views: {
-        increment: 1,
-      },
-    },
-  });
-
   return {
-    props: { id: post.id },
+    props: { id },
   };
 };
 
