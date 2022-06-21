@@ -1,19 +1,19 @@
 import React, { ChangeEvent } from "react";
 import { BiNews, BiTrendingUp } from "react-icons/bi";
 import { BsStars } from "react-icons/bs";
-import { FaHotjar } from "react-icons/fa";
+import { FaRocket } from "react-icons/fa";
 import TagsLeftNav from "./TagsLeftNav";
 
 const activeClassName = "bg-slate-700 border border-slate-600";
 
 const navs = [
   {
-    text: "Latest",
-    icon: <BsStars className="mr-2 text-lg" />,
+    text: "Popular",
+    icon: <FaRocket className="mr-3 text-sm" />,
   },
   {
-    text: "Popular",
-    icon: <FaHotjar className="mr-2 text-md" />,
+    text: "Latest",
+    icon: <BsStars className="mr-2 text-lg" />,
   },
   {
     text: "All",
