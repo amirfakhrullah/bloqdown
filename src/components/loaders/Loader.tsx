@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../Header";
-import MetaHead from "../MetaHead";
+import Header from "../commons/Header";
+import MetaHead from "../commons/MetaHead";
 
 const Loader: React.FC = () => {
   return (

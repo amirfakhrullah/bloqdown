@@ -1,6 +1,6 @@
 import React from "react";
 import { AiFillLike } from "react-icons/ai";
-import { trpc } from "../utils/trpc";
+import { trpc } from "../../utils/trpc";
 
 /**
  * Liking section for posts
