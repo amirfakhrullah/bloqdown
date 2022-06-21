@@ -1,4 +1,4 @@
-import React, { ReactInstance } from "react";
+import React from "react";
 import GitHubCard from "./GitHubCard";
 import About from "./About";
 import Author from "./Author";
