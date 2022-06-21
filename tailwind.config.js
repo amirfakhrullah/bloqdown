@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        lobster: ["Lobster"]
+        lobster: ["Lobster", "sans-serif"]
       }
     },
   },
