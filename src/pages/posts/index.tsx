@@ -11,11 +11,13 @@ import PostForm from "../../components/sections/PostForm";
 import RightNav from "../../components/sidebars/RightNav";
 import Screen from "../../components/commons/Screen";
 import { GetPostType } from "../../server/router/posts";
-import useFormModal from "../../utils/hooks/useModal";
+import useModal from "../../utils/hooks/useModal";
 import { trpc } from "../../utils/trpc";
+import PopWrapper from "../../components/PopWrapper";
 
 const MyPosts: React.FC = () => {
-  const { open, setOpen } = useFormModal();
+  const { open, setOpen } = useModal();
+  const { open: openMenu, setOpen: setOpenMenu } = useModal();
   const { data: posts, isLoading } = trpc.useQuery(["post.get-my-posts"]);
 
   const { data: session, status } = useSession();
@@ -24,15 +26,11 @@ const MyPosts: React.FC = () => {
     <>
       <MetaHead title="My Posts | BloqDown" />
       <Screen>
-        <Header />
+        <Header showMenuOnMobile={true} setOpenMenu={setOpenMenu} />
         <Container className="md:grid md:grid-cols-4 md:gap-3 max-w-7xl">
           <div className="md:col-start-2 md:col-span-2">
             <PostButton setOpen={setOpen} />
-            <PostForm
-              type="create"
-              open={open}
-              setOpen={setOpen}
-            />
+            <PostForm type="create" open={open} setOpen={setOpen} />
 
             <h1 className="mt-5 text-2xl font-black text-gray-300">My Posts</h1>
 
@@ -64,9 +62,19 @@ const MyPosts: React.FC = () => {
             )}
           </div>
 
-          <RightNav />
+          <div className="md:block hidden">
+            <div className="sticky top-2">
+              <RightNav />
+            </div>
+          </div>
         </Container>
       </Screen>
+
+      <div className="md:hidden inline">
+        <PopWrapper open={openMenu} setOpen={setOpenMenu}>
+          <RightNav />
+        </PopWrapper>
+      </div>
     </>
   );
 };

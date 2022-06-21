@@ -1,10 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import { abouts } from "../sidebars/RightNav/About";
 import { infos } from "../sidebars/RightNav/Author";
 
 const Footer = () => {
+  const router = useRouter();
+
   return (
     <div className="md:p-10 p-5 w-full bg-gray-900 border-t border-gray-700">
       <div className="flex md:flex-row md:items-start md:justify-between flex-col max-w-4xl mx-auto">
@@ -13,14 +16,14 @@ const Footer = () => {
             BloqDown
           </h1>
           <div className="cursor-pointer">
-            <Link href="https://vercel.com">
+            <div onClick={() => router.push("https://vercel.com")}>
               <Image
                 src="https://raw.githubusercontent.com/abumalick/powered-by-vercel/master/powered-by-vercel.svg"
                 height={40}
                 width={180}
                 alt="vercel"
               />
-            </Link>
+            </div>
           </div>
         </div>
 

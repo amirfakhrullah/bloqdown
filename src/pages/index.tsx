@@ -15,9 +15,12 @@ import SearchInput from "../components/SearchInput";
 import useFilterTags from "../utils/hooks/useFilterTags";
 import usePostsLists from "../utils/hooks/usePostsLists";
 import PostCardLoader from "../components/loaders/PostCardLoader";
+import PopWrapper from "../components/PopWrapper";
+import TagsLeftNav from "../components/sidebars/LeftNav/TagsLeftNav";
 
 const Home: React.FC = () => {
-  const { open, setOpen } = useModal();
+  const { open, setOpen } = useModal(); // form
+  const { open: openMenu, setOpen: setOpenMenu } = useModal(); // menu
   const { focusTab, selectTab } = useTabs();
 
   const {
@@ -35,13 +38,17 @@ const Home: React.FC = () => {
     <>
       <MetaHead title="BloqDown" />
       <Screen>
-        <Header />
+        <Header showMenuOnMobile={true} setOpenMenu={setOpenMenu} />
         <Container className="md:grid md:grid-cols-4 md:gap-3 max-w-7xl">
-          <LeftNav
-            focusTab={focusTab}
-            selectTab={selectTab}
-            handleTag={handleTag}
-          />
+          <div className="md:block hidden">
+            <div className="sticky top-2">
+              <LeftNav
+                focusTab={focusTab}
+                selectTab={selectTab}
+                handleTag={handleTag}
+              />
+            </div>
+          </div>
 
           <div className="md:col-span-2">
             <PostButton setOpen={setOpen} />
@@ -99,9 +106,21 @@ const Home: React.FC = () => {
             )}
           </div>
 
-          <RightNav />
+          <div className="md:block hidden">
+            <div className="sticky top-2">
+              <RightNav />
+            </div>
+          </div>
         </Container>
       </Screen>
+
+      <div className="md:hidden inline">
+        <PopWrapper open={openMenu} setOpen={setOpenMenu}>
+          <TagsLeftNav handleTag={handleTag} />
+          <div className="py-2" />
+          <RightNav />
+        </PopWrapper>
+      </div>
     </>
   );
 };

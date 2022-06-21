@@ -40,7 +40,7 @@ const TagsLeftNav: React.FC<{
       {isLoading && <TagsLeftNavLoader />}
 
       {!isLoading && tags && (
-        <div className="my-1 p-2 rounded-lg bg-slate-800 border border-gray-600">
+        <div className="my-1 p-2 rounded-lg bg-slate-800 border border-gray-600 max-h-[500px] overflow-y-auto">
 
             <SearchInput
               onChange={handleSearch}

@@ -1,23 +1,42 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
+import { BiMenuAltLeft } from "react-icons/bi";
 
 const Header: React.FC<{
   displayButtons?: boolean; // for displaying buttons on the right side of the Header
-}> = ({ displayButtons = true }) => {
+  showMenuOnMobile?: boolean;
+  setOpenMenu?: Dispatch<SetStateAction<boolean>>
+}> = ({
+  displayButtons = true,
+  showMenuOnMobile = false,
+  setOpenMenu,
+}) => {
   const { data: session, status } = useSession();
   const router = useRouter();
 
   return (
     <>
-      <div className="w-full bg-gray-900 border-b border-gray-700 md:p-5 p-2 flex flex-row items-center justify-between md:h-20">
-        <Link href="/">
-          <h1 className="font-lobster sm:text-3xl text-2xl font-black text-indigo-500 cursor-pointer">
-            BloqDown
-          </h1>
-        </Link>
+      <div className="w-full bg-gray-900 border-b border-gray-700  md:p-5 p-2 flex flex-row items-center justify-between md:h-20">
+        <div className="flex flex-row items-center">
+          {showMenuOnMobile && setOpenMenu && (
+            <div
+              onClick={() => setOpenMenu(true)}
+              className="block md:hidden mr-2 p-2 border border-gray-600 rounded-md cursor-pointer"
+            >
+              <BiMenuAltLeft className="text-lg" />
+            </div>
+          )}
+
+          <Link href="/">
+            <h1 className="font-lobster sm:text-3xl text-2xl font-black text-indigo-500 cursor-pointer">
+              BloqDown
+            </h1>
+          </Link>
+        </div>
+
         {displayButtons && status !== "loading" && (
           <div className="flex flex-row items-center pl-1">
             {session && session.user ? (
