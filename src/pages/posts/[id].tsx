@@ -33,7 +33,9 @@ const PostContent: React.FC<
 
   return (
     <>
-      <MetaHead title={postDataLoading ? "Loading.." : `${post.title!} | BloqDown`} />
+      <MetaHead
+        title={postDataLoading ? "Loading.." : `${post.title!} | BloqDown`}
+      />
       <Screen>
         <Header />
         <Container className="md:grid md:grid-cols-4 md:gap-3 max-w-7xl">
@@ -176,8 +178,19 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     };
   }
 
+  await prisma.post.update({
+    where: {
+      id: post.id,
+    },
+    data: {
+      views: {
+        increment: 1,
+      },
+    },
+  });
+
   return {
-    props: { id },
+    props: { id: post.id },
   };
 };
 

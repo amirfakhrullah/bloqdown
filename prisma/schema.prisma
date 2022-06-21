@@ -26,12 +26,12 @@ model Post {
 
   updated DateTime?
 
+  views Int @default(0)
+
   Comment Comment[]
   tags    Tag[]
 
   likes Like[]
-  
-  views View[]
 
   @@index([userToken])
 }
@@ -77,13 +77,6 @@ model Tag {
   postId String
 
   @@unique([postId, tagName])
-}
-
-model View {
-  id      String   @id @default(cuid())
-
-  post   Post   @relation(fields: [postId], references: [id])
-  postId String
 }
 
 // Next-Auth stuffs

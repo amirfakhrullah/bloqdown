@@ -34,7 +34,6 @@ export const postsRouter = createRouter()
             select: {
               likes: true,
               Comment: true,
-              views: true,
             },
           },
         },
@@ -107,7 +106,6 @@ export const postsRouter = createRouter()
               select: {
                 likes: true,
                 Comment: true,
-                views: true,
               },
             },
           },
@@ -146,7 +144,6 @@ export const postsRouter = createRouter()
             select: {
               likes: true,
               Comment: true,
-              views: true,
             },
           },
         },
@@ -192,7 +189,6 @@ export const postsRouter = createRouter()
           _count: {
             select: {
               likes: true,
-              views: true,
             },
           },
         },
