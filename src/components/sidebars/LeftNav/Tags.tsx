@@ -79,12 +79,12 @@ const Tags: React.FC<{
         </p>
 
         {isOwner && data && data.length < 5 && (
-          <div className="w-full flex lg:flex-row flex-col md:items-center items-end">
-            <div className="flex-1 flex flex-col">
+          <div className="w-full flex md:flex-row flex-col md:items-center items-end">
+            <div className="w-full flex-1 flex flex-col">
               <input
                 {...register("tagName")}
                 placeholder="Add tag"
-                className="mt-1 mb-2 p-1 bg-transparent border-b outline-none text-sm"
+                className="w-full mt-1 mb-2 p-1 bg-transparent rounded-none border-b outline-none text-sm"
               />
               <p className="text-sm font-bold text-red-400 mt-1 text-right">
                 {errors.tagName && errors.tagName.message}

@@ -8,7 +8,7 @@ const PopWrapper: React.FC<{
 }> = ({ open, setOpen, children }) => {
   return (
     <div className={`modal ${open && "modal-open"}`}>
-      <div className="modal-box p-4 max-w-4xl rounded-md bg-slate-800 border border-gray-500">
+      <div className="modal-box p-4 max-w-4xl rounded-md bg-slate-900 border border-gray-500">
         <div className="flex justify-end">
           <div
             onClick={() => setOpen(false)}
