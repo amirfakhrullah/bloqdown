@@ -9,7 +9,7 @@ const NotFound: React.FC = () => {
       <div className="h-screen">
         <Header />
         <div className="p-20">
-          <h3 className="text-center font-black text-4xl text-gray-500">
+          <h3 className="font-lobster text-center font-black text-4xl text-gray-500">
             404 Not Found
           </h3>
         </div>
