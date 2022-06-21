@@ -1,11 +1,11 @@
 import MetaHead from "../components/commons/MetaHead";
-import PostForm from "../components/PostForm";
-import PostCard from "../components/PostCard";
+import PostForm from "../components/sections/PostForm";
+import PostCard from "../components/sections/PostCard";
 import Header from "../components/commons/Header";
-import Container from "../components/Container";
-import Screen from "../components/Screen";
-import Tabs from "../components/Tabs";
-import PostButton from "../components/PostButton";
+import Container from "../components/commons/Container";
+import Screen from "../components/commons/Screen";
+import Tabs from "../components/sections/Tabs";
+import PostButton from "../components/sections/PostButton";
 import { GetPostType } from "../server/router/posts";
 import useModal from "../utils/hooks/useModal";
 import useTabs from "../utils/hooks/useTabs";

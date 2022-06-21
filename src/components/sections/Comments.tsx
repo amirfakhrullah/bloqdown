@@ -1,14 +1,14 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { trpc } from "../utils/trpc";
-import Input from "./Input";
+import { trpc } from "../../utils/trpc";
+import Input from "../Input";
 import TextareaAutosize from "react-textarea-autosize";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createCommentValidation } from "../utils/validations";
+import { createCommentValidation } from "../../utils/validations";
 import Image from "next/image";
 import Delete from "./Delete";
-import { GetCommentsArrType } from "../server/router/comments";
-import { dateFormatter } from "../utils/dateFormatter";
+import { GetCommentsArrType } from "../../server/router/comments";
+import { dateFormatter } from "../../utils/dateFormatter";
 
 /**
  * Comment Section under /posts/[id]

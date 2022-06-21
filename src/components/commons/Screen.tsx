@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "./commons/Footer";
+import Footer from "./Footer";
 
 const Screen: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (

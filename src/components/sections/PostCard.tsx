@@ -3,8 +3,8 @@ import Link from "next/link";
 import React from "react";
 import { AiFillEye } from "react-icons/ai";
 import { FaCommentAlt } from "react-icons/fa";
-import { GetPostType } from "../server/router/posts";
-import { dateFormatter } from "../utils/dateFormatter";
+import { GetPostType } from "../../server/router/posts";
+import { dateFormatter } from "../../utils/dateFormatter";
 import Likes from "./Likes";
 
 /**
