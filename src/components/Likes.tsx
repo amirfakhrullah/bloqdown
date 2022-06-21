@@ -9,7 +9,7 @@ const Likes: React.FC<{
   postId: string;
   ownerLiked: boolean;
   likes: number;
-  page: "home" | "myPage" | "post" // for indicating which invalidateQueries to perform, refer the "onSuccess" in the mutation
+  page: "home" | "myPage" | "post"; // for indicating which invalidateQueries to perform, refer the "onSuccess" in the mutation
 }> = ({ postId, ownerLiked, likes, page }) => {
   const client = trpc.useContext();
 
@@ -17,7 +17,7 @@ const Likes: React.FC<{
     onSuccess: () => {
       if (page === "home") {
         client.invalidateQueries(["post.get-all-posts"]);
-      } else if (page ==="myPage") {
+      } else if (page === "myPage") {
         client.invalidateQueries(["post.get-my-posts"]);
       } else if (page === "post") {
         client.invalidateQueries(["post.get-by-id"]);
@@ -29,7 +29,7 @@ const Likes: React.FC<{
     onSuccess: () => {
       if (page === "home") {
         client.invalidateQueries(["post.get-all-posts"]);
-      } else if (page ==="myPage") {
+      } else if (page === "myPage") {
         client.invalidateQueries(["post.get-my-posts"]);
       } else if (page === "post") {
         client.invalidateQueries(["post.get-by-id"]);
@@ -60,18 +60,19 @@ const Likes: React.FC<{
       onClick={() => handleClick()}
       className="flex flex-row items-center cursor-pointer hover:bg-indigo-900 p-1 rounded-md"
     >
-      <p
-        className={`text-gray-500 text-sm font-bold mr-1 ${
-          ownerLiked ? "text-indigo-500" : "text-gray-500"
-        }`}
-      >
-        {likes} <span className="sm:inline hidden">Like{likes > 1 && "s"}</span>
-      </p>
       <div>
         <AiFillLike
           className={`${ownerLiked ? "text-indigo-500" : "text-gray-500"}`}
         />
       </div>
+
+      <p
+        className={`text-gray-500 text-sm font-medium ml-1 ${
+          ownerLiked ? "text-indigo-500" : "text-gray-500"
+        }`}
+      >
+        {likes} <span className="sm:inline hidden">like{likes > 1 && "s"}</span>
+      </p>
     </div>
   );
 };

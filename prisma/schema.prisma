@@ -26,6 +26,8 @@ model Post {
 
   updated DateTime?
 
+  views Int @default(0)
+
   Comment Comment[]
   tags    Tag[]
 

@@ -24,6 +24,7 @@ export const postsRouter = createRouter()
             },
           },
           tags: true,
+          views: true,
           likes: {
             select: {
               userToken: true,
@@ -96,6 +97,7 @@ export const postsRouter = createRouter()
               },
             },
             tags: true,
+            views: true,
             likes: {
               select: {
                 userToken: true,
@@ -134,6 +136,7 @@ export const postsRouter = createRouter()
             },
           },
           tags: true,
+          views: true,
           likes: {
             select: {
               userToken: true,
