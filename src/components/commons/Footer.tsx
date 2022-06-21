@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { abouts } from "./sidebars/RightNav/About";
-import { infos } from "./sidebars/RightNav/Author";
+import { abouts } from "../sidebars/RightNav/About";
+import { infos } from "../sidebars/RightNav/Author";
 
 const Footer = () => {
   return (

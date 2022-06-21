@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useMemo, useState } from "react";
 import { AiFillTag } from "react-icons/ai";
-import { trpc } from "../utils/trpc";
-import TagsLeftNavLoader from "./loaders/TagsLeftNavLoader";
-import SearchInput from "./SearchInput";
+import { trpc } from "../../../utils/trpc";
+import TagsLeftNavLoader from "../../loaders/TagsLeftNavLoader";
+import SearchInput from "../../SearchInput";
 
 /**
  * Filter by tags section

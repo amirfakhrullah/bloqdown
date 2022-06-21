@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from "react";
 import Trending from "./Trending";
-import TagsLeftNav from "../../TagsLeftNav";
+import TagsLeftNav from "./TagsLeftNav";
 
 /**
  * Left Side bar

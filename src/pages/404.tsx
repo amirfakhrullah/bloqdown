@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../components/Header";
-import MetaHead from "../components/MetaHead";
+import Header from "../components/commons/Header";
+import MetaHead from "../components/commons/MetaHead";
 
 const NotFound: React.FC = () => {
   return (
