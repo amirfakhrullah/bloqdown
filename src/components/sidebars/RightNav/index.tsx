@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactInstance } from "react";
 import GitHubCard from "./GitHubCard";
 import About from "./About";
 import Author from "./Author";
@@ -8,14 +8,12 @@ import Author from "./Author";
  */
 const RightNav = () => {
   return (
-    <div className="md:block hidden">
-      <div className="sticky top-2">
-        <About />
-        <div className="py-2" />
-        <GitHubCard />
-        <div className="py-2" />
-        <Author />
-      </div>
+    <div className="sticky top-2">
+      <About />
+      <div className="py-2" />
+      <GitHubCard />
+      <div className="py-2" />
+      <Author />
     </div>
   );
 };

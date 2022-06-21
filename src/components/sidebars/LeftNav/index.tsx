@@ -12,14 +12,10 @@ const LeftNav: React.FC<{
   handleTag: (e: ChangeEvent<HTMLInputElement>) => void; // select tags function
 }> = ({ focusTab, selectTab, handleTag }) => {
   return (
-    <div className="md:block hidden">
-      <div className="sticky top-2">
-        <Trending focusTab={focusTab} selectTab={selectTab} />
-
-        <div className="py-2" />
-
-        <TagsLeftNav handleTag={handleTag} />
-      </div>
+    <div className="sticky top-2">
+      <Trending focusTab={focusTab} selectTab={selectTab} />
+      <div className="py-2" />
+      <TagsLeftNav handleTag={handleTag} />
     </div>
   );
 };

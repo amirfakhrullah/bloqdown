@@ -28,11 +28,7 @@ const MyPosts: React.FC = () => {
         <Container className="md:grid md:grid-cols-4 md:gap-3 max-w-7xl">
           <div className="md:col-start-2 md:col-span-2">
             <PostButton setOpen={setOpen} />
-            <PostForm
-              type="create"
-              open={open}
-              setOpen={setOpen}
-            />
+            <PostForm type="create" open={open} setOpen={setOpen} />
 
             <h1 className="mt-5 text-2xl font-black text-gray-300">My Posts</h1>
 
@@ -64,7 +60,9 @@ const MyPosts: React.FC = () => {
             )}
           </div>
 
-          <RightNav />
+          <div className="md:block hidden">
+            <RightNav />
+          </div>
         </Container>
       </Screen>
     </>

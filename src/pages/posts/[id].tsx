@@ -48,7 +48,9 @@ const PostContent: React.FC<
             </>
           ) : (
             <>
-              <Tags postId={post.id!} isOwner={post.isOwner!} />
+              <div className="md:block hidden">
+                <Tags postId={post.id!} isOwner={post.isOwner!} />
+              </div>
 
               <div className="md:col-start-2 md:col-span-2 overflow-hidden">
                 <div className="md:p-6 p-4 mb-3 rounded-lg bg-slate-800 border border-gray-600 overflow-hidden">
@@ -147,7 +149,9 @@ const PostContent: React.FC<
             </>
           )}
 
-          <RightNav />
+          <div className="md:block hidden">
+            <RightNav />
+          </div>
         </Container>
       </Screen>
     </>
@@ -156,7 +160,7 @@ const PostContent: React.FC<
 
 /**
  * Increment views by 1 before renders
- * if error, 
+ * if error,
  */
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { id } = query;
@@ -182,8 +186,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     if (e instanceof Prisma.PrismaClientKnownRequestError) {
       if (e.code === "P2025") {
         return {
-          notFound: true
-        }
+          notFound: true,
+        };
       }
     }
   }
