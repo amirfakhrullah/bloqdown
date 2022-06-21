@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { guides, sections } from "./RightNav";
+import { guides, sections } from "./sidebars/RightNav";
 
 const Footer = () => {
   return (

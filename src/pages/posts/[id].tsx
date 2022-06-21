@@ -12,7 +12,7 @@ import PostForm from "../../components/PostForm";
 import { GetCommentsArrType } from "../../server/router/comments";
 import Markdown from "../../components/Markdown";
 import { dateFormatter } from "../../utils/dateFormatter";
-import RightNav from "../../components/RightNav";
+import RightNav from "../../components/sidebars/RightNav";
 import Tags from "../../components/Tags";
 import TagsLoader from "../../components/loaders/TagsLoader";
 import PostDisplayLoader from "../../components/loaders/PostDisplayLoader";

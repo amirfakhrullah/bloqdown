@@ -8,7 +8,7 @@ import MetaHead from "../../components/MetaHead";
 import PostButton from "../../components/PostButton";
 import PostCard from "../../components/PostCard";
 import PostForm from "../../components/PostForm";
-import RightNav from "../../components/RightNav";
+import RightNav from "../../components/sidebars/RightNav";
 import Screen from "../../components/Screen";
 import { GetPostType } from "../../server/router/posts";
 import useFormModal from "../../utils/hooks/useModal";

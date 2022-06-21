@@ -9,7 +9,7 @@ import {
 import { BiInfoCircle } from "react-icons/bi";
 // import { ImBlog } from "react-icons/im";
 import Link from "next/link";
-import GitHubCard from "./GitHubCard";
+import GitHubCard from "../../GitHubCard";
 
 export const guides = [
   {
