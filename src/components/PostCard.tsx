@@ -83,15 +83,16 @@ const PostCard: React.FC<
             <div className="flex flex-row items-center ml-2 cursor-pointer hover:bg-slate-900 p-1 rounded-md">
               <FaCommentAlt className="text-gray-500 text-sm" />
 
-              <p className="text-gray-500 text-sm font-bold ml-1">
-                {_count.Comment}
+              <p className="text-gray-500 text-sm font-medium ml-1">
+                {_count.Comment}{" "}
+                <span className="sm:inline hidden">comment{_count.Comment > 1 && "s"}</span>
               </p>
             </div>
           </Link>
 
           <div className="flex flex-row items-center ml-2">
             <AiFillEye className="text-gray-500 text-md" />
-            <p className="text-gray-500 text-sm font-bold ml-1">{views}</p>
+            <p className="text-gray-500 text-sm font-medium ml-1">{views} <span className="sm:inline hidden">view{views > 1 && "s"}</span></p>
           </div>
         </div>
 

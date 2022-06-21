@@ -67,11 +67,11 @@ const Likes: React.FC<{
       </div>
 
       <p
-        className={`text-gray-500 text-sm font-bold ml-1 ${
+        className={`text-gray-500 text-sm font-medium ml-1 ${
           ownerLiked ? "text-indigo-500" : "text-gray-500"
         }`}
       >
-        {likes}
+        {likes} <span className="sm:inline hidden">like{likes > 1 && "s"}</span>
       </p>
     </div>
   );

@@ -18,6 +18,7 @@ import TagsLoader from "../../components/loaders/TagsLoader";
 import PostDisplayLoader from "../../components/loaders/PostDisplayLoader";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { prisma } from "../../db/client";
+import { AiFillEye } from "react-icons/ai";
 
 const PostContent: React.FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
@@ -57,12 +58,25 @@ const PostContent: React.FC<
                 </div>
 
                 <div className="flex flex-row items-center justify-between">
-                  <Likes
-                    postId={post.id!}
-                    ownerLiked={post.ownerLiked}
-                    likes={post._count?.likes!}
-                    page="post"
-                  />
+                  <div className="flex flex-row items-center">
+                    <Likes
+                      postId={post.id!}
+                      ownerLiked={post.ownerLiked}
+                      likes={post._count?.likes!}
+                      page="post"
+                    />
+
+                    <div className="flex flex-row items-center ml-2">
+                      <AiFillEye className="text-gray-500 text-md" />
+                      <p className="text-gray-500 text-sm font-medium ml-1">
+                        {post.views}{" "}
+                        <span className="sm:inline hidden">
+                          view{post.views! > 1 && "s"}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+
                   <div>
                     {post.githubUser ? (
                       <div className="flex flex-row items-center my-1 justify-end">
@@ -153,6 +167,7 @@ const PostContent: React.FC<
 /**
  * Pre-check if post with the query id exists or not
  * If doesn't exist, redirect to 404 page right away
+ * increment views by 1 before renders
  */
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { id } = query;
