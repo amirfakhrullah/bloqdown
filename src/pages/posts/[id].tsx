@@ -59,8 +59,8 @@ const PostContent: React.FC<
 
               <div className="md:col-start-2 md:col-span-2 overflow-hidden">
                 <div className="md:p-6 p-4 mb-3 rounded-lg bg-slate-800 border border-gray-600 overflow-hidden">
-                  <article className="prose prose-gray max-w-none">
-                    <h1 className="border-b border-gray-600">{post.title}</h1>
+                  <article className="mardown-group text-white prose prose-gray max-w-none">
+                    <h1>{post.title}</h1>
                   </article>
                   <Markdown>{post.description as string}</Markdown>
                 </div>
