@@ -80,12 +80,10 @@ model Tag {
 }
 
 model View {
-  userToken String @db.VarChar(255)
+  id      String   @id @default(cuid())
 
   post   Post   @relation(fields: [postId], references: [id])
   postId String
-
-  @@unique([userToken, postId])
 }
 
 // Next-Auth stuffs
