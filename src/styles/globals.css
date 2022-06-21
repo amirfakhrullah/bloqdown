@@ -59,3 +59,7 @@ p {
 #mardown-group h3 {
   @apply border-b border-gray-600;
 }
+
+#mardown-group {
+  @apply text-white;
+}
