@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { guides, sections } from "./RightNav";
@@ -7,8 +8,15 @@ const Footer = () => {
     <div className="md:p-10 p-5 w-full bg-gray-900 border-t border-gray-700">
       <div className="flex md:flex-row md:items-start md:justify-between flex-col max-w-4xl mx-auto">
         <div>
-          <h1 className="font-lobster text-3xl font-black text-indigo-500 mb-1">BloqDown</h1>
-          <p>© Copyright is a fallacy</p>
+          <h1 className="font-lobster text-4xl font-black text-indigo-500 mb-1">
+            BloqDown
+          </h1>
+            <Image
+              src="https://raw.githubusercontent.com/abumalick/powered-by-vercel/master/powered-by-vercel.svg"
+              height={40}
+              width={180}
+              alt="vercel"
+            />
         </div>
 
         <div>
