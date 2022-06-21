@@ -9,13 +9,14 @@ import TagsLeftNav from "./TagsLeftNav";
 const LeftNav: React.FC<{
   focusTab: 1 | 2 | 3; // 3 options for tabs
   selectTab: (tab: 1 | 2 | 3) => void; // select tab
+  filterTags: string[];
   handleTag: (e: ChangeEvent<HTMLInputElement>) => void; // select tags function
-}> = ({ focusTab, selectTab, handleTag }) => {
+}> = ({ focusTab, selectTab, filterTags, handleTag }) => {
   return (
     <>
       <Trending focusTab={focusTab} selectTab={selectTab} />
       <div className="py-2" />
-      <TagsLeftNav handleTag={handleTag} />
+      <TagsLeftNav filterTags={filterTags} handleTag={handleTag} />
     </>
   );
 };

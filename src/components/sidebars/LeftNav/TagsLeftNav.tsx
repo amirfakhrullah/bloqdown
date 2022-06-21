@@ -8,8 +8,9 @@ import SearchInput from "../../SearchInput";
  * Filter by tags section
  */
 const TagsLeftNav: React.FC<{
+  filterTags: string[];
   handleTag: (e: ChangeEvent<HTMLInputElement>) => void;
-}> = ({ handleTag }) => {
+}> = ({ filterTags, handleTag }) => {
   const { data: tags, isLoading } = trpc.useQuery(["tags.get-all"]);
   const [seeAll, setSeeAll] = useState(false);
 
@@ -41,12 +42,11 @@ const TagsLeftNav: React.FC<{
 
       {!isLoading && tags && (
         <div className="my-1 p-2 rounded-lg bg-slate-800 border border-gray-600 max-h-[500px] overflow-y-auto">
-
-            <SearchInput
-              onChange={handleSearch}
-              value={search}
-              placeholder="Find tag"
-            />
+          <SearchInput
+            onChange={handleSearch}
+            value={search}
+            placeholder="Find tag"
+          />
 
           {displayedTags.map((tag, idx) => (
             <div
@@ -55,7 +55,12 @@ const TagsLeftNav: React.FC<{
                 !seeAll && idx >= 5 ? "hidden" : ""
               }`}
             >
-              <input type="checkbox" value={tag.tagName} onChange={handleTag} />
+              <input
+                type="checkbox"
+                value={tag.tagName}
+                onChange={handleTag}
+                checked={filterTags.includes(tag.tagName)}
+              />
               <p className="ml-2">{tag.tagName}</p>
             </div>
           ))}
