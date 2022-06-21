@@ -30,6 +30,8 @@ model Post {
   tags    Tag[]
 
   likes Like[]
+  
+  views View[]
 
   @@index([userToken])
 }
@@ -75,6 +77,15 @@ model Tag {
   postId String
 
   @@unique([postId, tagName])
+}
+
+model View {
+  userToken String @db.VarChar(255)
+
+  post   Post   @relation(fields: [postId], references: [id])
+  postId String
+
+  @@unique([userToken, postId])
 }
 
 // Next-Auth stuffs
