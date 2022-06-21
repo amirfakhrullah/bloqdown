@@ -1,26 +1,6 @@
 import React, { ChangeEvent } from "react";
-import { BiNews, BiTrendingUp } from "react-icons/bi";
-import { BsStars } from "react-icons/bs";
-import { FaRocket } from "react-icons/fa";
 import Trending from "./Trending";
 import TagsLeftNav from "../../TagsLeftNav";
-
-const activeClassName = "bg-slate-700 border border-slate-600";
-
-const navs = [
-  {
-    text: "Popular",
-    icon: <FaRocket className="mr-3 text-sm" />,
-  },
-  {
-    text: "Latest",
-    icon: <BsStars className="mr-2 text-lg" />,
-  },
-  {
-    text: "All",
-    icon: <BiNews className="mr-2 text-lg" />,
-  },
-];
 
 /**
  * Left Side bar

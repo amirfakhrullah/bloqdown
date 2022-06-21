@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { guides, sections } from "./sidebars/RightNav";
+import { abouts } from "./sidebars/RightNav/About";
+import { infos } from "./sidebars/RightNav/Author";
 
 const Footer = () => {
   return (
@@ -25,10 +26,10 @@ const Footer = () => {
 
         <div>
           <h3 className="text-xl font-bold mb-1 md:mt-0 mt-3">About</h3>
-          {guides.map((guide, idx) => (
-            <Link key={`guide__footer__${idx}`} href={guide.href}>
+          {abouts.map((abt, idx) => (
+            <Link key={`abt__footer__${idx}`} href={abt.href}>
               <p className="cursor-pointer my-1 hover:underline">
-                {guide.text}
+                {abt.text}
               </p>
             </Link>
           ))}
@@ -36,10 +37,10 @@ const Footer = () => {
 
         <div>
           <h3 className="text-xl font-bold mb-1 md:mt-0 mt-3">Author</h3>
-          {sections.map((section, idx) => (
-            <Link key={`author__footer__${idx}`} href={section.href}>
+          {infos.map((info, idx) => (
+            <Link key={`author__footer__${idx}`} href={info.href}>
               <p className="cursor-pointer my-1 hover:underline">
-                {section.text}
+                {info.text}
               </p>
             </Link>
           ))}
