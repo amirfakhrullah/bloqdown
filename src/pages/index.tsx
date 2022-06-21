@@ -32,7 +32,7 @@ const Home: React.FC = () => {
     byPopularity,
   } = usePostsLists();
 
-  const { filterBoolean, handleTag } = useFilterTags();
+  const { filterBoolean, handleTag, filterTags } = useFilterTags();
 
   return (
     <>
@@ -45,6 +45,7 @@ const Home: React.FC = () => {
               <LeftNav
                 focusTab={focusTab}
                 selectTab={selectTab}
+                filterTags={filterTags}
                 handleTag={handleTag}
               />
             </div>
@@ -116,7 +117,7 @@ const Home: React.FC = () => {
 
       <div className="md:hidden inline">
         <PopWrapper open={openMenu} setOpen={setOpenMenu}>
-          <TagsLeftNav handleTag={handleTag} />
+          <TagsLeftNav filterTags={filterTags} handleTag={handleTag} />
           <div className="py-2" />
           <RightNav />
         </PopWrapper>
