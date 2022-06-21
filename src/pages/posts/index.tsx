@@ -11,11 +11,11 @@ import PostForm from "../../components/sections/PostForm";
 import RightNav from "../../components/sidebars/RightNav";
 import Screen from "../../components/commons/Screen";
 import { GetPostType } from "../../server/router/posts";
-import useFormModal from "../../utils/hooks/useModal";
+import useModal from "../../utils/hooks/useModal";
 import { trpc } from "../../utils/trpc";
 
 const MyPosts: React.FC = () => {
-  const { open, setOpen } = useFormModal();
+  const { open, setOpen } = useModal();
   const { data: posts, isLoading } = trpc.useQuery(["post.get-my-posts"]);
 
   const { data: session, status } = useSession();
