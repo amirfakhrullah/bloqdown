@@ -2,9 +2,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiFillCloseCircle, AiFillTag } from "react-icons/ai";
-import { trpc } from "../utils/trpc";
-import { tagInputValidation } from "../utils/validations";
-import TagsLoader from "./loaders/TagsLoader";
+import { trpc } from "../../../utils/trpc";
+import { tagInputValidation } from "../../../utils/validations";
+import TagsLoader from "../../loaders/TagsLoader";
 
 /**
  * Post tags section on the left side bar

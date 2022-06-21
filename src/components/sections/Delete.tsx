@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
-import { trpc } from "../utils/trpc";
+import { trpc } from "../../utils/trpc";
 
 /**
  * Delete section for comments and posts

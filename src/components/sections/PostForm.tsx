@@ -1,10 +1,10 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "react-hook-form";
-import { trpc } from "../utils/trpc";
-import Input from "./Input";
+import { trpc } from "../../utils/trpc";
+import Input from "../Input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createPostValidation } from "../utils/validations";
-import Markdown from "./Markdown";
+import { createPostValidation } from "../../utils/validations";
+import Markdown from "../Markdown";
 import { useRouter } from "next/router";
 
 /**
