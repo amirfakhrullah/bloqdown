@@ -11,12 +11,16 @@ const Footer = () => {
           <h1 className="font-lobster text-4xl font-black text-indigo-500 mb-1">
             BloqDown
           </h1>
-            <Image
-              src="https://raw.githubusercontent.com/abumalick/powered-by-vercel/master/powered-by-vercel.svg"
-              height={40}
-              width={180}
-              alt="vercel"
-            />
+          <div className="cursor-pointer">
+            <Link href="https://vercel.com">
+              <Image
+                src="https://raw.githubusercontent.com/abumalick/powered-by-vercel/master/powered-by-vercel.svg"
+                height={40}
+                width={180}
+                alt="vercel"
+              />
+            </Link>
+          </div>
         </div>
 
         <div>
