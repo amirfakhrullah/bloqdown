@@ -1,6 +1,6 @@
 import React from "react";
 import { BiNews } from "react-icons/bi";
-import { FaHotjar } from "react-icons/fa";
+import { FaHotjar, FaRocket } from "react-icons/fa";
 import { BsStars } from "react-icons/bs";
 
 /**
@@ -18,8 +18,8 @@ const Tabs: React.FC<{
           focusTab === 1 ? "tab-active" : ""
         }`}
       >
-        <BsStars className="sm:text-lg text-sm" />
-        <span className="sm:ml-2 ml-1">Latest</span>
+        <FaRocket className="sm:text-md text-sm" />
+        <span className="sm:ml-2 ml-1">Hot</span>
       </a>
       <a
         onClick={() => selectTab(2)}
@@ -27,8 +27,8 @@ const Tabs: React.FC<{
           focusTab === 2 ? "tab-active" : ""
         }`}
       >
-        <FaHotjar className="sm:text-md text-sm" />
-        <span className="sm:ml-2 ml-1">Hot</span>
+        <BsStars className="sm:text-lg text-sm" />
+        <span className="sm:ml-2 ml-1">Latest</span>
       </a>
       <a
         onClick={() => selectTab(3)}

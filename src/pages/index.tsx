@@ -63,21 +63,21 @@ const Home: React.FC = () => {
             ) : (
               <>
                 {focusTab === 1 &&
-                  byLatest.map((post) => (
-                    <PostCard
-                      isFiltered={filterBoolean(post)}
-                      key={post.id}
-                      {...post}
-                      page="home"
-                    />
-                  ))}
-
-                {focusTab === 2 &&
                   byPopularity.map((post) => (
                     <PostCard
                       isFiltered={filterBoolean(post)}
                       key={post.id}
                       {...(post as GetPostType)}
+                      page="home"
+                    />
+                  ))}
+
+                {focusTab === 2 &&
+                  byLatest.map((post) => (
+                    <PostCard
+                      isFiltered={filterBoolean(post)}
+                      key={post.id}
+                      {...post}
                       page="home"
                     />
                   ))}
