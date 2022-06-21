@@ -24,7 +24,7 @@ const Header: React.FC<{
           {showMenuOnMobile && setOpenMenu && (
             <div
               onClick={() => setOpenMenu(true)}
-              className="block md:hidden mr-2 p-2 border border-gray-600 rounded-md"
+              className="block md:hidden mr-2 p-2 border border-gray-600 rounded-md cursor-pointer"
             >
               <BiMenuAltLeft className="text-lg" />
             </div>

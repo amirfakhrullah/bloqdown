@@ -20,6 +20,8 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { prisma } from "../../db/client";
 import { AiFillEye } from "react-icons/ai";
 import { Prisma } from "@prisma/client";
+import useModal from "../../utils/hooks/useModal";
+import PopWrapper from "../../components/PopWrapper";
 
 const PostContent: React.FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
@@ -30,6 +32,7 @@ const PostContent: React.FC<
     isFetching,
   } = trpc.useQuery(["post.get-by-id", { id }]);
   const [openEdit, setOpenEdit] = useState(false);
+  const { open: openMenu, setOpen: setOpenMenu } = useModal();
 
   const postDataLoading = isLoading || !post;
 
@@ -39,7 +42,7 @@ const PostContent: React.FC<
         title={postDataLoading ? "Loading.." : `${post.title!} | BloqDown`}
       />
       <Screen>
-        <Header />
+        <Header showMenuOnMobile={true} setOpenMenu={setOpenMenu} />
         <Container className="md:grid md:grid-cols-4 md:gap-3 max-w-7xl">
           {postDataLoading ? (
             <>
@@ -49,7 +52,9 @@ const PostContent: React.FC<
           ) : (
             <>
               <div className="md:block hidden">
-                <Tags postId={post.id!} isOwner={post.isOwner!} />
+                <div className="sticky top-2">
+                  <Tags postId={post.id!} isOwner={post.isOwner!} />
+                </div>
               </div>
 
               <div className="md:col-start-2 md:col-span-2 overflow-hidden">
@@ -150,10 +155,22 @@ const PostContent: React.FC<
           )}
 
           <div className="md:block hidden">
-            <RightNav />
+            <div className="sticky top-2">
+              <RightNav />
+            </div>
           </div>
         </Container>
       </Screen>
+
+      {post && (
+        <div className="md:hidden inline">
+          <PopWrapper open={openMenu} setOpen={setOpenMenu}>
+            <Tags postId={post.id!} isOwner={post.isOwner!} />
+            <div className="py-2" />
+            <RightNav />
+          </PopWrapper>
+        </div>
+      )}
     </>
   );
 };

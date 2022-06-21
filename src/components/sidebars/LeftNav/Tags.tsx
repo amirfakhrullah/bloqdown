@@ -64,7 +64,7 @@ const Tags: React.FC<{
   if (isLoading) return <TagsLoader />;
 
   return (
-    <div className="sticky top-2">
+    <>
       <div className="flex flex-row items-center px-2">
         <AiFillTag className="mr-2 text-md" />
         <p className="font-bold ml-1">Tags</p>
@@ -129,7 +129,7 @@ const Tags: React.FC<{
           ))}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

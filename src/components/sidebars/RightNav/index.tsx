@@ -8,13 +8,13 @@ import Author from "./Author";
  */
 const RightNav = () => {
   return (
-    <div className="sticky top-2">
+    <>
       <About />
       <div className="py-2" />
       <GitHubCard />
       <div className="py-2" />
       <Author />
-    </div>
+    </>
   );
 };
 

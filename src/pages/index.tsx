@@ -15,6 +15,8 @@ import SearchInput from "../components/SearchInput";
 import useFilterTags from "../utils/hooks/useFilterTags";
 import usePostsLists from "../utils/hooks/usePostsLists";
 import PostCardLoader from "../components/loaders/PostCardLoader";
+import PopWrapper from "../components/PopWrapper";
+import TagsLeftNav from "../components/sidebars/LeftNav/TagsLeftNav";
 
 const Home: React.FC = () => {
   const { open, setOpen } = useModal(); // form
@@ -39,11 +41,13 @@ const Home: React.FC = () => {
         <Header showMenuOnMobile={true} setOpenMenu={setOpenMenu} />
         <Container className="md:grid md:grid-cols-4 md:gap-3 max-w-7xl">
           <div className="md:block hidden">
-            <LeftNav
-              focusTab={focusTab}
-              selectTab={selectTab}
-              handleTag={handleTag}
-            />
+            <div className="sticky top-2">
+              <LeftNav
+                focusTab={focusTab}
+                selectTab={selectTab}
+                handleTag={handleTag}
+              />
+            </div>
           </div>
 
           <div className="md:col-span-2">
@@ -103,10 +107,20 @@ const Home: React.FC = () => {
           </div>
 
           <div className="md:block hidden">
-            <RightNav />
+            <div className="sticky top-2">
+              <RightNav />
+            </div>
           </div>
         </Container>
       </Screen>
+
+      <div className="md:hidden inline">
+        <PopWrapper open={openMenu} setOpen={setOpenMenu}>
+          <TagsLeftNav handleTag={handleTag} />
+          <div className="py-2" />
+          <RightNav />
+        </PopWrapper>
+      </div>
     </>
   );
 };

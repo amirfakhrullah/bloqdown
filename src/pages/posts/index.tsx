@@ -13,9 +13,11 @@ import Screen from "../../components/commons/Screen";
 import { GetPostType } from "../../server/router/posts";
 import useModal from "../../utils/hooks/useModal";
 import { trpc } from "../../utils/trpc";
+import PopWrapper from "../../components/PopWrapper";
 
 const MyPosts: React.FC = () => {
   const { open, setOpen } = useModal();
+  const { open: openMenu, setOpen: setOpenMenu } = useModal();
   const { data: posts, isLoading } = trpc.useQuery(["post.get-my-posts"]);
 
   const { data: session, status } = useSession();
@@ -24,7 +26,7 @@ const MyPosts: React.FC = () => {
     <>
       <MetaHead title="My Posts | BloqDown" />
       <Screen>
-        <Header />
+        <Header showMenuOnMobile={true} setOpenMenu={setOpenMenu} />
         <Container className="md:grid md:grid-cols-4 md:gap-3 max-w-7xl">
           <div className="md:col-start-2 md:col-span-2">
             <PostButton setOpen={setOpen} />
@@ -61,10 +63,18 @@ const MyPosts: React.FC = () => {
           </div>
 
           <div className="md:block hidden">
-            <RightNav />
+            <div className="sticky top-2">
+              <RightNav />
+            </div>
           </div>
         </Container>
       </Screen>
+
+      <div className="md:hidden inline">
+        <PopWrapper open={openMenu} setOpen={setOpenMenu}>
+          <RightNav />
+        </PopWrapper>
+      </div>
     </>
   );
 };
