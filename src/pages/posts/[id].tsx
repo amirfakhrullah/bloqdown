@@ -57,7 +57,7 @@ const PostContent: React.FC<
                   <Markdown>{post.description as string}</Markdown>
                 </div>
 
-                <div className="flex flex-row items-center justify-between">
+                <div className="flex sm:flex-row flex-col-reverse sm:items-center items-end justify-between">
                   <div className="flex flex-row items-center">
                     <Likes
                       postId={post.id!}
@@ -77,9 +77,9 @@ const PostContent: React.FC<
                     </div>
                   </div>
 
-                  <div>
+                  <div className="sm:w-auto w-full">
                     {post.githubUser ? (
-                      <div className="flex flex-row items-center my-1 justify-end">
+                      <div className="flex flex-row items-center my-1 sm:justify-end justify-start">
                         <Image
                           src={post.githubUser.image!}
                           height={20}
@@ -92,47 +92,36 @@ const PostContent: React.FC<
                         </p>
                       </div>
                     ) : (
-                      <p className="text-gray-500 text-sm font-bold text-right">
+                      <p className="text-gray-500 text-sm font-bold text-left">
                         {post.isOwner ? "By you" : "Anonymous"}
                       </p>
                     )}
 
-                    <p className="text-gray-500 text-sm text-right sm:block hidden">
+                    <p className="text-gray-500 text-sm sm:text-right text-left">
                       {post.updated
                         ? `Updated on ${dateFormatter(post.updated)}`
                         : `Created on ${dateFormatter(post.created!)}`}
                     </p>
-                    <p className="text-gray-500 text-sm text-right sm:hidden block">
-                      {post.updated ? (
-                        <>
-                          Edited
-                          <br />
-                          {dateFormatter(post.updated)}
-                        </>
-                      ) : (
-                        dateFormatter(post.created!)
-                      )}
-                    </p>
-                  </div>
-                </div>
 
-                <div className="flex justify-end items-center">
-                  {post.isOwner && (
-                    <div
-                      onClick={() => setOpenEdit(true)}
-                      className="text-sm mr-2 cursor-pointer hover:underline hover:underline-offset-1"
-                    >
-                      Edit Post
+                    <div className="flex sm:justify-end items-center">
+                      {post.isOwner && (
+                        <div
+                          onClick={() => setOpenEdit(true)}
+                          className="text-sm mr-2 cursor-pointer hover:underline hover:underline-offset-1"
+                        >
+                          Edit Post
+                        </div>
+                      )}
+                      <Delete
+                        type="post"
+                        githubUser={post.githubUser}
+                        id={post.id!}
+                        isOwner={post.isOwner}
+                      >
+                        Delete Post
+                      </Delete>
                     </div>
-                  )}
-                  <Delete
-                    type="post"
-                    githubUser={post.githubUser}
-                    id={post.id!}
-                    isOwner={post.isOwner}
-                  >
-                    Delete Post
-                  </Delete>
+                  </div>
                 </div>
 
                 {!isFetching && (
