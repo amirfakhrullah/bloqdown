@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { AiFillEye } from "react-icons/ai";
 import { FaCommentAlt } from "react-icons/fa";
 import { GetPostType } from "../server/router/posts";
 import { dateFormatter } from "../utils/dateFormatter";
@@ -10,9 +11,9 @@ import Likes from "./Likes";
  * Component Card for posts in homepage and My Posts page
  */
 const PostCard: React.FC<
-  GetPostType & { 
+  GetPostType & {
     isFiltered?: boolean; // for tags filtering, if true, means includes post after filter
-    page: "home" | "myPage" | "post" // to be passed to Likes component - for invalidateQueries usage
+    page: "home" | "myPage" | "post"; // to be passed to Likes component - for invalidateQueries usage
   }
 > = ({
   id,
@@ -24,6 +25,7 @@ const PostCard: React.FC<
   isOwner,
   tags,
   updated,
+  views,
   page,
   isFiltered = true,
 }) => {
@@ -51,7 +53,11 @@ const PostCard: React.FC<
           {isOwner ? "By you" : "Anonymous"}
         </p>
       )}
-      <p className="text-gray-500 text-sm">{updated ?  `Edited on ${dateFormatter(updated)}` : dateFormatter(created)}</p>
+      <p className="text-gray-500 text-sm">
+        {updated
+          ? `Edited on ${dateFormatter(updated)}`
+          : dateFormatter(created)}
+      </p>
 
       <div>
         {tags?.map((tag, idx) => (
@@ -75,15 +81,18 @@ const PostCard: React.FC<
 
           <Link href={`/posts/${id}#comments`}>
             <div className="flex flex-row items-center ml-2 cursor-pointer hover:bg-slate-900 p-1 rounded-md">
-              <p className="text-gray-500 text-sm font-bold mr-1">
-                {_count.Comment}{" "}
-                <span className="sm:inline hidden">
-                  Comment{_count.Comment > 1 && "s"}
-                </span>
-              </p>
               <FaCommentAlt className="text-gray-500 text-sm" />
+
+              <p className="text-gray-500 text-sm font-bold ml-1">
+                {_count.Comment}
+              </p>
             </div>
           </Link>
+
+          <div className="flex flex-row items-center ml-2">
+            <AiFillEye className="text-gray-500 text-md" />
+            <p className="text-gray-500 text-sm font-bold ml-1">{views}</p>
+          </div>
         </div>
 
         <Link href={`/posts/${id}`}>
