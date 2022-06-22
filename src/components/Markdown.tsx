@@ -4,7 +4,7 @@ import remarkGfm from "remark-gfm";
 
 const Markdown: React.FC<{ children: string }> = ({ children }) => {
   return (
-    <article className="prose prose-gray max-w-none">
+    <article className="prose sm:prose-base prose-sm prose-gray max-w-none">
       <div className="mardown-group">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{children}</ReactMarkdown>
       </div>
