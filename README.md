@@ -11,9 +11,9 @@
 
 ## Description
 
-Simple Markdown Forum/blog site using `Next.js`, `Next-Auth`, `TypeScript`, `Prisma`, `PlanetScale` and `tRPC`. The aim here is to learn how to properly use these techstacks.
+Simple Markdown Forum/Blog site using `Next.js`, `NextAuth`, `TypeScript`, `tRPC`, `Prisma` and `PlanetScale`. The aim here is to learn how to properly use these techstacks.
 
-![bloqdown](./public/bloqdown.JPG)
+![bloqdown](./public/bloqdown-screen.JPG)
 
 ## Quick Links
 
@@ -27,20 +27,34 @@ Simple Markdown Forum/blog site using `Next.js`, `Next-Auth`, `TypeScript`, `Pri
 
 ## Goals For This Project
 
-I know the UI for this project is not great. But that's not the goal for building this site. The goals for this project are:
+The goals for this project are:
 
 - Creating fully typesafe APIs using `tRPC`
 - Using `Prisma` as `TypeScript ORM`
 - Setting up `PlanetScale` as `MySQL` db for the site
 - Set cookie for anonymous users thru `Next.js` middleware
-- Auth using `Next-Auth` (Github Provider)
-- Render post content as markdown using `react-markdown`
+- Auth using `NextAuth` (Github Provider)
+- Render markdown content using `react-markdown` and `@tailwindcss/typography`
+- Display repository data using `GitHub API`
+
+## Project Features
+
+- **Users** - Can perform any activity anonymously or can login as GitHub user (via `NextAuth`)
+- **Homepage** - Users can find posts sorted by popularity or latest. They can also find posts via tags and search bar
+- **Base features of posts** - Creating, updating and deleting posts
+- **Liking** - Users can like any posts they want
+- **Comments** - Users can comments to any posts, the users and the post owners can delete comments
+- **Tags** - Users can add category tags to the posts, so that users can find the posts via tags in the homepage
+- **Views** - Total views of the post (not unique)
+- **Live Repository Stats** - Live repository data of this project fetched using `GitHub API`
+
 
 ## Techstacks
 
 - [Next.js](https://nextjs.org/)
 - [TailwindCSS](https://tailwindcss.com/)
 - [DaisyUI](https://daisyui.com/)
+- [TailwindCSS-Typography](https://tailwindcss.com/docs/typography-plugin)
 - [React-Markdown](https://github.com/remarkjs/react-markdown)
 - [Next-Auth](https://next-auth.js.org/)
 - [TypeScript](https://www.typescriptlang.org/)
@@ -69,6 +83,7 @@ For setting up `Next Auth` Github provider, insert Github Id and secrets in `.en
 ```bash
 GITHUB_ID=
 GITHUB_SECRET=
+GITHUB_ACCESS_TOKEN=
 NEXTAUTH_SECRET=
 ```
 
@@ -86,16 +101,3 @@ Run the development server:
 pscale connect `InsertDbNameHere` #for connecting planetscale db
 npm run dev
 ```
-
-## Possible Future Works
-
-- [ ] Refactoring repetitive codes (buttons, etc)
-- [x] Update posts by post owner
-- [x] Ability to delete own posts or comments
-- [x] Liking posts
-- [x] Sorting posts by latest & popularity
-- [x] Markdown editor for posts :astonished:
-- [x] Next Auth :astonished:
-- [x] Tags
-- [x] Tags filtering section in LeftNav component
-- [x] Searchbar for searching posts
