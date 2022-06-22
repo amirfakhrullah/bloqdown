@@ -61,8 +61,8 @@ const PostContent: React.FC<
                 <div className="md:p-6 p-4 mb-3 rounded-lg bg-slate-800 border border-gray-600 overflow-hidden">
                   <article className="mardown-group text-white prose sm:prose-base prose-sm prose-gray max-w-none">
                     <h1>{post.title}</h1>
+                    <Markdown>{post.description as string}</Markdown>
                   </article>
-                  <Markdown>{post.description as string}</Markdown>
                 </div>
 
                 <div className="flex sm:flex-row flex-col-reverse sm:items-center items-end justify-between">
