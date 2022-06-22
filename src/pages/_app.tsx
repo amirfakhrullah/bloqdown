@@ -4,6 +4,7 @@ import superjson from "superjson";
 import type { AppRouter } from "../server/router";
 import { SessionProvider } from "next-auth/react";
 import "../styles/globals.css";
+import "tailwindcss/tailwind.css";
 
 const MyApp: AppType = ({
   Component,
