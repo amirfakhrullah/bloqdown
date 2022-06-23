@@ -175,7 +175,7 @@ const PostContent: React.FC<
 
 /**
  * Increment views by 1 before renders
- * if error,
+ * if error, specifically post not found error, redirect to 404 page before renders
  */
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { id } = query;
