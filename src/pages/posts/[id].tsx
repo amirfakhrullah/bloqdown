@@ -132,18 +132,16 @@ const PostContent: React.FC<
                   </div>
                 </div>
 
-                {!isFetching && (
-                  <PostForm
-                    type="edit"
-                    open={openEdit}
-                    setOpen={setOpenEdit}
-                    inputs={{
-                      id: post.id!,
-                      title: post.title!,
-                      description: post.description!,
-                    }}
-                  />
-                )}
+                <PostForm
+                  type="edit"
+                  open={openEdit}
+                  setOpen={setOpenEdit}
+                  inputs={{
+                    id: post.id!,
+                    title: post.title!,
+                    description: post.description!,
+                  }}
+                />
 
                 <Comments
                   id={post.id}
@@ -177,7 +175,7 @@ const PostContent: React.FC<
 
 /**
  * Increment views by 1 before renders
- * if error,
+ * if error, specifically post not found error, redirect to 404 page before renders
  */
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { id } = query;
