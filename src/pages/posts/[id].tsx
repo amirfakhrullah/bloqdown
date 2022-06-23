@@ -132,18 +132,16 @@ const PostContent: React.FC<
                   </div>
                 </div>
 
-                {!isFetching && (
-                  <PostForm
-                    type="edit"
-                    open={openEdit}
-                    setOpen={setOpenEdit}
-                    inputs={{
-                      id: post.id!,
-                      title: post.title!,
-                      description: post.description!,
-                    }}
-                  />
-                )}
+                <PostForm
+                  type="edit"
+                  open={openEdit}
+                  setOpen={setOpenEdit}
+                  inputs={{
+                    id: post.id!,
+                    title: post.title!,
+                    description: post.description!,
+                  }}
+                />
 
                 <Comments
                   id={post.id}
