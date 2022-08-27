@@ -8,12 +8,8 @@ import { BiMenuAltLeft } from "react-icons/bi";
 const Header: React.FC<{
   displayButtons?: boolean; // for displaying buttons on the right side of the Header
   showMenuOnMobile?: boolean;
-  setOpenMenu?: Dispatch<SetStateAction<boolean>>
-}> = ({
-  displayButtons = true,
-  showMenuOnMobile = false,
-  setOpenMenu,
-}) => {
+  setOpenMenu?: Dispatch<SetStateAction<boolean>>;
+}> = ({ displayButtons = true, showMenuOnMobile = false, setOpenMenu }) => {
   const { data: session, status } = useSession();
   const router = useRouter();
 
@@ -65,10 +61,10 @@ const Header: React.FC<{
             ) : (
               <button
                 type="button"
-                className="py-2 px-4 rounded-md inline-block bg-slate-800 border border-gray-400 cursor-pointer text-sm text-white font-medium"
-                onClick={() => signIn()}
+                className="md:inline-block hidden py-2 px-4 rounded-md bg-slate-800 border border-gray-400 cursor-pointer text-sm text-white font-medium"
+                onClick={() => signIn("github")}
               >
-                Sign In
+                Sign in with GitHub
               </button>
             )}
 
@@ -85,26 +81,38 @@ const Header: React.FC<{
         )}
       </div>
 
-      {session && session.user && displayButtons && (
+      {displayButtons && (
         <div className="md:hidden w-full bg-gray-900 border-b border-gray-700 md:px-5 p-2 flex flex-row items-center justify-end">
-          <p className=" mr-2 text-sm text-gray-400">{session.user.name}</p>
-          <Image
-            src={session.user.image!}
-            height={30}
-            width={30}
-            alt="github avatar"
-            className="rounded-full"
-          />
+          {session && session.user ? (
+            <>
+              <p className=" mr-2 text-sm text-gray-400">{session.user.name}</p>
+              <Image
+                src={session.user.image!}
+                height={30}
+                width={30}
+                alt="github avatar"
+                className="rounded-full"
+              />
 
-          <div className="pr-2" />
+              <div className="pr-2" />
 
-          <button
-            type="button"
-            className="py-2 px-4 rounded-md inline-block bg-slate-800 border border-gray-400 cursor-pointer text-sm text-white font-medium"
-            onClick={() => signOut()}
-          >
-            Sign Out
-          </button>
+              <button
+                type="button"
+                className="py-2 px-4 rounded-md inline-block bg-slate-800 border border-gray-400 cursor-pointer text-sm text-white font-medium"
+                onClick={() => signOut()}
+              >
+                Sign Out
+              </button>
+            </>
+          ) : (
+            <button
+              type="button"
+              className="py-2 px-4 rounded-md inline-block bg-slate-800 border border-gray-400 cursor-pointer text-sm text-white font-medium"
+              onClick={() => signIn()}
+            >
+              Sign in with GitHub
+            </button>
+          )}
         </div>
       )}
     </>

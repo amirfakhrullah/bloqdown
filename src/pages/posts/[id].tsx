@@ -100,7 +100,7 @@ const PostContent: React.FC<
                         </p>
                       </div>
                     ) : (
-                      <p className="text-gray-500 text-sm font-bold text-left">
+                      <p className="text-gray-500 text-sm font-bold text-right">
                         {post.isOwner ? "By you" : "Anonymous"}
                       </p>
                     )}
