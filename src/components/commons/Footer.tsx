@@ -15,7 +15,7 @@ const Footer = () => {
           <h1 className="font-lobster text-4xl font-black text-indigo-500 mb-1">
             BloqDown
           </h1>
-          <div className="cursor-pointer">
+          <div className="cursor-pointer mt-3">
             <div onClick={() => router.push("https://vercel.com")}>
               <Image
                 src="https://raw.githubusercontent.com/abumalick/powered-by-vercel/master/powered-by-vercel.svg"
@@ -31,7 +31,7 @@ const Footer = () => {
           <h3 className="text-xl font-bold mb-1 md:mt-0 mt-3">About</h3>
           {abouts.map((abt, idx) => (
             <Link key={`abt__footer__${idx}`} href={abt.href}>
-              <p className="cursor-pointer my-1 hover:underline">
+              <p className="cursor-pointer my-1 hover:underline md:mt-4">
                 {abt.text}
               </p>
             </Link>
@@ -42,7 +42,7 @@ const Footer = () => {
           <h3 className="text-xl font-bold mb-1 md:mt-0 mt-3">Author</h3>
           {infos.map((info, idx) => (
             <Link key={`author__footer__${idx}`} href={info.href}>
-              <p className="cursor-pointer my-1 hover:underline">
+              <p className="cursor-pointer my-1 hover:underline md:mt-4">
                 {info.text}
               </p>
             </Link>
