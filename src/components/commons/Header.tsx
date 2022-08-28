@@ -108,7 +108,7 @@ const Header: React.FC<{
             <button
               type="button"
               className="py-2 px-4 rounded-md inline-block bg-slate-800 border border-gray-400 cursor-pointer text-sm text-white font-medium"
-              onClick={() => signIn()}
+              onClick={() => signIn("github")}
             >
               Sign in with GitHub
             </button>
