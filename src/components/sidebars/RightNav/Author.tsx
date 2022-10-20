@@ -7,7 +7,7 @@ export const infos = [
   {
     text: "Portfolio Website",
     icon: <RiFileUserLine className="mr-2 text-lg" />,
-    href: "https://www.fakhrullah.com",
+    href: "https://www.amrf.me",
   },
   {
     text: "Connect on GitHub",
