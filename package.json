@@ -1,6 +1,7 @@
 {
   "name": "bloqdown",
   "version": "0.3.0",
+  "license": "BSD-3-Clause",
   "private": true,
   "scripts": {
     "dev": "next dev",

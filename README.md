@@ -101,3 +101,7 @@ Run the development server:
 pscale connect `InsertDbNameHere` #for connecting planetscale db
 npm run dev
 ```
+
+## License
+
+License under the [BSD-3-Clause](./LICENSE)
