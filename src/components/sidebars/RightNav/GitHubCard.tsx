@@ -44,13 +44,6 @@ const GitHubCard = () => {
           </div>
 
           <div className="p-2 px-3 flex flex-row items-center">
-            <AiFillEye className="mr-2 text-lg" />
-            <p className="ml-2">
-              {repoData.watches} Watcher{repoData.watches > 1 && "s"}
-            </p>
-          </div>
-
-          <div className="p-2 px-3 flex flex-row items-center">
             <TbGitFork className="mr-2 text-lg" />
             <p className="ml-2">
               {repoData.forks} Fork{repoData.forks > 1 && "s"}
