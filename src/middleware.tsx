@@ -3,9 +3,12 @@ import { nanoid } from "nanoid";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 
+const ephemeralCache = new Map();
+
 const ratelimit = new Ratelimit({
   redis: Redis.fromEnv(),
-  limiter: Ratelimit.fixedWindow(20, "10 s"),
+  limiter: Ratelimit.fixedWindow(10, "10 s"),
+  ephemeralCache,
 });
 
 export async function middleware(req: NextRequest, ev: NextFetchEvent) {
