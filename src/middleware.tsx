@@ -1,16 +1,6 @@
 import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
 import { nanoid } from "nanoid";
-import { Ratelimit } from "@upstash/ratelimit";
-import { Redis } from "@upstash/redis";
 import { setupProdRateLimit } from "./lib/ratelimiter";
-
-const ephemeralCache = new Map();
-
-const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(),
-  limiter: Ratelimit.fixedWindow(20, "10 s"),
-  ephemeralCache,
-});
 
 export async function middleware(req: NextRequest, ev: NextFetchEvent) {
   const ip = req.ip ?? "127.0.0.1";
