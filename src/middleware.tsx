@@ -2,6 +2,7 @@ import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
 import { nanoid } from "nanoid";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
+import { setupProdRateLimit } from "./lib/ratelimiter";
 
 const ephemeralCache = new Map();
 
@@ -13,12 +14,15 @@ const ratelimit = new Ratelimit({
 
 export async function middleware(req: NextRequest, ev: NextFetchEvent) {
   const ip = req.ip ?? "127.0.0.1";
-  if (req.nextUrl.pathname === "/api/blocked") return;
+  if (req.nextUrl.pathname === "/api") return NextResponse.next(req);
 
-  const { success, pending, limit, reset, remaining } = await ratelimit.limit(
-    `mw_${ip}`
-  );
-  ev.waitUntil(pending);
+  const ratelimit = await setupProdRateLimit(`mw_${ip}`);
+
+  if (ratelimit?.pending) {
+    ev.waitUntil(ratelimit.pending);
+  }
+
+  const success = ratelimit ? ratelimit.success : true;
 
   const res = success
     ? NextResponse.next(req)
@@ -32,8 +36,10 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
     });
   }
 
-  res.headers.set("X-RateLimit-Limit", limit.toString());
-  res.headers.set("X-RateLimit-Remaining", remaining.toString());
-  res.headers.set("X-RateLimit-Reset", reset.toString());
+  if (ratelimit) {
+    res.headers.set("X-RateLimit-Limit", ratelimit.limit.toString());
+    res.headers.set("X-RateLimit-Remaining", ratelimit.remaining.toString());
+    res.headers.set("X-RateLimit-Reset", ratelimit.reset.toString());
+  }
   return res;
 }
