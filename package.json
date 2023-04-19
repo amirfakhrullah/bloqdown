@@ -8,7 +8,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "ts-node": "ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\""
+  },
+  "prisma": {
+    "seed": "npm run ts-node --transpile-only prisma/migration.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.0",
@@ -34,6 +38,7 @@
     "react-textarea-autosize": "^8.3.4",
     "remark-gfm": "^3.0.1",
     "superjson": "^1.9.1",
+    "ts-node": "^10.9.1",
     "zod": "^3.17.3"
   },
   "devDependencies": {
